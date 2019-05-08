@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<!-- header -->
+
+<!-- //header -->
+<!-- banner -->
+@section banner{
+    
+    <div class="banner">
+    <div id="carouselExampleControls" class="carousel kb_elastic animate_text kb_wrapper" data-ride="carousel" data-interval="6000"
+         data-pause="hover">
+        <!-- Wrapper-for-Slides -->
+        <div class="carousel-inner" role="listbox">
+
+            <div class="carousel-item text-center {{Item.ActiveStatus}}" ng-repeat="Item in ListAllSiteSettingBanner">
+                <img ng-src="@Url.Content("~/FileArchives/SiteSettingImage/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" />
+                <div class="carousel-caption kb_caption kb_caption_right">
+                    <h4 data-animation="animated flipInX">{{Item.Title}}</h4>
+                    <h3 data-animation="animated flipInX" ng-bind-html="Item.Comment | unsafe"></h3>
+
+                    
+                    <a href="{{Item.Link}}" class="btn">بیشتر بخوانید</a>
+                </div>
+            </div>
+
+
+
+            <a class="carousel-control-prev left kb_control_left" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">قبلی</span>
+            </a>
+
+            <a class="carousel-control-next right kb_control_right" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">بعدی</span>
+            </a>
+        </div>
+    </div>
+</div>
+    }
+<!-- //banner -->
+<!-- banner bottom -->
+
+<!-- //banner bottom -->
+
+@section DeclareJS{
+    
+    
+<script src="~/Scripts/JSScripts/JSHome/JSIndex.js"></script>
+    }
+
+
+
+

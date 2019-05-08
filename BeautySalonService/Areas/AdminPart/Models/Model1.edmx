@@ -1,0 +1,719 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteContent" Type="nvarchar(max)" />
+          <Property Name="ID_Person" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Province" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID_Person_From" Type="int" />
+          <Property Name="MessageBody" Type="nvarchar(max)" />
+          <Property Name="ID_Person_To" Type="int" />
+          <Property Name="IsRead" Type="bit" />
+          <Property Name="MessageTitle" Type="nvarchar" MaxLength="200" />
+          <Property Name="SendDate" Type="datetime" />
+          <Property Name="ReadDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Family" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="200" />
+          <Property Name="ID_SecurityQuestion" Type="int" />
+          <Property Name="SecurityAnswer" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_Role" Type="int" />
+          <Property Name="CellPhoneNo" Type="char" MaxLength="11" />
+          <Property Name="ID_Pic" Type="int" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Picture" Type="varbinary" MaxLength="100" />
+          <Property Name="PicturePath" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Salon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_City" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Location" Type="geometry" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="Sex" Type="bit" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ID_Manager" Type="int" />
+          <Property Name="IntroductionPic" Type="varbinary(max)" />
+          <Property Name="ID_pic" Type="int" />
+        </EntityType>
+        <EntityType Name="SalonService">
+          <Key>
+            <PropertyRef Name="ID_Service" />
+            <PropertyRef Name="ID_Salon" />
+          </Key>
+          <Property Name="ID_Service" Type="int" Nullable="false" />
+          <Property Name="ID_Salon" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="ID_Pic" Type="int" />
+        </EntityType>
+        <EntityType Name="SecurityQuestion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_Pic" Type="int" />
+          <Property Name="ID_Article" Type="int" />
+        </EntityType>
+        <EntityType Name="SiteSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_UseType" Type="int" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Link" Type="nvarchar" MaxLength="200" />
+          <Property Name="ID_Pic" Type="int" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="SubTitle" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UseType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UseComments" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="Usp_CheckLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Usp_GetAllSalon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Usp_GetAllServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Usp_GetArticles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Usp_GetNewMessagesForPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Person_To" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Usp_GetPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchText" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Usp_GetSalonsOfService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Service" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Usp_GetServicesOfSalon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Salon" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Usp_GetSiteSettingWithPicture" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Usp_InsertPic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PicPath" Type="nvarchar" Mode="In" />
+          <Parameter Name="TableName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ID_Main" Type="int" Mode="In" />
+          <Parameter Name="ID_Main2" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="BeautySalonModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salon" EntityType="Self.Salon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalonService" EntityType="Self.SalonService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UseType" EntityType="Self.UseType" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BeautySalonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Person" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Province" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID_Person_From" Type="Int32" />
+          <Property Name="MessageBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Person_To" Type="Int32" />
+          <Property Name="IsRead" Type="Boolean" />
+          <Property Name="MessageTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SendDate" Type="DateTime" Precision="3" />
+          <Property Name="ReadDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Family" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ID_SecurityQuestion" Type="Int32" />
+          <Property Name="SecurityAnswer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Role" Type="Int32" />
+          <Property Name="CellPhoneNo" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="ID_Pic" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Picture1" Type="Binary" MaxLength="100" FixedLength="false" />
+          <Property Name="PicturePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Salon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_City" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="Geometry" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Sex" Type="Boolean" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Manager" Type="Int32" />
+          <Property Name="IntroductionPic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ID_pic" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SalonService">
+          <Key>
+            <PropertyRef Name="ID_Service" />
+            <PropertyRef Name="ID_Salon" />
+          </Key>
+          <Property Name="ID_Service" Type="Int32" Nullable="false" />
+          <Property Name="ID_Salon" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Pic" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SecurityQuestion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Pic" Type="Int32" />
+          <Property Name="ID_Article" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SiteSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_UseType" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Pic" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="SubTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UseType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UseComments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="BeautySalonEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Article" EntityType="Self.Article" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Message" EntityType="Self.Message" />
+          <EntitySet Name="Person" EntityType="Self.Person" />
+          <EntitySet Name="Picture" EntityType="Self.Picture" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Salon" EntityType="Self.Salon" />
+          <EntitySet Name="SalonService" EntityType="Self.SalonService" />
+          <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" />
+          <EntitySet Name="UseType" EntityType="Self.UseType" />
+          <FunctionImport Name="Usp_CheckLogin" ReturnType="Collection(BeautySalonModel.Usp_CheckLogin_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_GetAllSalon" ReturnType="Collection(BeautySalonModel.Usp_GetAllSalon_Result)" />
+          <FunctionImport Name="Usp_GetAllServices" ReturnType="Collection(BeautySalonModel.Usp_GetAllServices_Result)" />
+          <FunctionImport Name="Usp_GetArticles" ReturnType="Collection(BeautySalonModel.Usp_GetArticles_Result)" />
+          <FunctionImport Name="Usp_GetNewMessagesForPerson" ReturnType="Collection(BeautySalonModel.Usp_GetNewMessagesForPerson_Result)">
+            <Parameter Name="ID_Person_To" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_GetPerson" ReturnType="Collection(BeautySalonModel.Usp_GetPerson_Result)">
+            <Parameter Name="SearchText" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_GetSalonsOfService" ReturnType="Collection(BeautySalonModel.Usp_GetSalonsOfService_Result)">
+            <Parameter Name="ID_Service" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_GetServicesOfSalon" ReturnType="Collection(BeautySalonModel.Usp_GetServicesOfSalon_Result)">
+            <Parameter Name="ID_Salon" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_GetSiteSettingWithPicture" ReturnType="Collection(BeautySalonModel.Usp_GetSiteSettingWithPicture_Result)" />
+          <FunctionImport Name="Usp_InsertPic">
+            <Parameter Name="PicPath" Mode="In" Type="String" />
+            <Parameter Name="TableName" Mode="In" Type="String" />
+            <Parameter Name="ID_Main" Mode="In" Type="Int32" />
+            <Parameter Name="ID_Main2" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Usp_CheckLogin_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Family" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="ID_SecurityQuestion" Nullable="true" />
+          <Property Type="String" Name="Question" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="SecurityAnswer" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_Role" Nullable="true" />
+          <Property Type="String" Name="CellPhoneNo" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Usp_GetAllSalon_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_City" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="Sex" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="Int32" Name="ID_Manager" Nullable="true" />
+          <Property Type="Binary" Name="IntroductionPic" Nullable="true" />
+          <Property Type="Int32" Name="ID_pic" Nullable="true" />
+          <Property Type="String" Name="Manager" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Usp_GetAllServices_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="ID_Article" Nullable="true" />
+          <Property Type="String" Name="comment" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Usp_GetArticles_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SiteContent" Nullable="true" />
+          <Property Type="String" Name="NameFamily" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Usp_GetNewMessagesForPerson_Result">
+          <Property Type="String" Name="MessageTitle" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="SendDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NameFamily" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Usp_GetPerson_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Family" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="ID_SecurityQuestion" Nullable="true" />
+          <Property Type="String" Name="SecurityAnswer" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_Role" Nullable="true" />
+          <Property Type="String" Name="CellPhoneNo" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="Question" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="ID_Pic" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Usp_GetSalonsOfService_Result">
+          <Property Type="Int32" Name="ID_Salon" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Comment" Nullable="true" />
+          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Usp_GetServicesOfSalon_Result">
+          <Property Type="Int32" Name="ID_Service" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Comment" Nullable="true" />
+          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Usp_GetSiteSettingWithPicture_Result">
+          <Property Type="String" Name="ActiveStatus" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_UseType" Nullable="true" />
+          <Property Type="String" Name="Comment" Nullable="true" />
+          <Property Type="String" Name="link" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="ID_Pic" Nullable="true" />
+          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="SubTitle" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UseComments" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BeautySalonModelStoreContainer" CdmEntityContainer="BeautySalonEntities">
+          <EntitySetMapping Name="Article">
+            <EntityTypeMapping TypeName="BeautySalonModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
+                <ScalarProperty Name="ID_Person" ColumnName="ID_Person" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="BeautySalonModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Province" ColumnName="ID_Province" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="BeautySalonModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Person_From" ColumnName="ID_Person_From" />
+                <ScalarProperty Name="MessageBody" ColumnName="MessageBody" />
+                <ScalarProperty Name="ID_Person_To" ColumnName="ID_Person_To" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="MessageTitle" ColumnName="MessageTitle" />
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="ReadDate" ColumnName="ReadDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="BeautySalonModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Family" ColumnName="Family" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ID_SecurityQuestion" ColumnName="ID_SecurityQuestion" />
+                <ScalarProperty Name="SecurityAnswer" ColumnName="SecurityAnswer" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="CellPhoneNo" ColumnName="CellPhoneNo" />
+                <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Picture">
+            <EntityTypeMapping TypeName="BeautySalonModel.Picture">
+              <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Picture1" ColumnName="Picture" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="BeautySalonModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salon">
+            <EntityTypeMapping TypeName="BeautySalonModel.Salon">
+              <MappingFragment StoreEntitySet="Salon">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_City" ColumnName="ID_City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID_Manager" ColumnName="ID_Manager" />
+                <ScalarProperty Name="IntroductionPic" ColumnName="IntroductionPic" />
+                <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalonService">
+            <EntityTypeMapping TypeName="BeautySalonModel.SalonService">
+              <MappingFragment StoreEntitySet="SalonService">
+                <ScalarProperty Name="ID_Service" ColumnName="ID_Service" />
+                <ScalarProperty Name="ID_Salon" ColumnName="ID_Salon" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityQuestion">
+            <EntityTypeMapping TypeName="BeautySalonModel.SecurityQuestion">
+              <MappingFragment StoreEntitySet="SecurityQuestion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="BeautySalonModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
+                <ScalarProperty Name="ID_Article" ColumnName="ID_Article" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteSetting">
+            <EntityTypeMapping TypeName="BeautySalonModel.SiteSetting">
+              <MappingFragment StoreEntitySet="SiteSetting">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID_UseType" ColumnName="ID_UseType" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UseType">
+            <EntityTypeMapping TypeName="BeautySalonModel.UseType">
+              <MappingFragment StoreEntitySet="UseType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UseComments" ColumnName="UseComments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Usp_CheckLogin" FunctionName="BeautySalonModel.Store.Usp_CheckLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BeautySalonModel.Usp_CheckLogin_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Family" ColumnName="Family" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ID_SecurityQuestion" ColumnName="ID_SecurityQuestion" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="SecurityAnswer" ColumnName="SecurityAnswer" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="CellPhoneNo" ColumnName="CellPhoneNo" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_GetAllSalon" FunctionName="BeautySalonModel.Store.Usp_GetAllSalon">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetAllSalon_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_City" ColumnName="ID_City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID_Manager" ColumnName="ID_Manager" />
+                <ScalarProperty Name="IntroductionPic" ColumnName="IntroductionPic" />
+                <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_GetAllServices" FunctionName="BeautySalonModel.Store.Usp_GetAllServices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetAllServices_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+                <ScalarProperty Name="ID_Article" ColumnName="ID_Article" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_GetArticles" FunctionName="BeautySalonModel.Store.Usp_GetArticles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetArticles_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
+                <ScalarProperty Name="NameFamily" ColumnName="NameFamily" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_GetNewMessagesForPerson" FunctionName="BeautySalonModel.Store.Usp_GetNewMessagesForPerson">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetNewMessagesForPerson_Result">
+                <ScalarProperty Name="MessageTitle" ColumnName="MessageTitle" />
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="NameFamily" ColumnName="NameFamily" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_GetPerson" FunctionName="BeautySalonModel.Store.Usp_GetPerson">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetPerson_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Family" ColumnName="Family" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ID_SecurityQuestion" ColumnName="ID_SecurityQuestion" />
+                <ScalarProperty Name="SecurityAnswer" ColumnName="SecurityAnswer" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="CellPhoneNo" ColumnName="CellPhoneNo" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+                <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_GetSalonsOfService" FunctionName="BeautySalonModel.Store.Usp_GetSalonsOfService">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetSalonsOfService_Result">
+                <ScalarProperty Name="ID_Salon" ColumnName="ID_Salon" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_GetServicesOfSalon" FunctionName="BeautySalonModel.Store.Usp_GetServicesOfSalon">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetServicesOfSalon_Result">
+                <ScalarProperty Name="ID_Service" ColumnName="ID_Service" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_GetSiteSettingWithPicture" FunctionName="BeautySalonModel.Store.Usp_GetSiteSettingWithPicture">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetSiteSettingWithPicture_Result">
+                <ScalarProperty Name="ActiveStatus" ColumnName="ActiveStatus" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID_UseType" ColumnName="ID_UseType" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+                <ScalarProperty Name="UseComments" ColumnName="UseComments" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_InsertPic" FunctionName="BeautySalonModel.Store.Usp_InsertPic" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

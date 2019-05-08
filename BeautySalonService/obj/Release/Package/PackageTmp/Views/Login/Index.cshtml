@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+@section Title{  ورود}
+
+            <form method="post" id="form" action="/Login/CheckLogin"  >
+                <div class="form-group">
+                    <label>نام</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="نام کاربری" required>
+                </div>
+                <div class="form-group">
+                    <label>رمز عبور</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="رمز عبور" required>
+                </div>
+                @*<div class="d-sm-flex justify-content-between">
+                    <div class="form-check col-md-6 text-sm-right text-right">*@
+                <div align="right">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1" >مرا به خاطر داشته باش</label>
+                    @*</div>
+                    @*<div class="forgot col-md-6 text-sm-right text-center">
+                        <a href="forgot.html">فراموشی رمز عبور?</a>
+                    </div>*@
+                </div>
+                <button type="submit" class="btn btn-primary error-w3l-btn mt-sm-5 mt-3 px-4">ورود</button>
+                <button type="button"  class="btn btn-primary error-w3l-btn mt-sm-5 mt-3 px-4" ng-click="ForgetPassword">رمز عبور خود ا فراموش کرده ام</button>
+            </form>
+
+            <p>@Session["Sess_Msg"]</p>
+            
+     

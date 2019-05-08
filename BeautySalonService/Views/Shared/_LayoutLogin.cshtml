@@ -1,0 +1,98 @@
+﻿
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>@ViewBag.Title </title>
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Modernize Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!--// Copyright -->
+    <!-- Required common Js -->
+    <script src="~/Scripts/MyJsTemplate/jquery-2.2.3.min.js"></script>
+
+    <!-- //Required common Js -->
+    <!-- Js for bootstrap working-->
+    <script src="~/Scripts/MyJsTemplate/bootstrap.min.js"></script>
+
+    <!-- //Js for bootstrap working -->
+
+   
+
+    <script src="~/Scripts/Angular/angular.js"></script>
+    <!-- //Meta Tags -->
+    <!-- Style-sheets -->
+    <!-- Bootstrap Css -->
+
+    <link href="~/Assets/cssadmin/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- Bootstrap Css -->
+    <!-- Common Css -->
+
+    <link href="~/Assets/cssadmin/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--// Common Css -->
+    <!-- Fontawesome Css -->
+    <link href="~/Assets/cssadmin/fontawesome-all.css" rel="stylesheet">
+    <!--// Fontawesome Css -->
+    <!--// Style-sheets -->
+    <!--web-fonts-->
+    <link href="//fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!--//web-fonts-->
+</head>
+
+<body ng-app="MyApp" ng-controller="MyCtrl">
+    <div class="bg-page py-5">
+        <div class="container">
+            <!-- main-heading -->
+            <h2 class="main-title-w3layouts mb-2 text-center text-white">@RenderSection("Title", true)</h2>
+            <!--// main-heading -->
+            <div class="form-body-w3-agile text-center w-lg-50 w-sm-75 w-100 mx-auto mt-5">
+                      
+                           @RenderBody()
+
+
+
+                           <p class="paragraph-agileits-w3layouts mt-4">
+
+                               <a href="/Person">عضویت</a>
+                           </p>
+
+
+                           <h1 class="paragraph-agileits-w3layouts mt-2">
+                               <a href="/">برگشت به خانه</a>
+                           </h1>
+
+                       </div>
+
+
+        </div>
+    </div>
+    <!-- Copyright -->
+    <div class="copyright-w3layouts py-xl-3 py-2 mt-xl-5 mt-4 text-center">
+        <p>
+            کپی رایت
+        </p>
+    </div>
+   
+
+
+    @RenderSection("DeclareJS", false);
+
+</body>
+
+</html>

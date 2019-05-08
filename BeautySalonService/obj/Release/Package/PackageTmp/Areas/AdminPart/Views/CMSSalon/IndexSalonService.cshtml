@@ -1,0 +1,140 @@
+﻿
+<div class="modal fade bd-example-modal-lg" id="FormModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">{{Title}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form name="myForm" novalidate ng-submit="submitForm();">
+
+
+                                     
+                    
+                    <div class="form-group row">
+
+                        <label for="DrpService" class="col-sm-2 col-form-label">سرویس </label>
+                        <div class="col-sm-10">
+                            <p>
+
+                                <select id="DrpService" class="form-control" ng-model="formData.ID_Service">
+                                    <option value="" disabled selected>انتخاب سرویس...</option>
+                                    <option dir="rtl" ng-repeat="Item in ListAllService" value="{{Item.ID}}">{{Item.Name}}</option>
+                                </select>
+                            </p>
+
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-group row">
+                        <label for="editor1" class="col-sm-2 col-form-label">توضیحات</label>
+                        <div class="col-sm-10">
+                            <p>
+
+                                <textarea name="editor1" id="editor1" rows="10" cols="80" class="ckeditor"></textarea>
+
+
+                            </p>
+
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group row">
+                        <label for="dropzone2" class="col-sm-2 col-form-label">تصویر</label>
+                        <div class="col-sm-10">
+                            <p>
+                                <div id="dropzone2" class="dropzone" options="dz_PersImageOptions" methods="dz_PersImageMethods" callbacks="dzCallbacks" ng-dropzone></div>
+                            </p>
+                        </div>
+                    </div>
+
+                    <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary">ذخیره</button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h2 class="main-title-w3layouts mb-2 text-center">{{Title}}</h2>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+
+        <tr>
+            <th class="text-center">شناسه سرویس</th>
+            <th class="text-center">نام سرویس</th>
+            <th class="text-center">توضیحات</th>
+            <th class="text-center">عکس</th>
+            <th colspan="2" class="text-center"><button type="button" class="btn btn-primary" ng-click="FuncAdd()">افزودن </button></th>
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+       
+        <tr ng-repeat="Item in ListAllSSalonServices">
+            <td>{{Item.ID_Service}}</td>
+            <td>{{Item.Name}}</td>
+
+
+            <td>
+                <p ng-bind-html="Item.Comment | unsafe"></p>
+            </td>
+
+
+            <td>
+                <div class="notif-img-agileinfo">
+                    <img style="width:45px !important;height:45px !important;object-fit: cover" ng-src="@Url.Content("~/FileArchives/SalonService/{{Item.PicturePath}}")" alt="...">
+                </div>
+            </td>
+            <td>
+                <input type="button" class="btn btn-primary" value="حذف" ng-click="FuncDelete(Item.ID)" />
+            </td>
+            <td>
+                <input type="button" class="btn btn-primary" value="تغییر" ng-click="FuncUpdate(Item)" />
+            </td>
+
+
+        </tr>
+        <tr>
+            <td colspan="11" class="text-center">
+
+
+                <input type="button" class="btn btn-primary" value="قبلی" ng-click="ShowLoadingAngular(PageNum,PageSize,'Prev')" />
+
+                {{PageNum}}
+
+                <input type="button" class="btn btn-primary" value="بعدی" ng-click="ShowLoadingAngular(PageNum,PageSize,'Next')" />
+            </td>
+        </tr>
+
+    </tbody>
+
+
+
+
+</table>
+
+
+@section DeclareJS{
+
+    <script src="~/Areas/AdminPart/Scripts/JSSalon/JSSalonService.js"></script>
+
+}
+
+
+
+
+
+

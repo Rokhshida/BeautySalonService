@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BeautySalonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiteContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Person" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Province" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID_Person_From" Type="Int32" />
+    <Property Name="MessageBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Person_To" Type="Int32" />
+    <Property Name="IsRead" Type="Boolean" />
+    <Property Name="MessageTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SendDate" Type="DateTime" Precision="3" />
+    <Property Name="ReadDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Family" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ID_SecurityQuestion" Type="Int32" />
+    <Property Name="SecurityAnswer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Role" Type="Int32" />
+    <Property Name="CellPhoneNo" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="ID_Pic" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Picture1" Type="Binary" MaxLength="100" FixedLength="false" />
+    <Property Name="PicturePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Salon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_City" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="Geometry" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Sex" Type="Boolean" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Manager" Type="Int32" />
+    <Property Name="IntroductionPic" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ID_pic" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SalonService">
+    <Key>
+      <PropertyRef Name="ID_Service" />
+      <PropertyRef Name="ID_Salon" />
+    </Key>
+    <Property Name="ID_Service" Type="Int32" Nullable="false" />
+    <Property Name="ID_Salon" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Pic" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SecurityQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Question" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Pic" Type="Int32" />
+    <Property Name="ID_Article" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SiteSetting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_UseType" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Pic" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="SubTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UseType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UseComments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="BeautySalonEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Article" EntityType="Self.Article" />
+    <EntitySet Name="City" EntityType="Self.City" />
+    <EntitySet Name="Message" EntityType="Self.Message" />
+    <EntitySet Name="Person" EntityType="Self.Person" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="Salon" EntityType="Self.Salon" />
+    <EntitySet Name="SalonService" EntityType="Self.SalonService" />
+    <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" />
+    <EntitySet Name="Service" EntityType="Self.Service" />
+    <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" />
+    <EntitySet Name="UseType" EntityType="Self.UseType" />
+    <FunctionImport Name="Usp_CheckLogin" ReturnType="Collection(BeautySalonModel.Usp_CheckLogin_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_GetAllSalon" ReturnType="Collection(BeautySalonModel.Usp_GetAllSalon_Result)" />
+    <FunctionImport Name="Usp_GetAllServices" ReturnType="Collection(BeautySalonModel.Usp_GetAllServices_Result)" />
+    <FunctionImport Name="Usp_GetArticles" ReturnType="Collection(BeautySalonModel.Usp_GetArticles_Result)" />
+    <FunctionImport Name="Usp_GetNewMessagesForPerson" ReturnType="Collection(BeautySalonModel.Usp_GetNewMessagesForPerson_Result)">
+      <Parameter Name="ID_Person_To" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_GetPerson" ReturnType="Collection(BeautySalonModel.Usp_GetPerson_Result)">
+      <Parameter Name="SearchText" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_GetSalonsOfService" ReturnType="Collection(BeautySalonModel.Usp_GetSalonsOfService_Result)">
+      <Parameter Name="ID_Service" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_GetServicesOfSalon" ReturnType="Collection(BeautySalonModel.Usp_GetServicesOfSalon_Result)">
+      <Parameter Name="ID_Salon" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_GetSiteSettingWithPicture" ReturnType="Collection(BeautySalonModel.Usp_GetSiteSettingWithPicture_Result)" />
+    <FunctionImport Name="Usp_InsertPic">
+      <Parameter Name="PicPath" Mode="In" Type="String" />
+      <Parameter Name="TableName" Mode="In" Type="String" />
+      <Parameter Name="ID_Main" Mode="In" Type="Int32" />
+      <Parameter Name="ID_Main2" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Usp_CheckLogin_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Family" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="ID_SecurityQuestion" Nullable="true" />
+    <Property Type="String" Name="Question" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SecurityAnswer" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ID_Role" Nullable="true" />
+    <Property Type="String" Name="CellPhoneNo" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="Usp_GetAllSalon_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ID_City" Nullable="true" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="10" />
+    <Property Type="Boolean" Name="Sex" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="Int32" Name="ID_Manager" Nullable="true" />
+    <Property Type="Binary" Name="IntroductionPic" Nullable="true" />
+    <Property Type="Int32" Name="ID_pic" Nullable="true" />
+    <Property Type="String" Name="Manager" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="CityName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="Usp_GetAllServices_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="ID_Article" Nullable="true" />
+    <Property Type="String" Name="comment" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Usp_GetArticles_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SiteContent" Nullable="true" />
+    <Property Type="String" Name="NameFamily" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="Usp_GetNewMessagesForPerson_Result">
+    <Property Type="String" Name="MessageTitle" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="SendDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="NameFamily" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="Usp_GetPerson_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Family" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="ID_SecurityQuestion" Nullable="true" />
+    <Property Type="String" Name="SecurityAnswer" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ID_Role" Nullable="true" />
+    <Property Type="String" Name="CellPhoneNo" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="Question" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="ID_Pic" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Usp_GetSalonsOfService_Result">
+    <Property Type="Int32" Name="ID_Salon" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Comment" Nullable="true" />
+    <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="Usp_GetServicesOfSalon_Result">
+    <Property Type="Int32" Name="ID_Service" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Comment" Nullable="true" />
+    <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="Usp_GetSiteSettingWithPicture_Result">
+    <Property Type="String" Name="ActiveStatus" Nullable="false" MaxLength="6" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ID_UseType" Nullable="true" />
+    <Property Type="String" Name="Comment" Nullable="true" />
+    <Property Type="String" Name="link" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="ID_Pic" Nullable="true" />
+    <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SubTitle" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UseComments" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

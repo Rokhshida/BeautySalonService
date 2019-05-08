@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "عضویت مدیر سالن";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@section Title{  عضویت مدیر سالن}
+
+
+<form name="myForm" novalidate ng-submit="submitForm()">
+    <input type="hidden" id="ID_Role" value="@Session["Sess_IDRole"]" />
+    <div class="form-group">
+        <label>نام </label>
+        <input type="text" ng-name="Name" class="form-control" placeholder="نام را وارد نمایید" ng-model="formData.Name" required>
+
+        <span style="color:red" ng-show="myForm.Name.$dirty && myForm.Name.$invalid">
+            <span ng-show="myform.Name.$error.required">نام خود را وارد نمایید</span>
+
+        </span>
+    </div>
+    <div class="form-group">
+        <label>نام خانوادگی </label>
+        <input type="text" ng-name="Family" class="form-control" placeholder="نام خانوادگی را وارد نمایید " ng-model="formData.Family" required>
+
+        <span style="color:red" ng-show="myForm.Family.$dirty  && myForm.Family.$invalid">
+            <span ng-show="myform.Family.$error.required">نام خانوادگی خود را وارد نمایید</span>
+
+        </span>
+    </div>
+    <div class="form-group">
+        <label>نام کاربری </label>
+        <input type="text" ng-name="username" class="form-control" placeholder="نام کاربری را وارد نمایید " ng-model="formData.username" required>
+
+        <span style="color:red" ng-show="myForm.username.$dirty && myForm.username.$invalid">
+            <span ng-show="myform.username.$error.required">نام کاربری خود را وارد نمایید</span>
+
+        </span>
+    </div>
+    <div class="form-group">
+        <label>رمز عبور </label>
+        <input type="password" ng-name="password" class="form-control" placeholder="رمز عبور را وارد نمایید " ng-model="formData.password" required>
+
+        <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+            <span ng-show="myform.password.$error.required">رمز عبور خود را وارد نمایید</span>
+
+        </span>
+    </div>
+    <div class="form-group">
+        <label>تایید رمز عبور </label>
+        <input type="password" ng-name="confirmpassword" class="form-control" placeholder=" تایید رمز عبور را وارد نمایید" required>
+
+        <span style="color:red" ng-show="myForm.confirmpassword.$dirty">
+            <span ng-show="myform.confirmpassword.$error.required">رمز عبور خود را وارد نمایید</span>
+
+        </span>
+    </div>
+    <div class="form-group">
+        <label>آدرس پست الکترونیکی </label>
+        <input type="Email" name="Email" class="form-control" placeholder="آدرس پست الکترونیکی خود را وارد نمایید " ng-model="formData.Email" required>
+
+        <span style="color:red" name="Email" ng-show="myForm.Email.$dirty && myForm.Email.$invalid">
+            <span ng-show="myform.Email.$error.required">آدرس پست الکترونیکی خود را وارد نمایید</span>
+            <span ng-show="myform.Email.$error.Email">فرمت صحیح آدرس پست الکترونیکی خود را وارد نمایید</span>
+        </span>
+    </div>
+
+
+
+
+    <div class="form-check text-center">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">توافق قوانین و شرایط</label>
+    </div>
+    <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary error-w3l-btn mt-sm-5 mt-3 px-4">ثبت نام</button>
+</form>
+
+@section DeclareJS{
+    <script src="~/Scripts/JSScripts/JSRegister/JSRegister.js"></script>
+}
+

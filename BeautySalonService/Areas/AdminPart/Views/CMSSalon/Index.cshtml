@@ -1,0 +1,522 @@
+﻿<!--
+    
+    this is for service
+-->
+
+<div class="modal fade bd-example-modal-lg" id="FormModalServiceAll" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">{{TitleService}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-striped">
+
+                    <thead>
+
+                        <tr>
+                            <th class="text-center">شناسه سرویس</th>
+                            <th class="text-center">نام سرویس</th>
+                            <th class="text-center">توضیحات</th>
+                            <th class="text-center">عکس</th>
+                            <th colspan="2" class="text-center"><button type="button" class="btn btn-primary" ng-click="FuncAddService()">افزودن </button></th>
+                        </tr>
+
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr ng-repeat="Item in ListAllSSalonServices">
+                            <td>{{Item.IDService}}-{{Item.ID}}</td>
+                            <td>{{Item.Name}}</td>
+
+
+                            <td>
+                                <p ng-bind-html="Item.Comment | unsafe"></p>
+                            </td>
+
+
+                            <td>
+                                <div class="notif-img-agileinfo">
+                                    <img style="width:45px !important;height:45px !important;object-fit: cover" ng-src="@Url.Content("~/FileArchives/SalonService/{{Item.PicturePath}}")" alt="...">
+                                </div>
+                            </td>
+                            <td>
+                                <input type="button" class="btn btn-primary" value="حذف" ng-click="FuncDeleteService(Item.ID)" />
+                            </td>
+
+
+
+                        </tr>
+                        <tr>
+                            <td colspan="11" class="text-center">
+
+
+                                <input type="button" class="btn btn-primary" value="قبلی" ng-click="ShowLoadingAngularService(PageNumService,PageSizeService,'Prev')" />
+
+                                {{PageNum}}
+
+                                <input type="button" class="btn btn-primary" value="بعدی" ng-click="ShowLoadingAngularService(PageNumService,PageSizeService,'Next')" />
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="FormModalService" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">افزودن سرویس</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form name="myFormService" novalidate ng-submit="submitFormService();">
+
+
+
+
+                    <div class="form-group row">
+
+                        <label for="DrpService" class="col-sm-2 col-form-label col-md-4 col-sm-3 hidden-md  ">سرویس </label>
+                        <div class="col-sm-10">
+                            <p>
+
+                                <select id="DrpService" class="form-control" ng-model="formDataService.ID_Service">
+                                    <option value="" disabled selected>انتخاب سرویس...</option>
+                                    <option dir="rtl" ng-repeat="Item in ListAllService" value="{{Item.ID}}">{{Item.Name}}</option>
+                                </select>
+                            </p>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="editor1Service" class="col-sm-2 col-form-label">توضیحات</label>
+                        <div class="col-sm-10">
+                            <p>
+
+                                <textarea name="editor1Service" id="editor1Service" rows="10" cols="80" class="ckeditor"></textarea>
+
+
+                            </p>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="dropzone3" class="col-sm-2 col-form-label">تصویر</label>
+                        <div class="col-sm-10">
+                            <p>
+                                <div id="dropzone3" class="dropzone" options="dz_PersImageOptions3" methods="dz_PersImageMethods3" callbacks="dzCallbacks3" ng-dropzone></div>
+                            </p>
+                        </div>
+                    </div>
+
+                    <button type="submit" ng-disabled="myFormService.$invalid" class="btn btn-primary">ذخیره</button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------------------->
+
+<div class="modal fade bd-example-modal-lg" id="FormModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">{{Title}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form name="myForm" novalidate ng-submit="submitForm();">
+
+
+                    <div class="form-group row">
+                        <label for="ID" class="col-sm-2 col-form-label">شناسه</label>
+                        <div class="col-sm-10">
+                            <input id="ID" type="text" ng-model="formData.ID" placeholder="شناسه" class="form-control" ng-disabled="true" />
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Name" class="col-sm-2 col-form-label">نام</label>
+                        <div class="col-sm-10">
+                            <p>
+                                <input id="Name" type="text" ng-model="formData.Name" placeholder="نام" class="form-control" required ng-maxlength="50" />
+                                <span ng-show="myForm.Name.$error.required">نام الزامی است</span>
+                                <span ng-show="myForm.Name.$error.maxlength">نام طولانی است.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <label for="DrpProvince" class="col-sm-2 col-form-label">استان </label>
+                        <div class="col-sm-10">
+                            <p>
+
+                                <select id="DrpProvince" class="form-control"  ng-click="GetCity()">
+                                    <option value="" disabled selected>انتخاب استان...</option>
+                                    <option dir="rtl" ng-repeat="Item in ListAllProvince" value="{{Item.ID}}">{{Item.Name}}</option>
+                                </select>
+
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <label for="DrpCity" class="col-sm-2 col-form-label">شهرستان </label>
+                        <div class="col-sm-10">
+                            <p>
+
+                                <select id="DrpCity" class="form-control" ng-model="formData.ID_City">
+                                    <option value="" disabled selected>انتخاب شهرستان...</option>
+                                    <option dir="rtl" ng-repeat="Item in ListAllCity" value="{{Item.ID}}">{{Item.Name}}</option>
+                                </select>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Address" class="col-sm-2 col-form-label">آدرس</label>
+                        <div class="col-sm-10">
+                            <p>
+
+                                <input id="Address" type="text" ng-model="formData.Address" placeholder="آدرس" class="form-control" ng-maxlength="100" />
+
+                                <span ng-show="myForm.Address.$error.maxlength">آدرس طولانی است.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Phone" class="col-sm-2 col-form-label">تلفن</label>
+                        <div class="col-sm-10">
+                            <p>
+
+                                <input id="Phone" type="text" ng-model="formData.Phone" placeholder="تلفن" class="form-control" ng-maxlength="10" />
+
+                                <span ng-show="myForm.Phone.$error.maxlength">تلفن طولانی است.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="editor1" class="col-sm-2 col-form-label">معرفی</label>
+                        <div class="col-sm-10">
+                            <p>
+
+                                <textarea name="editor1" id="editor1" rows="10" cols="80" class="ckeditor"></textarea>
+
+
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <label for="DrpSex" class="col-sm-2 col-form-label">جنسیت </label>
+                        <div class="col-sm-10">
+                            <p>
+
+                                <select id="DrpSex" class="form-control" ng-model="formData.ID_Sex">
+                                    <option value="" disabled selected>انتخاب جنسیت...</option>
+                                    <option dir="rtl" ng-repeat="Item in ListAllSex" value="{{Item.ID}}">{{Item.Name}}</option>
+                                </select>
+                            </p>
+
+                        </div>
+                    </div>     
+                                 
+                    <div class="form-group row">
+                        <label for="dropzone2" class="col-sm-2 col-form-label">تصویر</label>
+                        <div class="col-sm-10">
+                            <p>
+                                <div id="dropzone2" class="dropzone" options="dz_PersImageOptions" methods="dz_PersImageMethods" callbacks="dzCallbacks" ng-dropzone></div>
+                            </p>
+                        </div>
+                    </div>
+
+                    <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary">ذخیره</button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="FormModal_AssignManager" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">انتساب مدیر</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+
+
+            <div class="modal-body">
+                 
+
+                            <table class="table table-bordered table-striped">
+
+    <thead>
+       <tr>
+           
+               <th colspan="8">
+                   <form name="myFormmanager"  >
+                       <input type="text" class="form-control" id="txtPersonsearch" />
+                       </form>
+
+</th>
+               <th><input type="button" value="جستجو" ng-click="ShowPersonLoadingAngular(PageNum_Person,PageSize_Person,'')" /></th>
+</tr>
+
+        <tr>
+            
+            <th class="text-center">شناسه</th>
+            <th class="text-center">نام</th>
+            <th class="text-center"> نام خانوادگی</th>
+            <th class="text-center">نام کاربری</th>
+            <th class="text-center">آدرس پست الکترونیکی</th>
+            <th class="text-center">نقش کاربری</th>
+            <th class="text-center">تلفن</th>
+            <th class="text-center">عکس</th>
+            <th class="text-center"></th>
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+       
+        <tr ng-repeat="Item in ListAllPerson">
+            <td>{{Item.ID}}</td>
+            <td>{{Item.Name}}</td>
+            <td>{{Item.Family}}</td>
+            <td>{{Item.username}}</td>
+            <td>{{Item.Email}}</td>
+            <td>{{Item.RoleName}}</td>
+            <td>{{Item.CellPhoneNo}}</td>
+            
+
+            
+            <td>
+                <div class="notif-img-agileinfo">
+                    <img style="width:45px !important;height:45px !important;object-fit: cover" ng-src="@Url.Content("~/FileArchives/PersonImage/{{Item.PicturePath}}")" alt="...">
+                </div>
+
+            <td>
+                <input type="button" class="btn btn-primary" value="انتخاب" ng-click="FuncSelectPerson(Item.ID)" />
+            </td>
+
+            
+
+        
+        </tr>
+        <tr>
+            <td colspan="11" class="text-center">
+
+
+                <input type="button" class="btn btn-primary" value="قبلی" ng-click="ShowPersonLoadingAngular(PageNum_person,PageSize_Person,'Prev')" />
+
+                {{PageNum}}
+
+                <input type="button" class="btn btn-primary" value="بعدی" ng-click="ShowPersonLoadingAngular(PageNum_Person,PageSize_Person,'Next')" />
+            </td>
+        </tr>
+
+    </tbody>
+
+
+
+
+</table>
+
+                        </div>
+                    </div>
+
+                
+
+
+              
+            </div>
+        </div>
+
+
+
+
+
+<h2 class="main-title-w3layouts mb-2 text-center">{{Title}}</h2>
+
+
+
+
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+
+        <tr>
+            <th class="text-center">شناسه</th>
+            <th class="text-center">نام</th>
+            <th class="text-center"> نام شهر</th>
+            <th class="text-center">آدرس</th>
+            <th class="text-center">تلفن</th>
+            <th class="text-center">جنسیت</th>
+            <th class="text-center">معرفی</th>
+            <th class="text-center">مدیر</th>
+            <th class="text-center">عکس</th>
+            <th colspan="2" class="text-center"><button type="button" class="btn btn-primary" ng-click="FuncAdd()">افزودن </button></th>
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+
+        <tr ng-repeat="Item in ListAllSalon">
+            <td>{{Item.ID}}</td>
+            <td>{{Item.Name}}</td>
+            <td>{{Item.CityName}}</td>
+            <td>{{Item.Address}}</td>
+            <td>{{Item.Phone}}</td>
+            <td>{{Item.Sex}}</td>
+
+            <td>
+                <p ng-bind-html="Item.Description | unsafe"></p>
+           </td>
+            <td>{{Item.Manager}}</td>
+
+            <td>
+                <div class="notif-img-agileinfo">
+                    <img style="width:45px !important;height:45px !important;object-fit: cover" ng-src="@Url.Content("~/FileArchives/Salon/{{Item.PicturePath}}")" alt="...">
+                </div>
+</td>
+            @*<td>
+       @*<button class="btn">عملیات</button>
+        <div class="dropdown">
+            <button class="btn" style="border-left:1px solid navy">
+                <i class="fa fa-caret-down">   عملیات  </i>
+            </button>
+            <div class="dropdown-content">
+                <a ng-click="FuncUpdate(Item)">تغییر</a>
+                <a ng-click="FuncAssignManager(Item)">انتساب مدیر</a>
+                <a ng-click="FuncDelete(Item.ID)">حذف</a>
+                <a ng-click="FuncAssignService(Item.ID)">انتساب سرویس</a>
+            </div>
+        </div>
+    </td>
+
+
+    <td>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Operations
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu"  >
+                <li><a ng-click="FuncUpdate(Item)">تغییر</a></li>
+                <li><a ng-click="FuncAssignManager(Item)">انتساب مدیر</a></li>
+                <li><a ng-click="FuncDelete(Item.ID)">حذف</a></li>
+                <li><a ng-click="FuncAssignService(Item.ID)">انتساب سرویس</a></li>
+            </ul>
+        </div>
+    </td>
+            *@
+
+            <td class="text-center">
+                <button type="button" ng-click="FuncUpdate(Item)" class="btn btn-alt-primary" data-dismiss="modal" title="تغییر">
+                    <i class="fas fa-edit"></i> 
+                </button>
+                <button type="button" ng-click="FuncDelete(Item.ID)" class="btn btn-alt-primary" data-dismiss="modal" title="حذف">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+                <button type="button" ng-click=" funcassignmanager(item)" class="btn btn-alt-primary" data-dismiss="modal" title="پرسنل">
+                    <i class="fas fa-users"></i>
+                </button>
+               
+                <button type="button" ng-click="FuncAssignService(Item.ID)" class="btn btn-alt-primary" data-dismiss="modal" title="خدمات">
+                    <i class="fas fa-tasks"></i>
+                </button>
+                <button type="button" ng-click="FuncAssignService(Item.ID)" class="btn btn-alt-primary" data-dismiss="modal" title="گالری">
+                    <i class="fas fa-camera-retro"></i>
+                </button>
+            </td>
+
+                @*<div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                عملیات
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a ng-click="FuncUpdate(Item)">تغییر</a></li>
+                <li><a ng-click="FuncAssignManager(Item.ID)">انتساب مدیر</a></li>
+                <li><a ng-click="FuncDelete(Item.ID)">حذف</a></li>
+                <li><a ng-click="FuncAssignService(Item.ID)">انتساب سرویس</a></li>
+            </ul>
+        </div>
+
+    <td>
+        <input type="button" class="btn btn-primary" value="حذف" ng-click="FuncDelete(Item.ID)" />
+    </td>
+    <td>
+        <input type="button" class="btn btn-primary" value="تغییر" ng-click="FuncUpdate(Item)" />
+    </td>
+                *@
+        </tr>
+        <tr>
+            <td colspan="11" class="text-center">
+
+
+                <input type="button" class="btn btn-primary" value="قبلی" ng-click="ShowLoadingAngular(PageNum,PageSize,'Prev')" />
+
+                {{PageNum}}
+
+                <input type="button" class="btn btn-primary" value="بعدی" ng-click="ShowLoadingAngular(PageNum,PageSize,'Next')" />
+            </td>
+        </tr>
+
+    </tbody>
+
+
+
+
+</table>
+
+
+@section DeclareJS{
+
+    <script src="~/Areas/AdminPart/Scripts/JSSalon/JSSalon.js"></script>
+   
+}
+
+
+
+

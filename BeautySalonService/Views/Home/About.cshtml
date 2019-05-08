@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "About";
+}
+
+<!-- inner banner -->
+
+<!-- //inner banner -->
+<!-- breadcrumbs -->
+
+<!-- //breadcrumbs -->
+<!-- banner bottom -->
+
+<!-- //banner bottom -->
+<!-- services -->
+
+<!-- //services -->
+<!-- gallery -->
+
+<!-- //gallery -->
+<!-- testimonials-->
+<div class="testimonials">
+ 
+
+    <div class="container">
+        <div class="navbar-brand text-white">
+            <h1>
+                دانستنی ها
+            </h1>
+        </div>
+        <div class="banner-text text-center">
+            <div class="callbacks_container">
+                <ul class="rslides" id="slider3" ng-repeat="Item in ListAllArticle">
+                    <li>
+                        <div class="testi-agile">
+                            <img ng-src="@Url.Content("~/FileArchives/PersonImage/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid rounded-circle" />
+                            <h4>{{Item.Title}}</h4>
+                            <p>
+                                <span>"</span>
+
+
+                            <p ng-bind-html="Item.SiteContent | unsafe"></p>
+                                @*{{Item.SiteContent}}*@
+                                <span>"</span>
+                            </p>
+                        </div>
+                    </li>
+                   
+                </ul>
+                <input type="button" class="btn btn-light" value="<<" ng-click="FuncShowAllArticle(PageNumArticle,PageSizeArticle,'Prev')" />
+                {{PageNumArticle}}
+                <input type="button" class="btn btn-light" value=">>" ng-click="FuncShowAllArticle(PageNumArticle,PageSizeArticle,'Next')" />
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //testimonials -->
+
+@section DeclareJS{
+<script src="~/Scripts/JSScripts/JSHome/JSAbout.js"></script>
+
+   
+}
+
+

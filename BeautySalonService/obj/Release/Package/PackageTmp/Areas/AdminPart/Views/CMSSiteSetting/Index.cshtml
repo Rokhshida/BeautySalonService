@@ -1,0 +1,204 @@
+﻿
+
+
+<div class="modal fade bd-example-modal-lg" id="FormModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">{{Title}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form name="myForm" novalidate ng-submit="submitForm();" dir="rtl">
+
+                  
+
+                    <div class="form-row">
+
+                        <div class="form-group col-md-6">
+                            <label for="ID">شناسه</label>
+
+                            <input id="ID" type="text" ng-model="formData.ID" placeholder="شناسه" class="form-control" ng-disabled="true" />
+
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="Title">عنوان</label>
+
+                            <p>
+                                <input id="Title" type="text" ng-model="formData.Title" placeholder="عنوان" class="form-control" required ng-maxlength="50" />
+                                <span ng-show="myForm.Title.$error.required">عنوان الزامی است</span>
+                                <span ng-show="myForm.Title.$error.maxlength">عنوان طولانی است.</span>
+                            </p>
+
+                        </div>
+</div>
+
+                    <div class="form-row">
+
+                        <div class="form-group col-md-6">
+                            <label for="SubTitle">زیرعنوان</label>
+
+                            <p>
+
+                                <input id="SubTitle" type="text" ng-model="formData.SubTitle" placeholder="زیرعنوان" class="form-control" ng-maxlength="100" />
+
+                                <span ng-show="myForm.Title.$error.maxlength">زیرعنوان طولانی است.</span>
+                            </p>
+
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="DrpUsetype">مورد استفاده</label>
+                            <p>
+
+                                <select class="form-control" ng-model="formData.ID_UseType" id="drpusetype">
+                                    <option value="" disabled selected>انتخاب مورداستفاده...</option>
+                                    <option dir="rtl" ng-repeat="Item in ListAllUseType" value="{{Item.ID}}">{{Item.UseComments}}</option>
+                                </select>
+
+                                @*<input id="UseType" type="text" ng-model="formData.UseType" placeholder="مورد استفاده" class="form-control" />*@
+                            </p>
+                          
+
+                        </div>
+                    </div>
+                  
+
+                           
+
+
+                   
+                    
+                    <div class="form-group ">
+                        <label for="Link" class="col-sm-2 col-form-label">لینک</label>
+                        <div class="col-sm-10">
+                            <p>
+                                <input id="link" type="text" ng-model="formData.Link" placeholder="لینک" class="form-control" ng-pattern="" />
+                                <span ng-show="myForm.Link.$error.pattern">لینک صحیح را وارد نمایید</span>
+                            </p>
+
+                        </div>
+                    </div>
+                        <div class="form-group ">
+                            <label for="editor1" class="col-sm-2 col-form-label">توضیحات</label>
+                            <div class="col-sm-10">
+                                <p>
+
+                                    <textarea name="editor1" id="editor1" rows="10" cols="80" class="ckeditor"></textarea>
+
+
+                                </p>
+
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-group ">
+                            <label for="dropzone2" class="col-sm-2 col-form-label">تصاویر مرتبط</label>
+                            <div class="col-sm-10">
+                                <p>
+                                    <div id="dropzone2" class="dropzone" options="dz_PersImageOptions" methods="dz_PersImageMethods" callbacks="dzCallbacks" ng-dropzone></div>
+                                </p>
+                            </div>
+                        </div>
+
+                        <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary">ذخیره</button>
+
+
+</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+   
+
+
+
+
+
+
+<h2 class="main-title-w3layouts mb-2 text-center">{{Title}}</h2>
+
+
+
+
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+      
+        <tr><th class="text-center">شناسه</th>
+       <th class="text-center">عنوان</th>
+       <th class="text-center">زیر عنوان</th>
+           
+        <th class="text-center">توضیحات</th>
+        <th class="text-center">مورداستفاده</th>
+        <th class="text-center">لینک</th>
+        <th class="text-center">عکس</th>
+            <th  colspan="2"  class="text-center"><button type="button" class="btn btn-primary" ng-click="FuncAdd()" >افزودن </button></th>
+        </tr>
+
+    
+    </thead>
+
+    <tbody>
+
+        <tr ng-repeat="Item in ListAllSiteSetting">
+            <td>{{Item.ID}}</td>
+
+            <td>{{Item.Title}}</td>
+            <td>{{Item.SubTitle}}</td>
+            
+            <td><p ng-bind-html="Item.Comment | unsafe"></p></td>
+            <td >{{Item.UseComments}}</td>
+            <td>{{Item.Link}}</td>
+            
+
+
+            <td>
+                <div class="notif-img-agileinfo">
+                    <img style="width:45px !important;height:45px !important;object-fit: cover" ng-src="@Url.Content("~/FileArchives/SiteSettingImage/{{Item.PicturePath}}")" alt="...">
+                </div>
+
+</td>
+
+
+            <td>
+                <input type="button" class="btn btn-primary" value="حذف" ng-click="FuncDelete(Item.ID)" />
+            </td>
+            <td>
+                <input type="button" class="btn btn-primary" value="تغییر" ng-click="FuncUpdate(Item)" />
+            </td>
+        </tr>
+        <tr><td colspan="9" class="text-center">
+
+
+    <input type="button" class="btn btn-primary" value="قبلی" ng-click="ShowLoadingAngular(PageNum,PageSize,'Prev')" />
+
+    {{PageNum}}
+
+    <input type="button" class="btn btn-primary" value="بعدی" ng-click="ShowLoadingAngular(PageNum,PageSize,'Next')" />
+</td>
+</tr>
+       
+    </tbody>
+   
+ 
+    
+    
+</table>
+
+
+@section DeclareJS{
+    
+<script src="~/Areas/AdminPart/Scripts/JSSiteSetting/JSSiteSetting.js"></script>
+    
+    }

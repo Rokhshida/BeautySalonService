@@ -108,15 +108,11 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
         var getData = $http.get("/AdminPart/CMSCity/GetProvinceOfCity?ID=" + ID);
         getData.then(function (VarMessage) {
-            alert("province");
-            alert(VarMessage.data.ID_Province);
+            
+           
             $('#DrpProvince').val(VarMessage.data.ID_Province.toString());
             $scope.GetCity();
-           // alert("text");
-          //  alert($('#DrpProvince option:selected').text());
-           // alert("doc");
-           // document.getElementById("DrpProvince").value = VarMessage.data.ID_Province.tostring();
-            //alert("Send a request to the server: " + JSON.stringify(VarMessage.data));
+           
         }, function () {
 
         });
@@ -167,7 +163,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
             if (Status == "Prev") $scope.PageNum -= 1;
 
         }, function () {
-            alert('error')
+            alert('error_ShowLoading')
         });
     }
 
@@ -186,7 +182,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         if (Status == "Next") PageNum_Person += 1;
         if (Status == "Prev") PageNum_Person -= 1;
        /* $("#txtPersonsearch").val('asdas');*/
-      
+       
         /* + $scope.TxtPersonsearch*/
         var response = $http({
             method: "post",
@@ -199,13 +195,14 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         });
         
         response.then(function (VarResult) {
+           
             $scope.ListAllPerson = VarResult.data;
            
             if (Status == "Next") $scope.PageNum_Person += 1;
             if (Status == "Prev") $scope.PageNum_Person -= 1;
-           
+            
         }, function () {
-            alert('error')
+            alert('error_ShowPersonLoadingAngular')
         });
     }
     $scope.FuncSelectPerson = function (ID) {
@@ -397,10 +394,12 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     $scope.FuncAssignService = function (ID) {
 
        
-        sessionStorage.ResultFrom = JSON.stringify(ID);
-
+        //sessionStorage.ResultFrom = JSON.stringify(ID);
+        $scope.ID_Salon = ID;
        
-        window.open("/AdminPart/CMSSalon/IndexSalonService", '_blank');
+        // window.open("/AdminPart/CMSSalon/IndexSalonService", '_blank');
+        $scope.ShowLoadingAngularService($scope.PageNumService, $scope.PageSizeService, '');
+        $('#FormModalServiceAll').modal('toggle');
 
     }
 
@@ -408,10 +407,10 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     $scope.FuncAdd = function () {
 
 
-        alert('funcadd()');
+       
         clearData();
 
-        alert('funcadd2()');
+        
 
         $('#FormModal').modal('toggle');
 
@@ -438,6 +437,236 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     }
 
 
+    /************/
+    /****assign services*****/
+
+
+    $scope.formDataService;
+    $scope.PageNumService = 1;
+    $scope.PageSizeService = 9;
+    $scope.TitleService = "سرویس های مرتبط با سالن";
+
+    //
+    //$scope.ID_Salon = JSON.parse(sessionStorage.ResultFrom);
+
+
+    //DropZone:
+    ID_Salon = 0;
+    ID_Service = 0;
+
+    $scope.showBtns = false;
+    $scope.lastFile = null;
+    $scope.dz_PersImageOptions3 = {
+        url: '/AdminPart/CMSSalon/GetSalonServiceImageFile',
+        dictDefaultMessage: 'تصاویر را اینجا قرار دهید',
+        acceptedFiles: '',
+        parallelUploads: 1,
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        maxFiles: 1,
+        maxFilesize: 1000.00,
+        //filesize: 500.0,
+        //dictFileTooBig:500.0,
+        //maxThumbnailFilesize: '500',
+        //createImageThumbnails: true,    
+        //timeout: 3600000, /*milliseconds*/
+        //Send Parameter to c#
+
+        init: function () {
+            this.on("sending", function (file, xhr, formDataService) {
+              
+
+                // alert("Send a request to the server: " + JSON.stringify($scope.formDataService));
+
+                formDataService.append("ID_Salon", ID_Salon);
+                formDataService.append("ID_Service", ID_Service);
+
+               
+
+            });
+            this.on("complete", function (file) {
+               
+                $scope.dz_PersImageMethods3.removeAllFiles();
+                //Refresh Page
+            });
+        }
+    };
+
+    $scope.dz_PersImageMethods3 = {};
+    $scope.dzCallbacks3 = {
+        'addedfile': function (file) {
+            $scope.showBtns = true;
+            $scope.lastFile = file;
+        },
+        'error': function (file, xhr) {
+
+            alert("file:" + file);
+            alert("xhr:" + xhr);
+        }
+
+    };
+
+
+
+
+    FuncShowservices();
+
+    function FuncShowservices() {
+
+        var getData = $http.get("/AdminPart/CMSService/GetServiceWithPage?CurrentPage=1&PageSize=100");
+        getData.then(function (VarMessage) {
+            $scope.ListAllService = VarMessage.data;
+        }, function () {
+
+        });
+    }
+
+
+
+    function clearDataService() {
+
+        $scope.formDataService = {
+
+        };
+
+        CKEDITOR.instances.editor1Service.setData('');
+        $scope.formDataService.ID_Salon = $scope.ID_Salon;
+    }
+
+
+
+    $scope.ShowLoadingAngularService = function (PageNumService, PageSizeService, Status) {
+
+        if (Status == "Next") PageNumService += 1;
+        if (Status == "Prev") PageNumService -= 1;
+
+        var response = $http({
+            method: "post",
+            url: "/AdminPart/CMSSalon/GetServiceOfSalon",
+            params: {
+                CurrentPage: PageNumService,
+                PageSize: PageSizeService,
+                ID_Salon: $scope.ID_Salon
+
+            }
+        });
+
+        response.then(function (VarResult) {
+            $scope.ListAllSSalonServices = VarResult.data;
+
+            if (Status == "Next") $scope.PageNumService += 1;
+            if (Status == "Prev") $scope.PageNumService -= 1;
+
+        }, function () {
+            alert('error_ShowPersonLoadingAngular')
+        });
+    }
+
+   
+
+
+
+    $scope.submitFormService = function () {
+        //alert("Send a request to the server: " + JSON.stringify($scope.formDataService));
+
+
+        FuncSaveService();
+
+        clearDataService();
+        $('#FormModalService').modal('hide');
+
+    }
+
+    function FuncSaveService() {
+
+        if (confirm("آیا می خواهید ذخیره کنید؟")) {
+
+
+
+            $scope.formDataService.Comment = CKEDITOR.instances.editor1Service.getData();
+
+            var VarNewRec = $scope.formDataService;
+            //alert("Send a request to the server: " + JSON.stringify(VarNewRec));
+
+
+
+
+            $.ajax({
+
+                type: "post",
+                url: "/AdminPart/CMSSalon/SaveSalon_Service",
+                data: {
+                    ObjSalonService: VarNewRec
+                },
+
+                datatype: 'json',
+                success: function (data) {
+
+                    ID_Salon = VarNewRec.ID_Salon;
+                    ID_Service = VarNewRec.ID_Service;
+                    var files = $('#dropzone3').get(0).dropzone.getAcceptedFiles();
+                    if (files.length > 0) {
+
+
+                        $scope.dz_PersImageMethods3.processQueue();
+                    }
+                    alert('با موفقیت ذخیره شد');
+                    $scope.ShowLoadingAngularService($scope.PageNumService, $scope.PageSizeService, '');
+                },
+                complete: function () {
+                    var files = $('#dropzone3').get(0).dropzone.getAcceptedFiles();
+                    if (files.length == 0) {
+                        clearDataService();
+                    }
+                }
+            }
+
+            );
+
+
+        }
+
+    }
+
+
+
+
+    $scope.FuncAddService = function () {
+
+
+
+        clearDataService();
+
+
+        $('#FormModalService').modal('toggle');
+
+
+    }
+   
+
+    $scope.FuncDeleteService = function (ID_Service) {
+       
+
+        if (confirm("آیا از حذف اطمینان دارید؟")) {
+
+            var getData = $http.get("/AdminPart/CMSSalon/DeleteSalonService?ID_Salon=" + $scope.ID_Salon + "&ID_Service=" + ID_Service);
+            getData.then(function (VarMessage) {
+                alert("مورد حذف گردید.");
+                $scope.ShowLoadingAngularService($scope.PageNumService, $scope.PageSizeService, '');
+            }, function () {
+
+            });
+        }
+
+
+    }
+
+
+
+    /*************/
+
+
+   
 
 
     /*********************/

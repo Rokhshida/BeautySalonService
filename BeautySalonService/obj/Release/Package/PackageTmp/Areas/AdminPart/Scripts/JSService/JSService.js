@@ -241,10 +241,10 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     }
 
     $scope.FuncUpdate = function (Item) {
-        alert("Send a request to the server: " + JSON.stringify(Item));
+       // alert("Send a request to the server: " + JSON.stringify(Item));
         $scope.formData = Item;
         $scope.formData.ID_Article=Item.ID_Article.toString();
-        alert("Send a request to the server: " + JSON.stringify($scope.formData));
+       // alert("Send a request to the server: " + JSON.stringify($scope.formData));
       
 
         $('#FormModal').modal('toggle');

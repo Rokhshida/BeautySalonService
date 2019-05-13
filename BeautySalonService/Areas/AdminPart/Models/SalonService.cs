@@ -18,5 +18,7 @@ namespace BeautySalonService.Areas.AdminPart.Models
         public int ID_Salon { get; set; }
         public string Comment { get; set; }
         public Nullable<int> ID_Pic { get; set; }
+        public string CreatedDate { get; set; }
+        public string ModifiedDate { get; set; }
     }
 }

@@ -4,6 +4,8 @@
     <EntitySetMapping Name="Article">
       <EntityTypeMapping TypeName="BeautySalonModel.Article">
         <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
           <ScalarProperty Name="ID_Person" ColumnName="ID_Person" />
@@ -14,6 +16,8 @@
     <EntitySetMapping Name="City">
       <EntityTypeMapping TypeName="BeautySalonModel.City">
         <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ID_Province" ColumnName="ID_Province" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -37,6 +41,9 @@
     <EntitySetMapping Name="Person">
       <EntityTypeMapping TypeName="BeautySalonModel.Person">
         <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Family" ColumnName="Family" />
@@ -63,6 +70,8 @@
     <EntitySetMapping Name="Role">
       <EntityTypeMapping TypeName="BeautySalonModel.Role">
         <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
@@ -71,6 +80,8 @@
     <EntitySetMapping Name="Salon">
       <EntityTypeMapping TypeName="BeautySalonModel.Salon">
         <MappingFragment StoreEntitySet="Salon">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID_City" ColumnName="ID_City" />
@@ -88,6 +99,8 @@
     <EntitySetMapping Name="SalonService">
       <EntityTypeMapping TypeName="BeautySalonModel.SalonService">
         <MappingFragment StoreEntitySet="SalonService">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ID_Service" ColumnName="ID_Service" />
           <ScalarProperty Name="ID_Salon" ColumnName="ID_Salon" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
@@ -98,6 +111,8 @@
     <EntitySetMapping Name="SecurityQuestion">
       <EntityTypeMapping TypeName="BeautySalonModel.SecurityQuestion">
         <MappingFragment StoreEntitySet="SecurityQuestion">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Question" ColumnName="Question" />
         </MappingFragment>
@@ -106,6 +121,8 @@
     <EntitySetMapping Name="Service">
       <EntityTypeMapping TypeName="BeautySalonModel.Service">
         <MappingFragment StoreEntitySet="Service">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
@@ -116,6 +133,8 @@
     <EntitySetMapping Name="SiteSetting">
       <EntityTypeMapping TypeName="BeautySalonModel.SiteSetting">
         <MappingFragment StoreEntitySet="SiteSetting">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ID_UseType" ColumnName="ID_UseType" />

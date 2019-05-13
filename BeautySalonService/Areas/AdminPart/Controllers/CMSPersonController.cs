@@ -63,6 +63,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             {
 
                 ObjPerson.password = CommonFunction.EncodePasswordToBase64(ObjPerson.password);
+                ObjPerson.CreatedDate = CommonFunction.GetDateNow();
+                ObjPerson.ModifiedDate = CommonFunction.GetDateNow();
                 DB.Person.Add(ObjPerson);
                 DB.SaveChanges();
                 SendMembershipEmail(ObjPerson);
@@ -77,8 +79,9 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             {
 
                 Person Result = DB.Person.Where(item => item.ID == ObjPerson.ID).SingleOrDefault();
-
+                ObjPerson.ModifiedDate = CommonFunction.GetDateNow();
                 Result = ObjPerson;
+
                 DB.SaveChanges();
                 return Json(true, JsonRequestBehavior.AllowGet);
             }

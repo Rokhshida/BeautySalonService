@@ -22,7 +22,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         {
             try
             {
-
+                ObjCity.CreatedDate = CommonFunction.GetDateNow();
+                ObjCity.ModifiedDate = CommonFunction.GetDateNow();
                 DB.City.Add(ObjCity);
 
                 DB.SaveChanges();
@@ -89,7 +90,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 var Result = DB.City.Where(Item => Item.ID == ObjCity.ID).SingleOrDefault();
                 Result.ID_Province = ObjCity.ID_Province;
                 Result.Name = ObjCity.Name;
-
+                Result.ModifiedDate = CommonFunction.GetDateNow();
                 return Json(Result, JsonRequestBehavior.AllowGet);
             }
             catch (Exception EX) { throw EX; }

@@ -55,7 +55,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         {
             try
             {
-
+                ObjService.CreatedDate = CommonFunction.GetDateNow();
                 DB.Service.Add(ObjService);
 
                 DB.SaveChanges();
@@ -89,7 +89,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 var Result = DB.Service.Where(item => item.ID == ObjService.ID).ToList();
                 Result[0].Name = ObjService.Name;
                 Result[0].ID_Article = ObjService.ID_Article;
-              
+                Result[0].ModifiedDate = CommonFunction.GetDateNow();
 
                 DB.SaveChanges();
 

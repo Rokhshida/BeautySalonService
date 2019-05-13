@@ -1222,13 +1222,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2019 12:04:54</publishTime>
     </File>
     <File Include="Areas/AdminPart/Scripts/JSSalon/JSSalon.js">
-      <publishTime>04/29/2019 18:41:34</publishTime>
+      <publishTime>05/10/2019 17:17:34</publishTime>
     </File>
     <File Include="Areas/AdminPart/Scripts/JSSalon/JSSalonService.js">
-      <publishTime>04/22/2019 12:04:54</publishTime>
+      <publishTime>05/05/2019 17:28:22</publishTime>
     </File>
     <File Include="Areas/AdminPart/Scripts/JSService/JSService.js">
-      <publishTime>04/30/2019 17:12:44</publishTime>
+      <publishTime>05/10/2019 17:42:16</publishTime>
     </File>
     <File Include="Areas/AdminPart/Scripts/JSSiteSetting/JSSiteSetting.js">
       <publishTime>04/22/2019 12:04:54</publishTime>
@@ -1240,10 +1240,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/11/2019 14:21:56</publishTime>
     </File>
     <File Include="Areas/AdminPart/Views/CMSSalon/Index.cshtml">
-      <publishTime>04/16/2019 23:32:20</publishTime>
+      <publishTime>05/10/2019 17:32:46</publishTime>
     </File>
     <File Include="Areas/AdminPart/Views/CMSSalon/IndexSalonService.cshtml">
-      <publishTime>04/13/2019 16:23:36</publishTime>
+      <publishTime>05/05/2019 17:11:59</publishTime>
     </File>
     <File Include="Areas/AdminPart/Views/CMSService/Index.cshtml">
       <publishTime>04/30/2019 17:32:51</publishTime>
@@ -1252,7 +1252,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/10/2019 17:23:12</publishTime>
     </File>
     <File Include="Areas/AdminPart/Views/Shared/_Layout.cshtml">
-      <publishTime>04/16/2019 16:27:09</publishTime>
+      <publishTime>05/10/2019 17:32:12</publishTime>
     </File>
     <File Include="Areas/AdminPart/Views/web.config">
       <publishTime>02/02/2019 17:40:18</publishTime>
@@ -2008,7 +2008,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/16/2019 16:25:32</publishTime>
     </File>
     <File Include="bin/BeautySalonService.dll">
-      <publishTime>04/30/2019 18:04:40</publishTime>
+      <publishTime>05/10/2019 17:34:18</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>01/23/2019 17:22:15</publishTime>
@@ -4624,7 +4624,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/21/2019 22:16:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/30/2019 18:00:49</publishTime>
+      <publishTime>05/10/2019 17:34:21</publishTime>
     </File>
   </ItemGroup>
 </Project>

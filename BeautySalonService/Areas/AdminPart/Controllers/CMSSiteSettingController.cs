@@ -64,6 +64,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         {
             try
             {
+                ObjSiteSetting.CreatedDate = CommonFunction.GetDateNow();
+                ObjSiteSetting.ModifiedDate = CommonFunction.GetDateNow();
 
                 DB.SiteSetting.Add(ObjSiteSetting);
 
@@ -107,7 +109,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 Result[0].ID_UseType = ObjSiteSetting.ID_UseType;
                 Result[0].Link = ObjSiteSetting.Link;
                 Result[0].SubTitle = ObjSiteSetting.SubTitle;
-                
+                Result[0].ModifiedDate = CommonFunction.GetDateNow();
                 DB.SaveChanges();
 
 

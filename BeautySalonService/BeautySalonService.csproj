@@ -473,6 +473,7 @@
     </Content>
     <Content Include="Areas\AdminPart\Scripts\JSArticle\JSArticle.js" />
     <Content Include="Areas\AdminPart\Scripts\JSHome\JSLayout.js" />
+    <Content Include="Areas\AdminPart\Scripts\JSPerson\JSPerson.js" />
     <Content Include="Areas\AdminPart\Scripts\JSSalon\JSSalon.js" />
     <Content Include="Areas\AdminPart\Scripts\JSSalon\JSSalonService.js" />
     <Content Include="Areas\AdminPart\Scripts\JSService\JSService.js" />
@@ -857,6 +858,7 @@
     <Content Include="Areas\AdminPart\Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\AdminPart\Views\CMSPerson\Index.cshtml" />
     <None Include="Properties\PublishProfiles\aa.pubxml" />
     <None Include="Properties\PublishProfiles\dd.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1757,7 +1759,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminPart\Views\CMSCity\" />
     <Folder Include="Areas\AdminPart\Views\CMSMessage\" />
-    <Folder Include="Areas\AdminPart\Views\CMSPerson\" />
     <Folder Include="Areas\AdminPart\Views\CMSRole\" />
     <Folder Include="Areas\AdminPart\Views\CMSSecurityQuestion\" />
     <Folder Include="Areas\AdminPart\Views\CMSUseType\" />

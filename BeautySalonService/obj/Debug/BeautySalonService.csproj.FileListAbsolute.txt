@@ -151,3 +151,4 @@ E:\personal\GetProject\BeautySalonService\BeautySalonService\BeautySalonService\
 E:\personal\GetProject\BeautySalonService\BeautySalonService\BeautySalonService\obj\Debug\BeautySalonService.csprojResolveAssemblyReference.cache
 E:\personal\GetProject\BeautySalonService\BeautySalonService\BeautySalonService\obj\Debug\BeautySalonService.dll
 E:\personal\GetProject\BeautySalonService\BeautySalonService\BeautySalonService\obj\Debug\BeautySalonService.pdb
+E:\MVCClass\githubProjects\BeautySalonService\BeautySalonService\BeautySalonService\obj\Debug\BeautySalonService.csprojResolveAssemblyReference.cache

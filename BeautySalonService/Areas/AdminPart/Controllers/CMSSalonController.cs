@@ -41,7 +41,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         {
             try
             {
-
+                ObjSalon.CreatedDate = CommonFunction.GetDateNow();
+                ObjSalon.ModifiedDate = CommonFunction.GetDateNow();
                 DB.Salon.Add(ObjSalon);
 
                 DB.SaveChanges();
@@ -81,7 +82,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 Result[0].Name = ObjSalon.Name;
                 Result[0].Phone = ObjSalon.Phone;
                 Result[0].Sex = ObjSalon.Sex;
-
+                Result[0].ModifiedDate = CommonFunction.GetDateNow();
                 DB.SaveChanges();
 
 
@@ -165,6 +166,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         {
             try
             {
+                ObjSalonService.CreatedDate = CommonFunction.GetDateNow();
+                ObjSalonService.ModifiedDate = CommonFunction.GetDateNow();
 
                 DB.SalonService.Add(ObjSalonService);
 
@@ -197,7 +200,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 var Result = DB.SalonService.Where(Item => Item.ID_Salon == ObjSalonService.ID_Salon &&
                 Item.ID_Service == ObjSalonService.ID_Service).ToList();
                 Result[0].Comment = ObjSalonService.Comment;
-                
+                Result[0].ModifiedDate = CommonFunction.GetDateNow();
 
                 DB.SaveChanges();
 

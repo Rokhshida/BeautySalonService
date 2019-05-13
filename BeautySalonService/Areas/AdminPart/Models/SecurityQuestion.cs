@@ -16,5 +16,7 @@ namespace BeautySalonService.Areas.AdminPart.Models
     {
         public int ID { get; set; }
         public string Question { get; set; }
+        public string CreatedDate { get; set; }
+        public string ModifiedDate { get; set; }
     }
 }

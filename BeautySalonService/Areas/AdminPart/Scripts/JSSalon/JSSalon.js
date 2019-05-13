@@ -645,8 +645,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
    
 
     $scope.FuncDeleteService = function (ID_Service) {
-        alert($scope.ID_Salon);
-        alert(ID_Service);
+       
 
         if (confirm("آیا از حذف اطمینان دارید؟")) {
 

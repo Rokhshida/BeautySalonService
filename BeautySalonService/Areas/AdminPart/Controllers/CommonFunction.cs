@@ -14,7 +14,7 @@ using System.Drawing.Imaging;
 using System.Net;
 using System.Net.Mail;
 using BeautySalonService.Areas.AdminPart.Models;
-
+using System.Globalization;
 namespace BeautySalonService.Areas.AdminPart.Controllers
 {
     public class CommonFunction
@@ -160,7 +160,19 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
 
         }
 
+        public static string GetDateNow() {
 
+            try {
+                PersianCalendar Cal = new PersianCalendar();
+                string StrMonth;
+                string StrDay;
+                if (Cal.GetDayOfMonth(DateTime.Now).ToString().Length == 1) StrDay = "0" + Cal.GetDayOfMonth(DateTime.Now).ToString(); else StrDay = Cal.GetDayOfMonth(DateTime.Now).ToString();
+                if (Cal.GetMonth(DateTime.Now).ToString().Length == 1) StrMonth = "0" + Cal.GetMonth(DateTime.Now).ToString(); else StrMonth = Cal.GetMonth(DateTime.Now).ToString();
+                return Cal.GetYear(DateTime.Now).ToString() +"/" +StrMonth +"/" +StrDay;
+
+            }
+            catch (Exception Ex) { throw Ex; }
+        }
         
     
 

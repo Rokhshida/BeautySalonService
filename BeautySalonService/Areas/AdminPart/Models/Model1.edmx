@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ID" />
@@ -13,6 +13,8 @@
           <Property Name="SiteContent" Type="nvarchar(max)" />
           <Property Name="ID_Person" Type="int" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+          <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -21,6 +23,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_Province" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+          <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -50,6 +54,9 @@
           <Property Name="ID_Role" Type="int" />
           <Property Name="CellPhoneNo" Type="char" MaxLength="11" />
           <Property Name="ID_Pic" Type="int" />
+          <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+          <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
+          <Property Name="ApprovedState" Type="bit" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -65,6 +72,8 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+          <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Salon">
           <Key>
@@ -81,6 +90,8 @@
           <Property Name="ID_Manager" Type="int" />
           <Property Name="IntroductionPic" Type="varbinary(max)" />
           <Property Name="ID_pic" Type="int" />
+          <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+          <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SalonService">
           <Key>
@@ -91,6 +102,8 @@
           <Property Name="ID_Salon" Type="int" Nullable="false" />
           <Property Name="Comment" Type="nvarchar(max)" />
           <Property Name="ID_Pic" Type="int" />
+          <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+          <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SecurityQuestion">
           <Key>
@@ -98,6 +111,8 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Question" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+          <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -107,6 +122,8 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ID_Pic" Type="int" />
           <Property Name="ID_Article" Type="int" />
+          <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+          <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SiteSetting">
           <Key>
@@ -120,6 +137,8 @@
           <Property Name="ID_Pic" Type="int" />
           <Property Name="Active" Type="bit" />
           <Property Name="SubTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+          <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="UseType">
           <Key>
@@ -168,8 +187,7 @@
           <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UseType" EntityType="Self.UseType" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BeautySalonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -181,6 +199,8 @@
           <Property Name="SiteContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID_Person" Type="Int32" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -189,6 +209,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_Province" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -218,6 +240,9 @@
           <Property Name="ID_Role" Type="Int32" />
           <Property Name="CellPhoneNo" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="ID_Pic" Type="Int32" />
+          <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ApprovedState" Type="Boolean" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -233,6 +258,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Salon">
           <Key>
@@ -249,6 +276,8 @@
           <Property Name="ID_Manager" Type="Int32" />
           <Property Name="IntroductionPic" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ID_pic" Type="Int32" />
+          <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="SalonService">
           <Key>
@@ -259,6 +288,8 @@
           <Property Name="ID_Salon" Type="Int32" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID_Pic" Type="Int32" />
+          <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="SecurityQuestion">
           <Key>
@@ -266,6 +297,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Question" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -275,6 +308,8 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_Pic" Type="Int32" />
           <Property Name="ID_Article" Type="Int32" />
+          <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="SiteSetting">
           <Key>
@@ -288,6 +323,8 @@
           <Property Name="ID_Pic" Type="Int32" />
           <Property Name="Active" Type="Boolean" />
           <Property Name="SubTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="UseType">
           <Key>
@@ -317,16 +354,16 @@
           <FunctionImport Name="Usp_GetAllServices" ReturnType="Collection(BeautySalonModel.Usp_GetAllServices_Result)" />
           <FunctionImport Name="Usp_GetArticles" ReturnType="Collection(BeautySalonModel.Usp_GetArticles_Result)" />
           <FunctionImport Name="Usp_GetNewMessagesForPerson" ReturnType="Collection(BeautySalonModel.Usp_GetNewMessagesForPerson_Result)">
-            <Parameter Name="ID_Person_To" Mode="In" Type="Int32" />
+          <Parameter Name="ID_Person_To" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetPerson" ReturnType="Collection(BeautySalonModel.Usp_GetPerson_Result)">
-            <Parameter Name="SearchText" Mode="In" Type="String" />
+          <Parameter Name="SearchText" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetSalonsOfService" ReturnType="Collection(BeautySalonModel.Usp_GetSalonsOfService_Result)">
-            <Parameter Name="ID_Service" Mode="In" Type="Int32" />
+          <Parameter Name="ID_Service" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetServicesOfSalon" ReturnType="Collection(BeautySalonModel.Usp_GetServicesOfSalon_Result)">
-            <Parameter Name="ID_Salon" Mode="In" Type="Int32" />
+          <Parameter Name="ID_Salon" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetSiteSettingWithPicture" ReturnType="Collection(BeautySalonModel.Usp_GetSiteSettingWithPicture_Result)" />
           <FunctionImport Name="Usp_InsertPic">
@@ -435,6 +472,8 @@
           <EntitySetMapping Name="Article">
             <EntityTypeMapping TypeName="BeautySalonModel.Article">
               <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
                 <ScalarProperty Name="ID_Person" ColumnName="ID_Person" />
@@ -445,6 +484,8 @@
           <EntitySetMapping Name="City">
             <EntityTypeMapping TypeName="BeautySalonModel.City">
               <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_Province" ColumnName="ID_Province" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -468,6 +509,9 @@
           <EntitySetMapping Name="Person">
             <EntityTypeMapping TypeName="BeautySalonModel.Person">
               <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Family" ColumnName="Family" />
@@ -494,6 +538,8 @@
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="BeautySalonModel.Role">
               <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -502,6 +548,8 @@
           <EntitySetMapping Name="Salon">
             <EntityTypeMapping TypeName="BeautySalonModel.Salon">
               <MappingFragment StoreEntitySet="Salon">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID_City" ColumnName="ID_City" />
@@ -519,6 +567,8 @@
           <EntitySetMapping Name="SalonService">
             <EntityTypeMapping TypeName="BeautySalonModel.SalonService">
               <MappingFragment StoreEntitySet="SalonService">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID_Service" ColumnName="ID_Service" />
                 <ScalarProperty Name="ID_Salon" ColumnName="ID_Salon" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
@@ -529,6 +579,8 @@
           <EntitySetMapping Name="SecurityQuestion">
             <EntityTypeMapping TypeName="BeautySalonModel.SecurityQuestion">
               <MappingFragment StoreEntitySet="SecurityQuestion">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
               </MappingFragment>
@@ -537,6 +589,8 @@
           <EntitySetMapping Name="Service">
             <EntityTypeMapping TypeName="BeautySalonModel.Service">
               <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
@@ -547,6 +601,8 @@
           <EntitySetMapping Name="SiteSetting">
             <EntityTypeMapping TypeName="BeautySalonModel.SiteSetting">
               <MappingFragment StoreEntitySet="SiteSetting">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID_UseType" ColumnName="ID_UseType" />

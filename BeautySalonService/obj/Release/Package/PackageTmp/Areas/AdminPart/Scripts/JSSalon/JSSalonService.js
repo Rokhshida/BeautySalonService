@@ -1,4 +1,15 @@
-﻿Dropzone.autoDiscover = false;
+﻿
+//<div id="dropzone2" class="dropzone" 
+//options="dz_PersImageOptions" 
+//methods="dz_PersImageMethods" 
+//callbacks="dzCallbacks" ng-dropzone>
+
+    //dropzone==>dropzone3
+//dz_PersImageOptions ==>dz_PersImageOptions3
+//dz_PersImageMethods==>dz_PersImageMethods3
+//dzCallbacks==>dzCallbacks3
+
+Dropzone.autoDiscover = false;
 var app = angular.module('MyApp', ['thatisuday.dropzone']);
 
 app.config(function (dropzoneOpsProvider) {
@@ -24,11 +35,12 @@ app.filter('unsafe', function ($sce) {
 
 
 app.controller('MyCtrl', function ($scope, $compile, $http) {
-    $scope.formData;
-    $scope.PageNum = 1;
-    $scope.PageSize = 9;
-    $scope.Title = "سرویس های مرتبط با سالن";
+    $scope.formDataService;
+    $scope.PageNumService = 1;
+    $scope.PageSizeService = 9;
+    $scope.TitleService = "سرویس های مرتبط با سالن";
 
+    //
     $scope.ID_Salon = JSON.parse(sessionStorage.ResultFrom);
 
 
@@ -38,7 +50,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     $scope.showBtns = false;
     $scope.lastFile = null;
-    $scope.dz_PersImageOptions = {
+    $scope.dz_PersImageOptions3 = {
         url: '/AdminPart/CMSSalon/GetSalonServiceImageFile',
         dictDefaultMessage: 'تصاویر را اینجا قرار دهید',
         acceptedFiles: '',
@@ -55,27 +67,27 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         //Send Parameter to c#
 
         init: function () {
-            this.on("sending", function (file, xhr, formData) {
+            this.on("sending", function (file, xhr, formDataService) {
                 // formData.append("ID", ID);
                
-                alert("Send a request to the server: " + JSON.stringify($scope.formData));
+               // alert("Send a request to the server: " + JSON.stringify($scope.formDataService));
               
-                formData.append("ID_Salon", ID_Salon);
-                formData.append("ID_Service", ID_Service);
+                formDataService.append("ID_Salon", ID_Salon);
+                formDataService.append("ID_Service", ID_Service);
                
-                alert('end sending');
+                //alert('end sending');
                
             });
             this.on("complete", function (file) {
-                alert('complete');
-                $scope.dz_PersImageMethods.removeAllFiles();
+                //alert('complete');
+                $scope.dz_PersImageMethods3.removeAllFiles();
                 //Refresh Page
             });
         }
     };
 
-    $scope.dz_PersImageMethods = {};
-    $scope.dzCallbacks = {
+    $scope.dz_PersImageMethods3 = {};
+    $scope.dzCallbacks3 = {
         'addedfile': function (file) {
             $scope.showBtns = true;
             $scope.lastFile = file;
@@ -105,29 +117,29 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
   
 
-    function clearData() {
+    function clearDataService() {
 
-        $scope.formData = {
+        $scope.formDataService = {
 
         };
        
-        CKEDITOR.instances.editor1.setData('');
-        $scope.formData.ID_Salon = $scope.ID_Salon;
+        CKEDITOR.instances.editor1Service.setData('');
+        $scope.formDataService.ID_Salon = $scope.ID_Salon;
     }
 
 
 
-    $scope.ShowLoadingAngular = function (PageNum, PageSize, Status) {
+    $scope.ShowLoadingAngularService = function (PageNumService, PageSizeService, Status) {
 
-        if (Status == "Next") PageNum += 1;
-        if (Status == "Prev") PageNum -= 1;
+        if (Status == "Next") PageNumService += 1;
+        if (Status == "Prev") PageNumService -= 1;
 
         var response = $http({
             method: "post",
             url: "/AdminPart/CMSSalon/GetServiceOfSalon",
             params: {
-                CurrentPage: PageNum,
-                PageSize: PageSize,
+                CurrentPage: PageNumService,
+                PageSize: PageSizeService,
                 ID_Salon: $scope.ID_Salon
 
             }
@@ -136,43 +148,43 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         response.then(function (VarResult) {
             $scope.ListAllSSalonServices = VarResult.data;
 
-            if (Status == "Next") $scope.PageNum += 1;
-            if (Status == "Prev") $scope.PageNum -= 1;
+            if (Status == "Next") $scope.PageNumService += 1;
+            if (Status == "Prev") $scope.PageNumService -= 1;
 
         }, function () {
             alert('error')
         });
     }
 
-    $scope.ShowLoadingAngular($scope.PageNum, $scope.PageSize, '');
+    $scope.ShowLoadingAngularService($scope.PageNumService, $scope.PageSizeService, '');
 
 
 
-    $scope.submitForm = function () {
-        alert("Send a request to the server: " + JSON.stringify($scope.formData));
+    $scope.submitFormService = function () {
+        //alert("Send a request to the server: " + JSON.stringify($scope.formDataService));
 
 
-        FuncSave(); 
+        FuncSaveService();
 
-        clearData();
-        $('#FormModal').modal('hide');
+        clearDataService();
+        $('#FormModalService').modal('hide');
 
     }
 
-    function FuncSave() {
+    function FuncSaveService() {
 
         if (confirm("آیا می خواهید ذخیره کنید؟")) {
           
             
 
-            $scope.formData.Comment = CKEDITOR.instances.editor1.getData();
+            $scope.formDataService.Comment = CKEDITOR.instances.editor1Service.getData();
         
-            var VarNewRec = $scope.formData;
-            alert("Send a request to the server: " + JSON.stringify(VarNewRec));
+            var VarNewRec = $scope.formDataService;
+            //alert("Send a request to the server: " + JSON.stringify(VarNewRec));
 
             
 
-            alert(1);
+           
             $.ajax({
 
                 type: "post",
@@ -183,23 +195,22 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
                 datatype: 'json',
                 success: function (data) {
-                    alert('test1');
+                   
                     ID_Salon = VarNewRec.ID_Salon;
                     ID_Service = VarNewRec.ID_Service;
-                    var files = $('#dropzone2').get(0).dropzone.getAcceptedFiles();
+                    var files = $('#dropzone3').get(0).dropzone.getAcceptedFiles();
                     if (files.length > 0) {
-                        alert('test2');
+                       
 
-                        $scope.dz_PersImageMethods.processQueue();
+                        $scope.dz_PersImageMethods3.processQueue();
                     }
                     alert('با موفقیت ذخیره شد');
-                    $scope.ShowLoadingAngular($scope.PageNum, $scope.PageSize, '');
+                    $scope.ShowLoadingAngularService($scope.PageNumService, $scope.PageSizeService, '');
                 },
                 complete: function () {
-                    var files = $('#dropzone2').get(0).dropzone.getAcceptedFiles();
+                    var files = $('#dropzone3').get(0).dropzone.getAcceptedFiles();
                     if (files.length == 0) {
-                        alert('complet');
-                        clearData();
+                        clearDataService();
                     }
                 }
             }
@@ -214,30 +225,40 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
 
     
-    $scope.FuncAdd = function () {
+    $scope.FuncAddService = function () {
 
 
 
-        clearData();
+        clearDataService();
         
-        alert('FuncAdd');
+     
+        $('#FormModalService').modal('toggle');
 
-        $('#FormModal').modal('toggle');
+
+    }
+    $scope.FuncAddServiceAll = function () {
+
+
+
+        //clearDataService();
+
+       
+
+        $('#FormModalServiceAll').modal('toggle');
 
 
     }
 
-
-    $scope.FuncDelete = function (ID_Service) {
+    $scope.FuncDeleteService = function (ID_Service) {
 
         if (confirm("آیا از حذف اطمینان دارید؟")) {
 
-
+            aler('hhh');
             var getData = $http.get("/AdminPart/CMSSalon/DeleteSalonService?ID_Salon=" + $scope.ID_Salon + "&ID_Service=" + ID_Service);
-
+            aler('hhh77');
             getData.then(function (VarMessage) {
                 alert("مورد حذف گردید.");
-                $scope.ShowLoadingAngular($scope.PageNum, $scope.PageSize, '');
+                $scope.ShowLoadingAngularService($scope.PageNumService, $scope.PageSizeService, '');
             }, function () {
 
             });

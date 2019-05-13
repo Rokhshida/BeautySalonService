@@ -68,7 +68,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             try
             {
                 ObjArticle.ID_Person = (int)Session["Sess_IDPerson"];
-
+                ObjArticle.CreatedDate = CommonFunction.GetDateNow();
+                ObjArticle.ModifiedDate = CommonFunction.GetDateNow();
                 DB.Article.Add(ObjArticle);
 
                 DB.SaveChanges();
@@ -100,7 +101,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 Result[0].ID_Person = (int)Session["Sess_IDPerson"];
                 Result[0].SiteContent = ObjArticle.SiteContent;
                 Result[0].Title = ObjArticle.Title;
-
+                Result[0].ModifiedDate = CommonFunction.GetDateNow();
                 DB.SaveChanges();
 
 

@@ -20,7 +20,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         {
             try
             {
-
+                ObjRole.CreatedDate = CommonFunction.GetDateNow();
+                ObjRole.ModifiedDate = CommonFunction.GetDateNow();
                 DB.Role.Add(ObjRole);
 
                 DB.SaveChanges();
@@ -67,7 +68,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             {
                 var Result = DB.Role.Where(item => item.ID == ObjRole.ID).ToList();
                 Result[0].Name = ObjRole.Name;
-
+                Result[0].ModifiedDate = CommonFunction.GetDateNow();
                 DB.SaveChanges();
 
 

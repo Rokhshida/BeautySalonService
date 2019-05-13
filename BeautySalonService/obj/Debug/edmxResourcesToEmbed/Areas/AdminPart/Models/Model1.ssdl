@@ -8,6 +8,8 @@
     <Property Name="SiteContent" Type="nvarchar(max)" />
     <Property Name="ID_Person" Type="int" />
     <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="City">
     <Key>
@@ -16,6 +18,8 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_Province" Type="int" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -45,6 +49,9 @@
     <Property Name="ID_Role" Type="int" />
     <Property Name="CellPhoneNo" Type="char" MaxLength="11" />
     <Property Name="ID_Pic" Type="int" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ApprovedState" Type="bit" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
@@ -60,6 +67,8 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Salon">
     <Key>
@@ -76,6 +85,8 @@
     <Property Name="ID_Manager" Type="int" />
     <Property Name="IntroductionPic" Type="varbinary(max)" />
     <Property Name="ID_pic" Type="int" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="SalonService">
     <Key>
@@ -86,6 +97,8 @@
     <Property Name="ID_Salon" Type="int" Nullable="false" />
     <Property Name="Comment" Type="nvarchar(max)" />
     <Property Name="ID_Pic" Type="int" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="SecurityQuestion">
     <Key>
@@ -93,6 +106,8 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Question" Type="nvarchar" MaxLength="200" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Service">
     <Key>
@@ -102,6 +117,8 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="ID_Pic" Type="int" />
     <Property Name="ID_Article" Type="int" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="SiteSetting">
     <Key>
@@ -115,6 +132,8 @@
     <Property Name="ID_Pic" Type="int" />
     <Property Name="Active" Type="bit" />
     <Property Name="SubTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="UseType">
     <Key>

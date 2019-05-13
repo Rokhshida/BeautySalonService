@@ -19,7 +19,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         {
             try
             {
-
+                ObjSecurityQuestion.CreatedDate = CommonFunction.GetDateNow();
+                ObjSecurityQuestion.ModifiedDate = CommonFunction.GetDateNow();
                 DB.SecurityQuestion.Add(ObjSecurityQuestion);
 
                 DB.SaveChanges();
@@ -64,6 +65,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             {
                 var Result = DB.SecurityQuestion.Where(item => item.ID == ObjSecurityQuestion.ID).ToList();
                 Result[0].Question = ObjSecurityQuestion.Question;
+                Result[0].ModifiedDate = CommonFunction.GetDateNow();
 
                 DB.SaveChanges();
 

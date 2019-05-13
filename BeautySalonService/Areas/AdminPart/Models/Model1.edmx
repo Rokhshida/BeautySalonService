@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ID" />
@@ -187,10 +187,11 @@
           <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UseType" EntityType="Self.UseType" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BeautySalonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="BeautySalonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ID" />
@@ -354,16 +355,16 @@
           <FunctionImport Name="Usp_GetAllServices" ReturnType="Collection(BeautySalonModel.Usp_GetAllServices_Result)" />
           <FunctionImport Name="Usp_GetArticles" ReturnType="Collection(BeautySalonModel.Usp_GetArticles_Result)" />
           <FunctionImport Name="Usp_GetNewMessagesForPerson" ReturnType="Collection(BeautySalonModel.Usp_GetNewMessagesForPerson_Result)">
-          <Parameter Name="ID_Person_To" Mode="In" Type="Int32" />
+            <Parameter Name="ID_Person_To" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetPerson" ReturnType="Collection(BeautySalonModel.Usp_GetPerson_Result)">
-          <Parameter Name="SearchText" Mode="In" Type="String" />
+            <Parameter Name="SearchText" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetSalonsOfService" ReturnType="Collection(BeautySalonModel.Usp_GetSalonsOfService_Result)">
-          <Parameter Name="ID_Service" Mode="In" Type="Int32" />
+            <Parameter Name="ID_Service" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetServicesOfSalon" ReturnType="Collection(BeautySalonModel.Usp_GetServicesOfSalon_Result)">
-          <Parameter Name="ID_Salon" Mode="In" Type="Int32" />
+            <Parameter Name="ID_Salon" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetSiteSettingWithPicture" ReturnType="Collection(BeautySalonModel.Usp_GetSiteSettingWithPicture_Result)" />
           <FunctionImport Name="Usp_InsertPic">
@@ -398,14 +399,16 @@
           <Property Type="Int32" Name="ID_Manager" Nullable="true" />
           <Property Type="Binary" Name="IntroductionPic" Nullable="true" />
           <Property Type="Int32" Name="ID_pic" Nullable="true" />
+          <Property Type="String" Name="CreatedDate" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ModifiedDate" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="Manager" Nullable="true" MaxLength="101" />
           <Property Type="String" Name="CityName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
         </ComplexType>
         <ComplexType Name="Usp_GetAllServices_Result">
           <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="ID_Article" Nullable="true" />
           <Property Type="String" Name="comment" Nullable="true" />
         </ComplexType>
@@ -415,7 +418,7 @@
           <Property Type="String" Name="SiteContent" Nullable="true" />
           <Property Type="String" Name="NameFamily" Nullable="true" MaxLength="101" />
           <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
         </ComplexType>
         <ComplexType Name="Usp_GetNewMessagesForPerson_Result">
           <Property Type="String" Name="MessageTitle" Nullable="true" MaxLength="200" />
@@ -436,20 +439,20 @@
           <Property Type="String" Name="CellPhoneNo" Nullable="true" MaxLength="11" />
           <Property Type="String" Name="Question" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="RoleName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="ID_Pic" Nullable="true" />
         </ComplexType>
         <ComplexType Name="Usp_GetSalonsOfService_Result">
           <Property Type="Int32" Name="ID_Salon" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Comment" Nullable="true" />
-          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
         </ComplexType>
         <ComplexType Name="Usp_GetServicesOfSalon_Result">
           <Property Type="Int32" Name="ID_Service" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Comment" Nullable="true" />
-          <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
         </ComplexType>
         <ComplexType Name="Usp_GetSiteSettingWithPicture_Result">
           <Property Type="String" Name="ActiveStatus" Nullable="false" MaxLength="6" />
@@ -472,23 +475,23 @@
           <EntitySetMapping Name="Article">
             <EntityTypeMapping TypeName="BeautySalonModel.Article">
               <MappingFragment StoreEntitySet="Article">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
                 <ScalarProperty Name="ID_Person" ColumnName="ID_Person" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="City">
             <EntityTypeMapping TypeName="BeautySalonModel.City">
               <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_Province" ColumnName="ID_Province" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -509,9 +512,6 @@
           <EntitySetMapping Name="Person">
             <EntityTypeMapping TypeName="BeautySalonModel.Person">
               <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Family" ColumnName="Family" />
@@ -523,6 +523,9 @@
                 <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
                 <ScalarProperty Name="CellPhoneNo" ColumnName="CellPhoneNo" />
                 <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -538,18 +541,16 @@
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="BeautySalonModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Salon">
             <EntityTypeMapping TypeName="BeautySalonModel.Salon">
               <MappingFragment StoreEntitySet="Salon">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID_City" ColumnName="ID_City" />
@@ -561,48 +562,48 @@
                 <ScalarProperty Name="ID_Manager" ColumnName="ID_Manager" />
                 <ScalarProperty Name="IntroductionPic" ColumnName="IntroductionPic" />
                 <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SalonService">
             <EntityTypeMapping TypeName="BeautySalonModel.SalonService">
               <MappingFragment StoreEntitySet="SalonService">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID_Service" ColumnName="ID_Service" />
                 <ScalarProperty Name="ID_Salon" ColumnName="ID_Salon" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SecurityQuestion">
             <EntityTypeMapping TypeName="BeautySalonModel.SecurityQuestion">
               <MappingFragment StoreEntitySet="SecurityQuestion">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Service">
             <EntityTypeMapping TypeName="BeautySalonModel.Service">
               <MappingFragment StoreEntitySet="Service">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
                 <ScalarProperty Name="ID_Article" ColumnName="ID_Article" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SiteSetting">
             <EntityTypeMapping TypeName="BeautySalonModel.SiteSetting">
               <MappingFragment StoreEntitySet="SiteSetting">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID_UseType" ColumnName="ID_UseType" />
@@ -611,6 +612,8 @@
                 <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -653,6 +656,8 @@
                 <ScalarProperty Name="ID_Manager" ColumnName="ID_Manager" />
                 <ScalarProperty Name="IntroductionPic" ColumnName="IntroductionPic" />
                 <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="Manager" ColumnName="Manager" />
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
                 <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />

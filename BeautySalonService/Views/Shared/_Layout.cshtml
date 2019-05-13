@@ -187,18 +187,20 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <div class="team-img">
                                 <img ng-src="@Url.Content("~/FileArchives/Salon/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid">
                                 <div class="team-content">
-                                    <h4 class="text-white">{{Item.Name}}</h4>
-                                    <p class="team-meta">{{Item.CityName}}</p>
-                                </div>
-                                <div class="overlay">
-                                    <div class="text">
-                                        <h4 class="text-white"></h4>
-                                        <p class="team-meta">{{Item.Phone}}</p>
-                                        <p class="mt-3">
-                                           {{Item.Description}}
-                                        </p>
+                                    <div style="background-color: #f9acce" >
+
+                                        <h4 class="text-lg-center text-white font-weight-bolder">
+                                            {{Item.Name}}
+                                        </h4>
+                                        <h4 class="text-lg-center text-white">{{Item.Phone}}</h4>
                                     </div>
                                 </div>
+                                <div class="overlay">
+                                    <div style="background-color: #d56e9b">
+                                        <h4 class="text-lg-center text-dark font-weight: bold">{{Item.Name}}</h4>
+                                        <p class="text-lg-center text-dark font-weight: bold">{{Item.Address}}</p>
+                                       </div>
+                                    </div>
                             </div>
                         </div>
                     </div>

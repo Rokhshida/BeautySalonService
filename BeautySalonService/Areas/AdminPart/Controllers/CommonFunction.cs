@@ -27,8 +27,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         BannerHeight =800,
          PersonWidth=100,
          PersonHeight=100,
-         SalonWidth=210,
-         SalonHeight=138,
+         SalonWidth=480,
+         SalonHeight=600,
          ServiceWidth=300,
          ServiceHeight=300
 

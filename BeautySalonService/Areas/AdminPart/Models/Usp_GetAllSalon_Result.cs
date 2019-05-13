@@ -23,6 +23,8 @@ namespace BeautySalonService.Areas.AdminPart.Models
         public Nullable<int> ID_Manager { get; set; }
         public byte[] IntroductionPic { get; set; }
         public Nullable<int> ID_pic { get; set; }
+        public string CreatedDate { get; set; }
+        public string ModifiedDate { get; set; }
         public string Manager { get; set; }
         public string CityName { get; set; }
         public string PicturePath { get; set; }

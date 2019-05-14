@@ -13,7 +13,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     $scope.bannerclass = "inner-banner";
     $scope.breadcrumb = "درباره ما"
     $scope.PageNumArticle = 1;
-    $scope.PageSizeArticle = 3;
+    $scope.PageSizeArticle = 2;
     $scope.Title = "درباره ما";
    
     $scope.activeAbout = "active";

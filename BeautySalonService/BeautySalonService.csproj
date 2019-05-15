@@ -1748,6 +1748,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Person\IndexSalonManager.cshtml" />
+    <Content Include="Views\Salon\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1765,7 +1766,6 @@
     <Folder Include="FileArchives\Article\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Article\" />
-    <Folder Include="Views\Salon\" />
     <Folder Include="Views\Service\" />
     <Folder Include="Views\SiteSetting\" />
   </ItemGroup>

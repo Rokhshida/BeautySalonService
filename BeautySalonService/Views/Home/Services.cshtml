@@ -31,7 +31,7 @@
 
 
                                 </span>-->
-                                <p ng-bind-html="Item.Comment | unsafe"></p>
+                                <p ng-bind-html="Item.Comment | unsafe" class="text-right "></p>
                                
 
 
@@ -56,18 +56,15 @@
                             <div class="wthree-title pb-sm-5 pb-3">
                                 <h3 class="agile-title">
 
-
-
-
                                     {{ServiceName}}
                                     <br> {{TitleArticle}}
                                     <span class="title-pos">{{ID_Service}} کد سرویس</span>
                                 </h3>
-                                <p class="mt-5">
-                                    {{SiteContentArticleOfService}}
-                                </p>
-                                <img ng-src="@Url.Content("~/FileArchives/Service/{{ServicePicturePath}}")" alt="{{ServicePicturePath}}" class="img-fluid" />
+                                <p ng-bind-html="SiteContentArticleOfService | unsafe" class="text-right mt-5"></p>
                             </div>
+                              
+                            <img ng-src="@Url.Content("~/FileArchives/Service/{{ServicePicturePath}}")" alt="{{ServicePicturePath}}" class="img-fluid" />
+                                
                         </div>
                         <div class="col-lg-6 mt-lg-0 mt-5">
                             <div class="main-services" ng-repeat="Item in ListAllSalonsOfService">
@@ -78,11 +75,11 @@
                                     <div class="col-10">
                                         <h6>{{Item.ID_Salon}}</h6>
                                         <h5>{{Item.Name}}</h5>
-                                        <p><img ng-src="@Url.Content("~/FileArchives/Service/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid" /></p>
+                                       <!-- <p><img ng-src="@Url.Content("~/FileArchives/Service/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid" /></p>-->
                                         <p>
 
 
-                                        <p ng-bind-html="Item.Comment | unsafe"></p>
+                                        <p ng-bind-html="Item.Comment | unsafe"  class="text-right "></p>
                                         @* {{Item.Comment}}*@
                                         </p>
                                     </div>

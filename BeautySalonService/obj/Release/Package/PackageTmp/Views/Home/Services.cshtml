@@ -1,155 +1,152 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Services";
 }
 
-  <!-- inner banner -->
-
+<!-- inner banner -->
 <!-- //inner banner -->
 <!-- breadcrumbs -->
-
 <!-- //breadcrumbs -->
 <!-- banner bottom -->
-
 <!-- //banner bottom -->
 <!-- services -->
-<div class="agileits-services py-md-5 py-sm-5 py-4" id="services">
-    <input type="button" class="btn btn-light" value="<<" ng-click="FuncShowAllService(PageNumService,PageSizeService,'Prev')" />
-    <input type="button" class="btn btn-light" value=">>" ng-click="FuncShowAllService(PageNumService,PageSizeService,'Next')" />
-
-    <div class="container py-lg-5">
-        
-        <div class="agileits-services-row row py-lg-5 text-center" >
-            <div class="col-lg-3 col-md-6" ng-repeat="Item in ListAllService">
-                <div class="agileits-services-grids">
-                    <i class="fab fa-uniregistry"></i>
-                    <h4>
-                        {{Item.Name}}
-                    </h4>
-                    <span>
-                    
-                        <img ng-src="@Url.Content("~/FileArchives/Service/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid mx-auto "  />
-                    
-                    
-                    </span>
-                    <p>{{Item.Comment}}</p>
 
 
-                   
 
-                    <a class="service-btn" ng-click="FuncShowDetailOfService(Item.ID,Item.Name, Item.ID_Article, Item.PicturePath)">بیشتر بدانید</a>
-                </div>
-            </div>
-            
+            <div class="agileits-services py-md-5 py-sm-5 py-4" id="services">
+                <input type="button" class="btn btn-light" value="<<" ng-click="FuncShowAllService(PageNumService,PageSizeService,'Prev')" />
+                <input type="button" class="btn btn-light" value=">>" ng-click="FuncShowAllService(PageNumService,PageSizeService,'Next')" />
+
+                <div class="container py-lg-5">
+
+                    <div class="agileits-services-row row py-lg-5 text-center">
+                        <div class="col-lg-3 col-md-6" ng-repeat="Item in ListAllService">
+                            <div class="agileits-services-grids">
+                                <i class="fas fa-tasks"></i>
+                                <h4>
+                                    {{Item.Name}}
+                                </h4>
+                              <!--  <span>
+
+                                    <img ng-src="@Url.Content("~/FileArchives/Service/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid mx-auto " />
 
 
-            
-        </div>
-    </div>
-</div>
-<!-- //services -->
-<!-- services-main -->
-<section class="about-w3ls py-md-5 py-3" id="about">
-    <div class="container">
-        <div class="row py-sm-5 py-3">
-            <div class="col-lg-6">
-                <div class="wthree-title pb-sm-5 pb-3">
-                    <h3 class="agile-title">
+                                </span>-->
+                                <p ng-bind-html="Item.Comment | unsafe" class="text-right "></p>
+                               
 
-                       
-                      
-                        
-                        {{ServiceName}}
-                        <br> {{TitleArticle}}
-                        <span class="title-pos">{{ID_Service}} کد سرویس</span>
-                    </h3>
-                    <p class="mt-5">
-                       {{SiteContentArticleOfService}}
-                    </p>
-                    <img ng-src="@Url.Content("~/FileArchives/Service/{{ServicePicturePath}}")" alt="{{ServicePicturePath}}" class="img-fluid" />
-                </div>
-            </div>
-            <div class="col-lg-6 mt-lg-0 mt-5">
-                <div class="main-services" ng-repeat="Item in ListAllSalonsOfService">
-                    <div class="row">
-                        <div class="col-2">
-                            <span class="fas fa-angle-right"></span>
+
+
+
+                                <a class="service-btn" ng-click="FuncShowDetailOfService(Item.ID,Item.Name, Item.ID_Article, Item.PicturePath)">بیشتر بدانید</a>
+                            </div>
                         </div>
-                        <div class="col-10">
-                            <h6>{{Item.ID_Salon}}</h6>
-                            <h5>{{Item.Name}}</h5>
-                            <p><img ng-src="@Url.Content("~/FileArchives/Service/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid" /></p>
-                            <p>
 
 
-                            <p ng-bind-html="Item.Comment | unsafe"></p>
-                              @* {{Item.Comment}}*@
-                            </p>
-                        </div>
-                    </div>
-                </div>
-               
-            </div>
 
-            
-            <input type="button" class="btn btn-light" value="<<" ng-click="FuncGetSalonsOfService(PageNumSalonsOfService, PageSizeSalonsOfService, 'Prev', ID_Service))" />
-            <input type="button" class="btn btn-light" value=">>" ng-click="FuncGetSalonsOfService(PageNumSalonsOfService, PageSizeSalonsOfService, 'Next', ID_Service))" />
-        </div>
-    </div>
-</section>
-<!-- //services-main-->
-<!-- stats -->
-@*<section class="agile_stats_main py-5">
-    <div class="container py-sm-5">
-        <h3 class="agile-title text-white">
-            <span>o</span>ur
-            <span>G</span>rowth
-            <br> spa and theraphy center
-            <span class="title-pos text-white">glance</span>
-        </h3>
-        <div class="row mt-5">
-            <div class="col-lg-9">
-                <div class="row">
-                    <div class="col-lg-3 col-6 stat-grid">
-                        <div class="counter py-5 px-3">
-                            <i class="far fa-smile fa-2x"></i>
-                            <div class="timer count-title count-number my-2" data-to="5100" data-speed="1500"></div>
-                            <p class="count-text text-capitalize">Satisfied Clients</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6 stat-grid">
-                        <div class="counter  py-5 px-3">
-                            <i class=" fab fa-stack-overflow fa-2x"></i>
-                            <div class="timer count-title count-number my-2" data-to="4783" data-speed="1500"></div>
-                            <p class="count-text text-capitalize">Successful Projects</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6  stat-grid mt-lg-0 mt-5">
-                        <div class="counter  py-5 px-3">
-                            <i class="fas fa-users fa-2x"></i>
-                            <div class="timer count-title count-number my-2" data-to="2184" data-speed="1500"></div>
-                            <p class="count-text text-capitalize">Professionals</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6  stat-grid mt-lg-0 mt-5">
-                        <div class="counter  py-5 px-3">
-                            <i class="fas fa-building fa-2x"></i>
-                            <div class="timer count-title count-number my-2" data-to="74" data-speed="1084"></div>
-                            <p class="count-text text-capitalize">Our Branches</p>
-                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="offset-lg-3">
-            </div>
-        </div>
-    </div>
-</section>*@
-<!-- //stats -->
-@section DeclareJS{
+            <!-- //services -->
+            <!-- services-main -->
+            <section class="about-w3ls py-md-5 py-3" id="about">
+                <div class="container">
+                    <div class="row py-sm-5 py-3">
+                        <div class="col-lg-6">
+                            <div class="wthree-title pb-sm-5 pb-3">
+                                <h3 class="agile-title">
+
+                                    {{ServiceName}}
+                                    <br> {{TitleArticle}}
+                                    <span class="title-pos">{{ID_Service}} کد سرویس</span>
+                                </h3>
+                                <p ng-bind-html="SiteContentArticleOfService | unsafe" class="text-right mt-5"></p>
+                            </div>
+                              
+                            <img ng-src="@Url.Content("~/FileArchives/Service/{{ServicePicturePath}}")" alt="{{ServicePicturePath}}" class="img-fluid" />
+                                
+                        </div>
+                        <div class="col-lg-6 mt-lg-0 mt-5">
+                            <div class="main-services" ng-repeat="Item in ListAllSalonsOfService">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <span class="fas fa-angle-right"></span>
+                                    </div>
+                                    <div class="col-10">
+                                        <h6>{{Item.ID_Salon}}</h6>
+                                        <h5>{{Item.Name}}</h5>
+                                       <!-- <p><img ng-src="@Url.Content("~/FileArchives/Service/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid" /></p>-->
+                                        <p>
 
 
-<script src="~/Scripts/JSScripts/JSHome/JSServices.js"></script>}
+                                        <p ng-bind-html="Item.Comment | unsafe"  class="text-right "></p>
+                                        @* {{Item.Comment}}*@
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <input type="button" class="btn btn-light" value="<<" ng-click="FuncGetSalonsOfService(PageNumSalonsOfService, PageSizeSalonsOfService, 'Prev', ID_Service))" />
+                        <input type="button" class="btn btn-light" value=">>" ng-click="FuncGetSalonsOfService(PageNumSalonsOfService, PageSizeSalonsOfService, 'Next', ID_Service))" />
+                    </div>
+                </div>
+            </section>
+            <!-- //services-main-->
+            <!-- stats -->
+            @*<section class="agile_stats_main py-5">
+                    <div class="container py-sm-5">
+                        <h3 class="agile-title text-white">
+                            <span>o</span>ur
+                            <span>G</span>rowth
+                            <br> spa and theraphy center
+                            <span class="title-pos text-white">glance</span>
+                        </h3>
+                        <div class="row mt-5">
+                            <div class="col-lg-9">
+                                <div class="row">
+                                    <div class="col-lg-3 col-6 stat-grid">
+                                        <div class="counter py-5 px-3">
+                                            <i class="far fa-smile fa-2x"></i>
+                                            <div class="timer count-title count-number my-2" data-to="5100" data-speed="1500"></div>
+                                            <p class="count-text text-capitalize">Satisfied Clients</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6 stat-grid">
+                                        <div class="counter  py-5 px-3">
+                                            <i class=" fab fa-stack-overflow fa-2x"></i>
+                                            <div class="timer count-title count-number my-2" data-to="4783" data-speed="1500"></div>
+                                            <p class="count-text text-capitalize">Successful Projects</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6  stat-grid mt-lg-0 mt-5">
+                                        <div class="counter  py-5 px-3">
+                                            <i class="fas fa-users fa-2x"></i>
+                                            <div class="timer count-title count-number my-2" data-to="2184" data-speed="1500"></div>
+                                            <p class="count-text text-capitalize">Professionals</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6  stat-grid mt-lg-0 mt-5">
+                                        <div class="counter  py-5 px-3">
+                                            <i class="fas fa-building fa-2x"></i>
+                                            <div class="timer count-title count-number my-2" data-to="74" data-speed="1084"></div>
+                                            <p class="count-text text-capitalize">Our Branches</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="offset-lg-3">
+                            </div>
+                        </div>
+                    </div>
+                </section>*@
+            <!-- //stats -->
+            @section DeclareJS{
+
+
+                <script src="~/Scripts/JSScripts/JSHome/JSServices.js"></script>}
 
 
 

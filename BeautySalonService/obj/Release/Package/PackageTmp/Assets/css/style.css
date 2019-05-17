@@ -75,7 +75,7 @@ p {
     letter-spacing: 1px;
     font-family:  'b Yekan', 'b Nazanin';
     font-weight: 300;
-     text-align: right;
+     text-align:match-parent;
 }
 
 ul {
@@ -767,7 +767,7 @@ a.service-btn {
 /*-- text Slider --*/
 
 .testimonials {
-    /*background: url(../images/bg2.jpg) no-repeat center;*/
+   background: url(../images/banner.jpg) no-repeat center;
      background: #d56e9b;
     background-size: cover;
     padding: 6em 0;

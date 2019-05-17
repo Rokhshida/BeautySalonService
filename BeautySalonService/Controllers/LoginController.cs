@@ -31,6 +31,7 @@ namespace BeautySalonService.Controllers
                 Session["Sess_IDPerson"] = Result[0].ID;
                 Session["Sess_Email"] = Result[0].Email;
                 Session["Sess_PicPath"] = Result[0].PicturePath;
+                if (Session["Sess_PicPath"] == null ) { Session["Sess_PicPath"] = "DefaultPerson.jpg"; }
                 if (Result[0].ID_Role == 1)
                 { return Redirect("/AdminPart/CMSHome"); }
                 else

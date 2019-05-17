@@ -22,11 +22,11 @@
 <div class="testimonials">
  
 
-    <div class="container">
-        <div class="navbar-brand text-white">
-            <h1>
-                دانستنی ها
-            </h1>
+    <div class="container ">
+        <div class="navbar-brand text-white text-center">
+
+
+
         </div>
         <div class="banner-text text-center">
             <div class="callbacks_container">
@@ -39,19 +39,19 @@
                                 <span>"</span>
 
 
-                            <p ng-bind-html="Item.SiteContent | unsafe"></p>
-                                @*{{Item.SiteContent}}*@
-                                <span>"</span>
+                            <p ng-bind-html="Item.SiteContent | unsafe" class="text-right "></p>
+                            @*{{Item.SiteContent}}*@
+                            <span>"</span>
                             </p>
                         </div>
                     </li>
-                   
+
                 </ul>
                 <input type="button" class="btn btn-light" value="<<" ng-click="FuncShowAllArticle(PageNumArticle,PageSizeArticle,'Prev')" />
                 {{PageNumArticle}}
                 <input type="button" class="btn btn-light" value=">>" ng-click="FuncShowAllArticle(PageNumArticle,PageSizeArticle,'Next')" />
-                
-                
+
+
             </div>
         </div>
     </div>

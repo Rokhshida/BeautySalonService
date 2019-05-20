@@ -642,7 +642,7 @@
     <Content Include="Scripts\JSScripts\JSHome\JSLayout.js" />
     <Content Include="Scripts\JSScripts\JSHome\JSServices.js" />
     <Content Include="Scripts\JSScripts\JSRegister\JSRegister.js" />
-    <Content Include="Scripts\JSScripts\JSSalon.js" />
+    <Content Include="Scripts\JSScripts\JSSalon\JSSalon.js" />
     <Content Include="Scripts\MyJsTemplate\bootstrap.min.js" />
     <Content Include="Assets\css\blog.css" />
     <Content Include="Assets\css\bootstrap.css" />

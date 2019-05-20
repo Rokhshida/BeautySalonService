@@ -1709,6 +1709,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Person\IndexSalonManager.cshtml" />
     <Content Include="Views\Salon\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutSalon.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

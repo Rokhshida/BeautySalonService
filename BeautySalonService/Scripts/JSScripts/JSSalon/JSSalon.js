@@ -9,14 +9,15 @@ app.filter('unsafe', function ($sce) {
 
 });
 app.controller('MyCtrl', function ($scope, $compile, $http) {
+   
     $scope.bannerclass = "inner-banner";
    
     $scope.Salondata = JSON.parse(sessionStorage.ResultFrom);
     $scope.breadcrumb = "خدمات سالن " + $scope.Salondata.Name;
     $scope.PageNumServicesOfSalon = 1;
     $scope.PageSizeServicesOfSalon = 4;
-   
-    $scope.Title = "";
+    $scope.Title = "رخشیدا";
+
 
     $scope.activeDrp = "";
 
@@ -25,11 +26,14 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     function FuncGetCommon() {
 
-        $scope.Title = $scope.Salondata.Name;
-        $scope.SubTitle = $scope.Salondata.ID_Salon;
+        $scope.SalonTitle = $scope.Salondata.Name;
+        $scope.ID_Salon = $scope.Salondata.ID;
         $scope.Comment = $scope.Salondata.Description;
         $scope.PicturePath = $scope.Salondata.PicturePath;
-       
+        $scope.Phone = $scope.Salondata.Phone;
+        $scope.Address = $scope.Salondata.Address;
+        $scope.Manager = $scope.Salondata.Manager;
+        $scope.CityName = $scope.Salondata.CityName;
     }
     /*********************/
 
@@ -38,7 +42,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     /*********************/
 
   
-    $scope.FuncGetServicesOfSalon = function (PageNumServicesOfSalon, PageSizeServicesOfSalon, StatusServicesOfSalon, ID_Salon) {
+    $scope.FuncGetServicesOfSalon = function (PageNumServicesOfSalon, PageSizeServicesOfSalon, StatusServicesOfSalon,ID_Salon) {
 
 
 
@@ -73,12 +77,11 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     }
 
     
-
+    $scope.FuncGetServicesOfSalon($scope.PageNumServicesOfSalon, $scope.PageSizeServicesOfSalon, '', $scope.ID_Salon);
     /***********************************/
     /*قسمت مربوط به layout*/
 
-    $scope.PageNum = 1;
-    $scope.PageSize = 4;
+   
 
 
     function FuncShowCopyright() {
@@ -95,18 +98,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     }
 
 
-    function FuncShowBanner() {
-
-        var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 1);
-        getData.then(function (VarMessage) {
-            $scope.ListAllSiteSettingBanner = VarMessage.data;
-        }, function () {
-
-        });
-    }
-
-
-    FuncShowBanner();
+  
     FuncShowCopyright();
    
 

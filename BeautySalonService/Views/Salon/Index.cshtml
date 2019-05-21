@@ -47,8 +47,17 @@
 <!-- articles -->
 <h5 class="pt-4 pb-3">مقالات</h5>
 <div class="d-flex flex-column bg-flex">
-    <div class="p-2 bg-flex mb-1 bg-flex-item" ng-repeat="Item in ListAllArticleOfSalonManager">Flex item 1</div>
-   
+    <div class="p-2 bg-flex mb-1 bg-flex-item" ng-repeat="Item in ListAllArticleOfSalonManager">
+
+        <p>شناسه مقاله  {{Item.ID}}</p> 
+        <p>{{Item.title}}</p>
+        <br/>
+        <p ng-bind-html="Item.SiteContent | unsafe" class="text-right "></p>
+       
+    </div>
+  
+    <input type="button" class="btn btn-light" value="<<" ng-click="FuncGetArticlesOfManager(PageNumArticles, PageSizeArticles, 'Prev',Salondata.ID_Manager)" />
+    <input type="button" class="btn btn-light" value=">>" ng-click="FuncGetArticlesOfManager(PageNumArticles, PageSizeArticles, 'Next',Salondata.ID_Manager )" />
 </div>
 <!-- //articles -->
 @section DeclareJS{

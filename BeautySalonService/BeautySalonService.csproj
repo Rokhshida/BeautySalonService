@@ -1667,6 +1667,9 @@
     <Compile Include="Areas\AdminPart\Models\Usp_GetAllServices_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\AdminPart\Models\USp_GetArticlesOfPerson_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\AdminPart\Models\Usp_GetArticles_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

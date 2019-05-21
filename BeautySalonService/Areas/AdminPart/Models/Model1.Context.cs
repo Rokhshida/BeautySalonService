@@ -129,5 +129,14 @@ namespace BeautySalonService.Areas.AdminPart.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_InsertPic", picPathParameter, tableNameParameter, iD_MainParameter, iD_Main2Parameter);
         }
+    
+        public virtual ObjectResult<USp_GetArticlesOfPerson_Result> USp_GetArticlesOfPerson(Nullable<int> iD_Person)
+        {
+            var iD_PersonParameter = iD_Person.HasValue ?
+                new ObjectParameter("ID_Person", iD_Person) :
+                new ObjectParameter("ID_Person", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USp_GetArticlesOfPerson_Result>("USp_GetArticlesOfPerson", iD_PersonParameter);
+        }
     }
 }

@@ -214,7 +214,11 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     FuncShowCopyright();
     FuncShowSalon();
     $scope.FuncShowAllSalon($scope.PageNum, $scope.PageSize, '');
+    $scope.FuncShowSalonPage = function (Item) {
 
+        sessionStorage.ResultFrom = JSON.stringify(Item);
+        window.open("/Salon/Index", '_blank');
+    }
     /*********************/
 
 

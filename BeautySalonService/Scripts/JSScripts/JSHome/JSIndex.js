@@ -118,7 +118,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
 
     $scope.FuncShowSalonPage = function (Item) {
-        alert('FuncShowSalonPage');
+       
         sessionStorage.ResultFrom = JSON.stringify(Item);
         window.open("/Salon/Index", '_blank');
     }

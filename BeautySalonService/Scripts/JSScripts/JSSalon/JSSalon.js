@@ -13,11 +13,15 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     $scope.bannerclass = "inner-banner";
    
     $scope.Salondata = JSON.parse(sessionStorage.ResultFrom);
+   // alert(JSON.stringify($scope.Salondata));
     $scope.breadcrumb = "خدمات سالن " + $scope.Salondata.Name;
     $scope.PageNumServicesOfSalon = 1;
     $scope.PageSizeServicesOfSalon = 4;
     $scope.Title = "رخشیدا";
+    $scope.PageNumArticles = 1;
+    $scope.PageSizeArticles = 3;
 
+   
 
     $scope.activeDrp = "";
 
@@ -47,7 +51,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
 
         if (StatusServicesOfSalon == "Next") PageNumServicesOfSalon += 1;
-        if (StatusServicesOfSalon == "Prev") PageServicesOfSalon -= 1;
+        if (StatusServicesOfSalon == "Prev") PageNumServicesOfSalon -= 1;
 
         var response = $http({
             method: "post",
@@ -68,8 +72,8 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
 
 
-            if (StatusServicesOfSalon == "Next") $scope.PageNumServicesOfSalon += 1;
-            if (StatusServicesOfSalon == "Prev") $scope.PageNumServicesOfSalon -= 1;
+            if (StatusServicesOfSalon == "Next") PageNumServicesOfSalon += 1;
+            if (StatusServicesOfSalon == "Prev") PageNumServicesOfSalon -= 1;
 
         }, function () {
             alert('error')
@@ -78,6 +82,48 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     
     $scope.FuncGetServicesOfSalon($scope.PageNumServicesOfSalon, $scope.PageSizeServicesOfSalon, '', $scope.ID_Salon);
+
+
+
+    /*get articles*/
+
+    $scope.FuncGetArticlesOfManager = function (PageNumArticles, PageSizeArticles, StatusArticles, ID_Person) {
+
+
+
+        if (StatusArticles == "Next") PageNumArticles += 1;
+        if (StatusArticles == "Prev") PageNumArticles -= 1;
+
+        var response = $http({
+            method: "post",
+            url: "/AdminPart/CMSArticle/GetArticleOfPersonWithPage",
+            params: {
+                PageNum: PageNumArticles,
+                PageSize: PageSizeArticles,
+                ID_Person: ID_Person
+            }
+        });
+
+
+        response.then(function (VarResult) {
+
+            $scope.ListAllArticleOfSalonManager = VarResult.data;
+            // alert("Send a request to the server: " + JSON.stringify($scope.ListAllSalonsOfService));
+
+
+
+
+            if (StatusArticles == "Next") PageNumArticles += 1;
+            if (StatusArticles == "Prev") PageNumArticles -= 1;
+
+        }, function () {
+            alert('error')
+        });
+    }
+
+
+    $scope.FuncGetArticlesOfManager($scope.PageNumArticles, $scope.PageSizeArticles, '', $scope.Salondata.ID_Manager);
+
     /***********************************/
     /*قسمت مربوط به layout*/
 

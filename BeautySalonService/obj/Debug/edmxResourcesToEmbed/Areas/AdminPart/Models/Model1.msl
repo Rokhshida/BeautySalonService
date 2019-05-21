@@ -283,5 +283,17 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Usp_InsertPic" FunctionName="BeautySalonModel.Store.Usp_InsertPic" />
+    <FunctionImportMapping FunctionImportName="USp_GetArticlesOfPerson" FunctionName="BeautySalonModel.Store.USp_GetArticlesOfPerson">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BeautySalonModel.USp_GetArticlesOfPerson_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
+          <ScalarProperty Name="NameFamily" ColumnName="NameFamily" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

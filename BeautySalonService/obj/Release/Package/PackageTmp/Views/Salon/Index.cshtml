@@ -1,31 +1,30 @@
-﻿
+﻿@{
+   
+    Layout = "~/Views/Shared/_LayoutSalon.cshtml";
+}
+
+
+ <!-- banner bottom -->
+
+<!-- //banner bottom -->
+<!-- services -->
+
+<!-- //services -->
+<!-- services-main -->
 <section class="about-w3ls py-md-5 py-3" id="about">
     <div class="container">
-        <div class="row py-sm-5 py-3">
-            <div class="col-lg-6">
-                <div class="wthree-title pb-sm-5 pb-3">
-                    <h3 class="agile-title">
-
-                        {{ServiceName}}
-                        <br> {{TitleArticle}}
-                        <span class="title-pos">{{ID_Service}} کد سرویس</span>
-                    </h3>
-                    <p ng-bind-html="SiteContentArticleOfService | unsafe" class="text-right mt-5"></p>
-                </div>
-
-                <img ng-src="@Url.Content("~/FileArchives/Service/{{ServicePicturePath}}")" alt="{{ServicePicturePath}}" class="img-fluid" />
-
-            </div>
-            <div class="col-lg-6 mt-lg-0 mt-5">
-                <div class="main-services" ng-repeat="Item in ListAllSalonsOfService">
+                <div class="col-lg-6 mt-lg-0 mt-5">
+                <div class="main-services" ng-repeat="Item in ListAllServicesOfSalon">
                     <div class="row">
                         <div class="col-2">
                             <span class="fas fa-angle-right"></span>
                         </div>
                         <div class="col-10">
-                            <h6>{{Item.ID_Salon}}</h6>
+
+                           
+                            <h6>کد سرویس:{{Item.ID_Service}}</h6>
                             <h5>{{Item.Name}}</h5>
-                             <p><img ng-src="@Url.Content("~/FileArchives/Service/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid" /></p>
+                            <!-- <p><img ng-src="@Url.Content("~/FileArchives/SalonService/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid" /></p>-->
                             <p>
 
 
@@ -39,8 +38,31 @@
             </div>
 
 
-            <input type="button" class="btn btn-light" value="<<" ng-click="FuncGetSalonsOfService(PageNumSalonsOfService, PageSizeSalonsOfService, 'Prev', ID_Service))" />
-            <input type="button" class="btn btn-light" value=">>" ng-click="FuncGetSalonsOfService(PageNumSalonsOfService, PageSizeSalonsOfService, 'Next', ID_Service))" />
+        <input type="button" class="btn btn-light" value="<<" ng-click="FuncGetServicesOfSalon(PageNumServicesOfSalon, PageSizeServicesOfSalon, 'Prev',ID_Salon)" />
+        <input type="button" class="btn btn-light" value=">>" ng-click="FuncGetServicesOfSalon(PageNumServicesOfSalon, PageSizeServicesOfSalon, 'Next', ID_Salon)" />
         </div>
-    </div>
+   
 </section>
+<!-- //services-main-->
+<!-- articles -->
+<h5 class="pt-4 pb-3">مقالات</h5>
+<div class="d-flex flex-column bg-flex">
+    <div class="p-2 bg-flex mb-1 bg-flex-item" ng-repeat="Item in ListAllArticleOfSalonManager">
+
+        <p>شناسه مقاله  {{Item.ID}}</p> 
+        <p>{{Item.title}}</p>
+        <br/>
+        <p ng-bind-html="Item.SiteContent | unsafe" class="text-right "></p>
+       
+    </div>
+  
+    <input type="button" class="btn btn-light" value="<<" ng-click="FuncGetArticlesOfManager(PageNumArticles, PageSizeArticles, 'Prev',Salondata.ID_Manager)" />
+    <input type="button" class="btn btn-light" value=">>" ng-click="FuncGetArticlesOfManager(PageNumArticles, PageSizeArticles, 'Next',Salondata.ID_Manager )" />
+</div>
+<!-- //articles -->
+@section DeclareJS{
+
+
+    <script src="~/Scripts/JSScripts/JSSalon/JSSalon.js"></script>}
+
+

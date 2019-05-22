@@ -31,16 +31,16 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <link rel="stylesheet" href="~/Assets/css/ken-burns.css" type="text/css" media="all" />
     <link href="~/Areas/AdminPart/Assets/css/fontawesome-all.css" rel="stylesheet">
     @*<!-- fontawesome -->
-    <link href="~/Assets/css/fontawesome-all.css" rel="stylesheet">
-    <!-- online fonts -->
-    <link href="//fonts.googleapis.com/css?family=Philosopher:400,400i,700,700i" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Markazi+Text:400,500,600,700" rel="stylesheet">*@
+        <link href="~/Assets/css/fontawesome-all.css" rel="stylesheet">
+        <!-- online fonts -->
+        <link href="//fonts.googleapis.com/css?family=Philosopher:400,400i,700,700i" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Markazi+Text:400,500,600,700" rel="stylesheet">*@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-app="MyApp" ng-controller="MyCtrl">
     <div id="home">
-        <div class="{{bannerclass}}" >
-           
+        <div class="{{bannerclass}}">
+
             @*style="background: url(~/FileArchives/SiteSettingImage/bg1.jpg)no-repeat center; "*@
             <!-- header -->
             <nav class="navbar fixed-top navbar-expand-lg navbar-light navbar-fixed-top">
@@ -56,9 +56,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-lg-auto text-center align-items-center">
-                           
-                            
-                            
+
+
+
                             <li class="nav-item mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link" href="/Home/Contact">تماس با ما</a>
                             </li>
@@ -66,18 +66,18 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <a class="nav-link" href="/Home/Services"> خدمات </a>
                             </li>
                             @*<li class="nav-item dropdown {{activeDrp}} mr-lg-3 mt-lg-0 mt-3">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    منو
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Home/Services">خدمات</a>
-                                    <a class="dropdown-item" href="/Home/Salons">سالن ها</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/Articles"> مقالات</a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                       aria-expanded="false">
+                                        منو
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/Home/Services">خدمات</a>
+                                        <a class="dropdown-item" href="/Home/Salons">سالن ها</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/Articles"> مقالات</a>
 
-                                </div>
-                            </li>*@
+                                    </div>
+                                </li>*@
                             <li class="nav-item dropdown {{activeMembership}} mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">
@@ -88,7 +88,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                     <a class="dropdown-item" href="/Person">کاربر عادی</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/Login"> ورود</a>
-                                   
+
                                 </div>
                             </li>
                             <li class="nav-item {{activeAbout}} mr-lg-3 mt-lg-0 mt-3">
@@ -119,7 +119,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                     </ul>
                                 </div>
                             </li>
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -130,7 +130,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
         </div>
 
-        
+
 
         @RenderSection("banner", false)
 
@@ -152,18 +152,26 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     <div class="col-lg-5  bb-left">
                         <h3 class="agile-title">
 
-                            <span>{{Title}}</span>
-                            <br> {{SubTitle}}
-                            <span class="title-pos">{{Title}}</span>
+
+                            <span>{{SalonTitle}}</span>
+                            <br> 
+                            <span class="title-pos">{{ID_Salon}}:  کد سالن</span>
+                            <p>{{CityName}}</p>
+                            <p>{{Address}}</p>
+                            <p>{{Phone}}</p>
+                            <p>{{Manager}}</p>
+                           
+                           
                         </h3>
                     </div>
                     <div class="col-lg-7 mt-lg-0 mt-3 px-lg-5">
-                        <p   ng-bind-html="Comment | unsafe" class="text-right "></p>
-                       
+                        <p ng-bind-html="Comment | unsafe" class="text-right "></p>
+
                     </div>
+                   
                 </div>
-                <div class="text-center">
-                    <img ng-src="@Url.Content("~/FileArchives/SiteSettingImage/{{PicturePath}}")" alt="~/FileArchives/SiteSettingImage/{{PicturePath}}" class="img-fluid mx-auto" />
+                <div class="text-right">
+                    <img ng-src="@Url.Content("~/FileArchives/Salon/{{PicturePath}}")" alt="~/FileArchives/Salon/{{PicturePath}}" class="img-fluid mx-auto" />
                 </div>
             </div>
         </section>
@@ -171,138 +179,17 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         @RenderBody()
 
 
-        
-        <!-- //blog -->
-        <!-- Salons -->
-        <section class="branches position-relative">
-            <div class="container">
-                <h3 class="agile-title">
-                    <span>{{SalonTitle}}</span>
-                    <br>  <p ng-bind-html="SalonComment | unsafe"></p>
-                    <span class="title-pos">{{SalonSubTitle}}</span>
-                </h3>
-                <input type="button" class="btn btn-light" value="<<" ng-click="FuncShowAllSalon(PageNum,PageSize,'Prev')" />
 
-                <div class="row py-5 branches-position">
-                    <div class="col-lg-3 col-md-6" ng-repeat="Item in ListAllSalon">
-                        <!-- branch-img -->
-                        <div class="team-block">
-                            <div class="team-img">
-                                <img ng-src="@Url.Content("~/FileArchives/Salon/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid">
-                                <div class="team-content">
-                                    <div style="background-color: #f9acce" >
-
-                                        <h4 class="text-lg-center text-white font-weight-bolder">
-                                            {{Item.Name}}
-                                        </h4>
-                                        <h4 class="text-lg-center text-white">{{Item.Phone}}</h4>
-                                        
-                                    </div>
-                                </div>
-                                <div class="overlay">
-                                    <div style="background-color: #d56e9b">
-                                        <h4 class="text-lg-center text-dark font-weight: bold">{{Item.Name}}</h4>
-                                        <p class="text-lg-center text-dark font-weight: bold"> <input type="button" class="btn btn-dark"  value="اطلاعات بیشتر" ng-click="FuncShowSalonPage(Item)" /></p>
-<p class="text-lg-center text-dark font-weight: bold">{{Item.Address}}</p>
-                                       </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                    
-                </div>
-
-                <input type="button" class="btn btn-light" value=">>" ng-click="FuncShowAllSalon(PageNum,PageSize,'Next')" />
-            </div>
-        </section>
-        <!-- //Salons -->
+      
         <!-- footer -->
-        <footer class="py-5 position-relative">
-            <div class="container">
-                <div class="footer-bottom row">
-                    <!-- footer grid1 -->
-                    <div class="col-lg-4 col-sm-6 footv3-left">
-                        <div id="fixed-social">
-                            <h3 class="mb-4">مارا دنبال کنید</h3>
-                            <div>
-                                <a href="#" class="fixed-facebook mb-2 rounded" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                    <span class="rounded-left">instagram</span>
-                                </a>
-                            </div>
-                            @*<div>
-                                <a href="#" class="fixed-twitter mb-2 rounded" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                    <span class="rounded-left">facebook</span>
-                                </a>
-                            </div>*@
-                            @*<div>
-                                <a href="#" class="fixed-gplus mb-2 rounded" target="_blank">
-                                    <i class="fab fa-google-plus-g"></i>
-                                    <span class="rounded-left">telegram</span>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="#" class="fixed-linkedin mb-2 rounded" target="_blank">
-                                    <i class="fab fa-linkedin-in"></i>
-                                    <span class="rounded-left">LinkedIn</span>
-                                </a>
-                            </div>*@
-                        </div>
-                    </div>
-                    <!-- //footer grid1 -->
-                    <!-- footer grid3 -->
-                    <div class="col-lg-4  col-sm-6 footv3-left my-sm-0 my-4">
-                        <h3 class="mb-4">لینکها</h3>
-                        <ul class="list-agileits">
-                            <li>
-                                <a href="/">
-                                    خانه
-                                </a>
-                            </li>
-                            <li class="my-3">
-                                <a href="Home/About">
-                                    درباره ما
-                                </a>
-                            </li>
-                            <li class="mb-3">
-                                <a href="Home/Services">
-                                    خدمات
-                                </a>
-                            </li>
-                            <li>
-                                <a href="Home/Contact">
-                                    تماس با ما
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- //footer grid3 -->
-                    <!-- footer grid4  -->
-                    @*<div class="col-lg-4  footv3-left my-lg-0 mt-4">
-                        <h3 class="mb-4">مشترک ما شوید</h3>
-                        <form action="#" method="post">
-                            <div class="form-group">
-                                <input type="email" class="form-control  bg-dark border-0" id="email" placeholder="Enter email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="Submit" class="form-control  border-0" id="sub" value="submit" name="sub">
-                            </div>
-                        </form>
-                    </div>*@
-                    <!-- //footer grid4 -->
-                </div>
-            </div>
-            <!-- //footer container -->
-        </footer>
+        
         <!-- //footer -->
         <div class="cpy-right text-center  py-3 bg-dark">
-            <div class="text-white text-center" >
-                <p ng-bind-html="CopyrightComment | unsafe" ></p>
+            <div class="text-white text-center">
+                <p ng-bind-html="CopyrightComment | unsafe"></p>
             </div>
-                @*<a href="/" class="text-white"> {{CopyrightTitle}}</a>*@
-           
+            @*<a href="/" class="text-white"> {{CopyrightTitle}}</a>*@
+
         </div>
     </div>
     <!-- js -->

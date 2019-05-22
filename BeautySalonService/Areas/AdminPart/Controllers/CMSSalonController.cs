@@ -68,6 +68,24 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             }
             catch (Exception EX) { throw EX; }
         }
+
+        public JsonResult DeleteSalonPic(int ID)
+        {
+            try
+            {
+                var Result = DB.Salon.SingleOrDefault(Item => Item.ID == ID);
+                var PicResult = DB.Picture.SingleOrDefault(Item => Item.ID == Result.ID_pic);
+                System.IO.File.Delete(Server.MapPath("~/FileArchives/Salon/" + PicResult.PicturePath));
+                DB.Picture.Remove(PicResult);
+               
+                DB.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+
+            }
+            catch (Exception EX) { throw EX; }
+        }
+
          [ValidateInput(false)]
         public JsonResult UpdateSalon(Salon ObjSalon)
         {

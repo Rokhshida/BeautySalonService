@@ -168,6 +168,9 @@
     <Parameter Name="ID_Main" Type="int" Mode="In" />
     <Parameter Name="ID_Main2" Type="int" Mode="In" />
   </Function>
+  <Function Name="USp_GetArticlesOfPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="rokhshida.ir">
+    <Parameter Name="ID_Person" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="BeautySalonModelStoreContainer">
     <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />

@@ -120,8 +120,13 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     function GetSex() {
 
-        var getData = {}
+        var getData =
+             {
+
+             }
         getData.then(function (VarMessage) {
+
+
             $scope.ListAllSex = VarMessage.data;
         }, function () {
 
@@ -436,6 +441,24 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     }
 
+    $scope.FuncDelPic = function (ID) {
+
+        if (confirm("آیا از حذف تصویر اطمینان دارید؟")) {
+
+
+            var getData = $http.get("/AdminPart/CMSSalon/DeleteSalonPic?ID=" + ID);
+
+            getData.then(function (VarMessage) {
+                alert("تصویر حذف گردید.");
+               
+            }, function () {
+
+            });
+        }
+
+
+    }
+    
 
     /************/
     /****assign services*****/

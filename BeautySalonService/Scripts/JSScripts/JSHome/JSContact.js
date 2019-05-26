@@ -13,7 +13,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     $scope.bannerclass = "inner-banner";
     $scope.breadcrumb = "تماس با ما"
     
-
+    $scope.formData = {};
 
 
 
@@ -35,6 +35,34 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
         });
     }
+
+    $scope.submitForm = function () {
+
+        
+        alert("Send a request to the server: " + JSON.stringify($scope.formData));
+ 
+      
+
+         $.ajax({
+
+             type: "post",
+             url: "/AdminPart/CMSMessage/SendFromContactUs",
+             data: {
+                 NameFamily:  $scope.formData.NameFamily,
+                 email:$scope.formData.email,
+                 phone:$scope.formData.phone,
+                 message:$scope.formData.message
+             },
+
+             datatype: 'json',
+             success: function (data) {
+                 alert('با موفقیت ارسال شد');
+
+             }
+         });
+
+
+    };
 
 
     /***********************************/

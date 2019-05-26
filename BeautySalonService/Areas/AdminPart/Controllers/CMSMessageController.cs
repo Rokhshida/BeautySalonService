@@ -85,5 +85,21 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             }
             catch (Exception EX) { throw EX; }
         }
+
+
+        public JsonResult SendFromContactUs(string NameFamily,string email,string phone,string message) {
+            try {
+                EmailModel ObjModel = new EmailModel();
+                ObjModel.Email = CommonFunction.Email_From;
+                ObjModel.Password = CommonFunction.Email_From_Password;
+                ObjModel.Subject = "contactUS";
+                ObjModel.Body = "<table><tr><td>from</td><td>" + NameFamily + "</td><tr><tr><td>email</td><td>" + email + "</td><tr><tr><td>phone:</td><td>" + phone + "</td><tr><tr><td>پیغام</td><td>"+message +"</td></tr></table>";
+
+                return Json(true, JsonRequestBehavior.AllowGet);
+            
+            }
+            catch (Exception EX) { throw EX; }
+        
+        }
     }
 }

@@ -97,6 +97,25 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             }
             catch (Exception EX) { throw EX; }
         }
+
+
+        public JsonResult DeleteSiteSettingPic(int ID)
+        {
+            try
+            {
+                var Result = DB.SiteSetting.SingleOrDefault(Item => Item.ID == ID);
+                var PicResult = DB.Picture.SingleOrDefault(Item => Item.ID == Result.ID_Pic);
+                System.IO.File.Delete(Server.MapPath("~/FileArchives/SiteSettingImage/" + PicResult.PicturePath));
+                DB.Picture.Remove(PicResult);
+
+                DB.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+
+            }
+            catch (Exception EX) { throw EX; }
+        }
+
         [ValidateInput(false)]
 
         public JsonResult UpdateSiteSetting(SiteSetting ObjSiteSetting)
@@ -120,6 +139,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         }
         public void GetSiteSettingImageFiles(int ID)
         {
+
+
             string ImageFileUrl = "";
 
             string SaveLocation = Server.MapPath("~/FileArchives/SiteSettingImage/");

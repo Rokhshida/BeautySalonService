@@ -76,7 +76,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
             if (StatusServicesOfSalon == "Prev") PageNumServicesOfSalon -= 1;
 
         }, function () {
-            alert('error')
+            alert('error_FuncGetServicesOfSalon')
         });
     }
 
@@ -89,8 +89,10 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     $scope.FuncGetArticlesOfManager = function (PageNumArticles, PageSizeArticles, StatusArticles, ID_Person) {
 
-
-
+        if (ID_Person!=null){
+        alert(JSON.stringify(PageNumArticles));
+        alert(JSON.stringify(PageSizeArticles));
+        alert(JSON.stringify(ID_Person));
         if (StatusArticles == "Next") PageNumArticles += 1;
         if (StatusArticles == "Prev") PageNumArticles -= 1;
 
@@ -117,8 +119,9 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
             if (StatusArticles == "Prev") PageNumArticles -= 1;
 
         }, function () {
-            alert('error')
+            alert('error_FuncGetArticlesOfManager')
         });
+        }
     }
 
 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Article">
     <Key>
       <PropertyRef Name="ID" />
@@ -87,6 +87,15 @@
     <Property Name="ID_pic" Type="int" />
     <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
     <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
+    <Property Name="status" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="SalonPhone">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="11" />
+    <Property Name="Type" Type="bit" />
   </EntityType>
   <EntityType Name="SalonService">
     <Key>
@@ -179,6 +188,7 @@
     <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Salon" EntityType="Self.Salon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalonPhone" EntityType="Self.SalonPhone" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SalonService" EntityType="Self.SalonService" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />

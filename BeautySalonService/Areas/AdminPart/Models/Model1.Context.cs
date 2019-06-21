@@ -39,6 +39,7 @@ namespace BeautySalonService.Areas.AdminPart.Models
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<SiteSetting> SiteSetting { get; set; }
         public virtual DbSet<UseType> UseType { get; set; }
+        public virtual DbSet<SalonPhone> SalonPhone { get; set; }
     
         public virtual ObjectResult<Usp_CheckLogin_Result> Usp_CheckLogin(string username, string password)
         {

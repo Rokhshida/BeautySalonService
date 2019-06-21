@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ID" />
@@ -92,6 +92,15 @@
           <Property Name="ID_pic" Type="int" />
           <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
           <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
+          <Property Name="status" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="SalonPhone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="11" />
+          <Property Name="Type" Type="bit" />
         </EntityType>
         <EntityType Name="SalonService">
           <Key>
@@ -184,6 +193,7 @@
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Salon" EntityType="Self.Salon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalonPhone" EntityType="Self.SalonPhone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalonService" EntityType="Self.SalonService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
@@ -281,6 +291,7 @@
           <Property Name="ID_pic" Type="Int32" />
           <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="status" Type="Byte" />
         </EntityType>
         <EntityType Name="SalonService">
           <Key>
@@ -376,8 +387,9 @@
             <Parameter Name="ID_Main2" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USp_GetArticlesOfPerson" ReturnType="Collection(BeautySalonModel.USp_GetArticlesOfPerson_Result)">
-            <Parameter Name="ID_Person" Mode="In" Type="Int32" />
+          <Parameter Name="ID_Person" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="SalonPhone" EntityType="BeautySalonModel.SalonPhone" />
         </EntityContainer>
         <ComplexType Name="Usp_CheckLogin_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -479,6 +491,14 @@
           <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
         </ComplexType>
+        <EntityType Name="SalonPhone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -564,6 +584,7 @@
           <EntitySetMapping Name="Salon">
             <EntityTypeMapping TypeName="BeautySalonModel.Salon">
               <MappingFragment StoreEntitySet="Salon">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID_City" ColumnName="ID_City" />
@@ -779,6 +800,15 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="SalonPhone">
+            <EntityTypeMapping TypeName="BeautySalonModel.SalonPhone">
+              <MappingFragment StoreEntitySet="SalonPhone">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

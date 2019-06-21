@@ -643,6 +643,7 @@
     <Content Include="Scripts\JSScripts\JSHome\JSServices.js" />
     <Content Include="Scripts\JSScripts\JSRegister\JSRegister.js" />
     <Content Include="Scripts\JSScripts\JSSalon\JSSalon.js" />
+    <Content Include="Scripts\JSScripts\JSSalon\JSSalonForm.js" />
     <Content Include="Scripts\MyJsTemplate\bootstrap.min.js" />
     <Content Include="Assets\css\blog.css" />
     <Content Include="Assets\css\bootstrap.css" />
@@ -1643,6 +1644,9 @@
     <Compile Include="Areas\AdminPart\Models\Salon.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\AdminPart\Models\SalonPhone.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\AdminPart\Models\SalonService.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1713,6 +1717,7 @@
     <Content Include="Views\Person\IndexSalonManager.cshtml" />
     <Content Include="Views\Salon\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutSalon.cshtml" />
+    <Content Include="Views\Salon\IndexSalonForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

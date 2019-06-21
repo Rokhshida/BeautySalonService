@@ -62,6 +62,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <li class="nav-item mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link" href="/Home/Contact">تماس با ما</a>
                             </li>
+                           
                             <li class="nav-item mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link" href="/Home/Services"> خدمات </a>
                             </li>
@@ -81,11 +82,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <li class="nav-item dropdown {{activeMembership}} mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">
-                                    عضویت
+                                 عضو رخشیدا شوید
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Person/IndexSalonManager">مدیر سالن های زیبایی</a>
-                                    <a class="dropdown-item" href="/Person">کاربر عادی</a>
+                                    <a class="dropdown-item" href="/Salon/IndexSalonForm">من مدیر یک سالن زیبایی هستم</a>
+                                    <a class="dropdown-item" href="/Person">عضو عمومی</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/Login"> ورود</a>
                                    
@@ -367,7 +368,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <script src="~/Scripts/MyJsTemplate/bootstrap.js"></script>
 
     <script src="~/Scripts/Angular/angular.js"></script>
-
+    <link href="~/Areas/AdminPart/Assets/DropZone/dropzone.css" rel="stylesheet" />
+    <script src="~/Areas/AdminPart/Assets/DropZone/dropzone.js"></script>
+    <link href="~/Areas/AdminPart/Assets/DropZone/ng-dropzone.min.css" rel="stylesheet" />
+    <script src="~/Areas/AdminPart/Assets/DropZone/ng-dropzone.min.js"></script>
 
     @RenderSection("DeclareJS", true);
 </body>

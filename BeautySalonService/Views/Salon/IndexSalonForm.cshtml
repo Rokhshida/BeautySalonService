@@ -1,0 +1,203 @@
+﻿
+
+<form name="myForm" class="well form-inline" novalidate ng-submit="submitForm();" dir="rtl">
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="FirstName">نام </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="FirstName" ng-name="FirstName" ng-model="formData.FirstName" placeholder="نام" class="form-control" required ng-maxlength="50" type="text">
+
+                    <span ng-show="myForm.FirstName.$error.required">نام الزامی است</span>
+                    <span ng-show="myForm.FirstName.$error.maxlength">نام طولانی است.</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="Family">نام خانوادگی </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="Family" ng-name="Family" ng-model="formData.Family" placeholder="نام خانوادگی" class="form-control" required ng-maxlength="50" type="text">
+
+                    <span ng-show="myForm.Family.$error.required">نام الزامی است</span>
+                    <span ng-show="myForm.Family.$error.maxlength">نام طولانی است.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="username"> نام کاربری    </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="username" ng-name="username" ng-model="formData.username" placeholder="نام کاربری " class="form-control" required type="text">
+
+                    <span ng-show="myForm.username.$error.required"> نام کاربری  الزامی است</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="password"> رمز عبور    </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="password" ng-name="password" ng-model="formData.password" placeholder=" رمز عبور " class="form-control" required type="password">
+
+                    <span ng-show="myForm.password.$error.required"> رمز عبور  الزامی است</span>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="password"> تایید رمز عبور     </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="password" ng-name="confirmpassword" placeholder=" تایید رمز عبور  " class="form-control" required type="password">
+
+                    <span ng-show="myForm.confirmpassword.$error.required"> رمز عبور  الزامی است</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="CellPhoneNo">تلفن همراه شما </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="CellPhoneNo" ng-name="CellPhoneNo" ng-model="formData.CellPhoneNo" placeholder="تلفن همراه شما" class="form-control" ng-maxlength="11" type="text">
+
+
+                    <span ng-show="myForm.CellPhoneNo.$error.maxlength">تلفن همرا باید 11 رقم باشد.</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="Email"> آدرس پست الکترونیکی  </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="Email" ng-name="Email" ng-model="formData.Email" placeholder="نام کاربری " class="form-control" required type="Email">
+
+                    <span ng-show="myForm.Email.$error.required">آدرس پست الکترونیکی خود را وارد نمایید</span>
+                    <span ng-show="myform.Email.$error.Email">فرمت صحیح آدرس پست الکترونیکی خود را وارد نمایید</span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="Name"> نام سالن </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="Name" ng-name="Name" ng-model="formData.Name" placeholder="نام سالن" class="form-control" required ng-maxlength="100" type="text">
+
+                    <span ng-show="myForm.Name.$error.required">نام سالن الزامی است</span>
+                    <span ng-show="myForm.Name.$error.maxlength">نام سالن طولانی است.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="Address"> آدرس سالن  </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="Address" ng-name="Address" ng-model="formData.Address" placeholder="آدرس سالن " class="form-control" required ng-maxlength="300" type="text">
+
+                    <span ng-show="myForm.Address.$error.required">آدرس سالن الزامی است</span>
+                    <span ng-show="myForm.Address.$error.maxlength">آدرس سالن طولانی است.</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="DrpSex"> مخاطبین سالن   </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <select id="DrpSex" class="form-control" ng-model="formData.ID_Sex">
+                        <option value="" disabled selected>انتخاب جنسیت...</option>
+                        <option dir="rtl" ng-repeat="Item in ListAllSex" value="{{Item.ID}}">{{Item.Name}}</option>
+                    </select>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="editor1"> معرفی   </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+
+                    <p>
+
+                        <textarea name="editor1" id="editor1" rows="10" cols="80" class="ckeditor"></textarea>
+
+
+                    </p>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" text-align="right" for="dropzone2"> تصویر   </label>
+            <div class="col-md-8 inputGroupContainer">
+
+                <div class="input-group">
+
+
+                    <div id="dropzone2" class="dropzone" options="dz_PersImageOptions" methods="dz_PersImageMethods" callbacks="dzCallbacks" ng-dropzone></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 inputGroupContainer">
+           
+            <div class="input-group" >
+                <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary">برای ما ارسال کنید</button>
+
+            </div>
+</div>
+           
+
+</fieldset>
+
+
+
+</form>
+
+
+<p>
+
+
+
+
+
+            @section DeclareJS{
+
+
+                <script src="~/Scripts/JSScripts/JSSalon/JSSalonForm.js"></script>}
+
+
+

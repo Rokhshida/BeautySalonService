@@ -14,7 +14,11 @@ namespace BeautySalonService.Controllers
         {
             return View();
         }
+        public ActionResult IndexSalonForm() {
 
+
+            return View();
+        }
 
     }
 }

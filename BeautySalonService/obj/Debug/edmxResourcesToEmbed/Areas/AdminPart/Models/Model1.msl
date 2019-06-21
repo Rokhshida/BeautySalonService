@@ -80,6 +80,7 @@
     <EntitySetMapping Name="Salon">
       <EntityTypeMapping TypeName="BeautySalonModel.Salon">
         <MappingFragment StoreEntitySet="Salon">
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID_City" ColumnName="ID_City" />
@@ -295,5 +296,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="SalonPhone">
+      <EntityTypeMapping TypeName="BeautySalonModel.SalonPhone">
+        <MappingFragment StoreEntitySet="SalonPhone">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

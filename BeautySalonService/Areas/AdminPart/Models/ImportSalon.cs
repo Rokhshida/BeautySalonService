@@ -12,11 +12,11 @@ namespace BeautySalonService.Areas.AdminPart.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SalonPhone
+    public partial class ImportSalon
     {
+        public string name { get; set; }
+        public string address { get; set; }
+        public string Tel { get; set; }
         public int ID { get; set; }
-        public string PhoneNo { get; set; }
-        public Nullable<bool> Type { get; set; }
-        public Nullable<int> ID_Salon { get; set; }
     }
 }

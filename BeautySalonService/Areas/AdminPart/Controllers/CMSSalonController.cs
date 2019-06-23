@@ -196,6 +196,9 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
 
         }
 
+
+
+
         public JsonResult DeleteSalonService(int ID_Salon,int ID_Service)
         {
             try

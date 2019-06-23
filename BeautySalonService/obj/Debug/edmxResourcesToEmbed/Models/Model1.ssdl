@@ -8,6 +8,8 @@
     <Property Name="SiteContent" Type="nvarchar(max)" />
     <Property Name="ID_Person" Type="int" />
     <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="City">
     <Key>
@@ -16,6 +18,19 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_Province" Type="int" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BeautySalon.dbo.ImportSalon' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ImportSalon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="address" Type="nvarchar" MaxLength="255" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="255" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -39,12 +54,15 @@
     <Property Name="Family" Type="nvarchar" MaxLength="50" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="username" Type="nvarchar" MaxLength="50" />
-    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="200" />
     <Property Name="ID_SecurityQuestion" Type="int" />
     <Property Name="SecurityAnswer" Type="nvarchar" MaxLength="50" />
     <Property Name="ID_Role" Type="int" />
     <Property Name="CellPhoneNo" Type="char" MaxLength="11" />
     <Property Name="ID_Pic" Type="int" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ApprovedState" Type="tinyint" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
@@ -60,6 +78,8 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Salon">
     <Key>
@@ -76,6 +96,18 @@
     <Property Name="ID_Manager" Type="int" />
     <Property Name="IntroductionPic" Type="varbinary(max)" />
     <Property Name="ID_pic" Type="int" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ApprovedState" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="SalonPhone">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="11" />
+    <Property Name="Type" Type="bit" />
+    <Property Name="ID_Salon" Type="int" />
   </EntityType>
   <EntityType Name="SalonService">
     <Key>
@@ -86,13 +118,17 @@
     <Property Name="ID_Salon" Type="int" Nullable="false" />
     <Property Name="Comment" Type="nvarchar(max)" />
     <Property Name="ID_Pic" Type="int" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="SecurityQuestion">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SecurityQuestion" Type="nvarchar" MaxLength="200" />
+    <Property Name="Question" Type="nvarchar" MaxLength="200" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Service">
     <Key>
@@ -102,6 +138,8 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="ID_Pic" Type="int" />
     <Property Name="ID_Article" Type="int" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="SiteSetting">
     <Key>
@@ -110,11 +148,13 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
     <Property Name="ID_UseType" Type="int" />
-    <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+    <Property Name="Comment" Type="nvarchar(max)" />
     <Property Name="Link" Type="nvarchar" MaxLength="200" />
     <Property Name="ID_Pic" Type="int" />
     <Property Name="Active" Type="bit" />
     <Property Name="SubTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="UseType">
     <Key>
@@ -133,7 +173,9 @@
   <Function Name="Usp_GetNewMessagesForPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID_Person_To" Type="int" Mode="In" />
   </Function>
-  <Function Name="Usp_GetPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Usp_GetPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SearchText" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="Usp_GetSalonsOfService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID_Service" Type="int" Mode="In" />
   </Function>
@@ -145,6 +187,10 @@
     <Parameter Name="PicPath" Type="nvarchar" Mode="In" />
     <Parameter Name="TableName" Type="nvarchar" Mode="In" />
     <Parameter Name="ID_Main" Type="int" Mode="In" />
+    <Parameter Name="ID_Main2" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USp_GetArticlesOfPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="rokhshida.ir">
+    <Parameter Name="ID_Person" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="BeautySalonModelStoreContainer">
     <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
@@ -154,10 +200,19 @@
     <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Salon" EntityType="Self.Salon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalonPhone" EntityType="Self.SalonPhone" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SalonService" EntityType="Self.SalonService" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UseType" EntityType="Self.UseType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImportSalon" EntityType="Self.ImportSalon" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ImportSalon].[name] AS [name], 
+    [ImportSalon].[address] AS [address], 
+    [ImportSalon].[Tel] AS [Tel], 
+    [ImportSalon].[ID] AS [ID]
+    FROM [dbo].[ImportSalon] AS [ImportSalon]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
 </Schema>

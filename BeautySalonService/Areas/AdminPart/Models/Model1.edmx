@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ID" />
@@ -25,6 +25,17 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
           <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BeautySalon.dbo.ImportSalon' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ImportSalon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="255" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -56,7 +67,7 @@
           <Property Name="ID_Pic" Type="int" />
           <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
           <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
-          <Property Name="ApprovedState" Type="bit" />
+          <Property Name="ApprovedState" Type="tinyint" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -92,7 +103,7 @@
           <Property Name="ID_pic" Type="int" />
           <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
           <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
-          <Property Name="status" Type="tinyint" />
+          <Property Name="ApprovedState" Type="tinyint" />
         </EntityType>
         <EntityType Name="SalonPhone">
           <Key>
@@ -101,6 +112,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PhoneNo" Type="nvarchar" MaxLength="11" />
           <Property Name="Type" Type="bit" />
+          <Property Name="ID_Salon" Type="int" />
         </EntityType>
         <EntityType Name="SalonService">
           <Key>
@@ -199,11 +211,20 @@
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UseType" EntityType="Self.UseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImportSalon" EntityType="Self.ImportSalon" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ImportSalon].[name] AS [name], 
+    [ImportSalon].[address] AS [address], 
+    [ImportSalon].[Tel] AS [Tel], 
+    [ImportSalon].[ID] AS [ID]
+    FROM [dbo].[ImportSalon] AS [ImportSalon]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BeautySalonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="BeautySalonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ID" />
@@ -255,7 +276,7 @@
           <Property Name="ID_Pic" Type="Int32" />
           <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ApprovedState" Type="Boolean" />
+          <Property Name="ApprovedState" Type="Byte" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -291,7 +312,16 @@
           <Property Name="ID_pic" Type="Int32" />
           <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="status" Type="Byte" />
+          <Property Name="ApprovedState" Type="Byte" />
+        </EntityType>
+        <EntityType Name="SalonPhone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Boolean" />
+          <Property Name="ID_Salon" Type="Int32" />
         </EntityType>
         <EntityType Name="SalonService">
           <Key>
@@ -347,6 +377,15 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UseComments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="ImportSalon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityContainer Name="BeautySalonEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Article" EntityType="Self.Article" />
           <EntitySet Name="City" EntityType="Self.City" />
@@ -355,11 +394,13 @@
           <EntitySet Name="Picture" EntityType="Self.Picture" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Salon" EntityType="Self.Salon" />
+          <EntitySet Name="SalonPhone" EntityType="Self.SalonPhone" />
           <EntitySet Name="SalonService" EntityType="Self.SalonService" />
           <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" />
           <EntitySet Name="Service" EntityType="Self.Service" />
           <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" />
           <EntitySet Name="UseType" EntityType="Self.UseType" />
+          <EntitySet Name="ImportSalon" EntityType="Self.ImportSalon" />
           <FunctionImport Name="Usp_CheckLogin" ReturnType="Collection(BeautySalonModel.Usp_CheckLogin_Result)">
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
@@ -368,16 +409,16 @@
           <FunctionImport Name="Usp_GetAllServices" ReturnType="Collection(BeautySalonModel.Usp_GetAllServices_Result)" />
           <FunctionImport Name="Usp_GetArticles" ReturnType="Collection(BeautySalonModel.Usp_GetArticles_Result)" />
           <FunctionImport Name="Usp_GetNewMessagesForPerson" ReturnType="Collection(BeautySalonModel.Usp_GetNewMessagesForPerson_Result)">
-          <Parameter Name="ID_Person_To" Mode="In" Type="Int32" />
+            <Parameter Name="ID_Person_To" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetPerson" ReturnType="Collection(BeautySalonModel.Usp_GetPerson_Result)">
-          <Parameter Name="SearchText" Mode="In" Type="String" />
+            <Parameter Name="SearchText" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetSalonsOfService" ReturnType="Collection(BeautySalonModel.Usp_GetSalonsOfService_Result)">
-          <Parameter Name="ID_Service" Mode="In" Type="Int32" />
+            <Parameter Name="ID_Service" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetServicesOfSalon" ReturnType="Collection(BeautySalonModel.Usp_GetServicesOfSalon_Result)">
-          <Parameter Name="ID_Salon" Mode="In" Type="Int32" />
+            <Parameter Name="ID_Salon" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetSiteSettingWithPicture" ReturnType="Collection(BeautySalonModel.Usp_GetSiteSettingWithPicture_Result)" />
           <FunctionImport Name="Usp_InsertPic">
@@ -387,9 +428,8 @@
             <Parameter Name="ID_Main2" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USp_GetArticlesOfPerson" ReturnType="Collection(BeautySalonModel.USp_GetArticlesOfPerson_Result)">
-          <Parameter Name="ID_Person" Mode="In" Type="Int32" />
+            <Parameter Name="ID_Person" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="SalonPhone" EntityType="BeautySalonModel.SalonPhone" />
         </EntityContainer>
         <ComplexType Name="Usp_CheckLogin_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -418,6 +458,7 @@
           <Property Type="Int32" Name="ID_pic" Nullable="true" />
           <Property Type="String" Name="CreatedDate" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="ModifiedDate" Nullable="true" MaxLength="10" />
+          <Property Type="Byte" Name="ApprovedState" Nullable="true" />
           <Property Type="String" Name="Manager" Nullable="true" MaxLength="101" />
           <Property Type="String" Name="CityName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
@@ -491,14 +532,6 @@
           <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
         </ComplexType>
-        <EntityType Name="SalonPhone">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PhoneNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="Boolean" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -584,7 +617,6 @@
           <EntitySetMapping Name="Salon">
             <EntityTypeMapping TypeName="BeautySalonModel.Salon">
               <MappingFragment StoreEntitySet="Salon">
-                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID_City" ColumnName="ID_City" />
@@ -598,6 +630,17 @@
                 <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalonPhone">
+            <EntityTypeMapping TypeName="BeautySalonModel.SalonPhone">
+              <MappingFragment StoreEntitySet="SalonPhone">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID_Salon" ColumnName="ID_Salon" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -659,6 +702,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ImportSalon">
+            <EntityTypeMapping TypeName="BeautySalonModel.ImportSalon">
+              <MappingFragment StoreEntitySet="ImportSalon">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Usp_CheckLogin" FunctionName="BeautySalonModel.Store.Usp_CheckLogin">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BeautySalonModel.Usp_CheckLogin_Result">
@@ -692,6 +745,7 @@
                 <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
                 <ScalarProperty Name="Manager" ColumnName="Manager" />
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
                 <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
@@ -800,15 +854,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="SalonPhone">
-            <EntityTypeMapping TypeName="BeautySalonModel.SalonPhone">
-              <MappingFragment StoreEntitySet="SalonPhone">
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

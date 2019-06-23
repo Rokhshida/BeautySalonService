@@ -27,6 +27,6 @@ namespace BeautySalonService.Areas.AdminPart.Models
         public Nullable<int> ID_Pic { get; set; }
         public string CreatedDate { get; set; }
         public string ModifiedDate { get; set; }
-        public Nullable<bool> ApprovedState { get; set; }
+        public Nullable<byte> ApprovedState { get; set; }
     }
 }

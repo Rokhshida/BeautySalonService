@@ -80,7 +80,6 @@
     <EntitySetMapping Name="Salon">
       <EntityTypeMapping TypeName="BeautySalonModel.Salon">
         <MappingFragment StoreEntitySet="Salon">
-          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID_City" ColumnName="ID_City" />
@@ -94,6 +93,17 @@
           <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalonPhone">
+      <EntityTypeMapping TypeName="BeautySalonModel.SalonPhone">
+        <MappingFragment StoreEntitySet="SalonPhone">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID_Salon" ColumnName="ID_Salon" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -155,6 +165,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ImportSalon">
+      <EntityTypeMapping TypeName="BeautySalonModel.ImportSalon">
+        <MappingFragment StoreEntitySet="ImportSalon">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="Usp_CheckLogin" FunctionName="BeautySalonModel.Store.Usp_CheckLogin">
       <ResultMapping>
         <ComplexTypeMapping TypeName="BeautySalonModel.Usp_CheckLogin_Result">
@@ -188,6 +208,7 @@
           <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
           <ScalarProperty Name="Manager" ColumnName="Manager" />
           <ScalarProperty Name="CityName" ColumnName="CityName" />
           <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
@@ -296,14 +317,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="SalonPhone">
-      <EntityTypeMapping TypeName="BeautySalonModel.SalonPhone">
-        <MappingFragment StoreEntitySet="SalonPhone">
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

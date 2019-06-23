@@ -105,6 +105,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             {
                 var Result = DB.SiteSetting.SingleOrDefault(Item => Item.ID == ID);
                 var PicResult = DB.Picture.SingleOrDefault(Item => Item.ID == Result.ID_Pic);
+               
                 System.IO.File.Delete(Server.MapPath("~/FileArchives/SiteSettingImage/" + PicResult.PicturePath));
                 DB.Picture.Remove(PicResult);
 

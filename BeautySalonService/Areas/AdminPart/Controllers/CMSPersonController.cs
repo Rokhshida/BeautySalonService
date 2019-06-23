@@ -64,7 +64,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 DB.Person.Add(ObjPerson);
                 DB.SaveChanges();
                 SendMembershipEmail(ObjPerson);
-                return Json(true, JsonRequestBehavior.AllowGet);
+                return Json(ObjPerson.ID, JsonRequestBehavior.AllowGet);
             }
             catch (Exception EX) { throw EX; }
 

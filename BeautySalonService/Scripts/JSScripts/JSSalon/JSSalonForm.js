@@ -131,7 +131,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         // alert("Send a request to the server: " + JSON.stringify($scope.formData));
         if ($scope.password == $scope.confirmpassword) {
             FuncSaveSalonManager();
-            FuncSaveSalon();
+            
 
             clearData();
 
@@ -142,19 +142,19 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     }
 
-    function FuncSaveSalon() {
+    function FuncSaveSalon(ID_Manager) {
 
-        if (confirm("آیا می خواهید ذخیره کنید؟")) {
            
             $scope.formData.Description = CKEDITOR.instances.editor1.getData();
 
             var VarNewRec = {
-
+                ID_City:2,
                 Name: $scope.formData.Name,
                 Address: $scope.formData.Address,
                 Sex: $scope.formData.ID_Sex,
-               
-                Description: $scope.formData.Description
+                ID_Manager: ID_Manager,
+                Description: $scope.formData.Description,
+                ApprovedState: 0
 
             };
 
@@ -177,7 +177,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
                         $scope.dz_PersImageMethods.processQueue();
                     }
-                    alert('با موفقیت ذخیره شد');
+                    alert('اطلاعات شما با موفقیت ارسال گردید');
                     $scope.ShowLoadingAngular($scope.PageNum, $scope.PageSize, '');
                 },
                 complete: function () {
@@ -189,14 +189,14 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
             });
 
 
-        }
+ 
 
     }
 
 
    FuncSaveSalonManager = function () {
 
-        if (confirm("آیا می خواهید ذخیره کنید؟")) {
+       
 
             var VarNewRec = {
 
@@ -206,8 +206,8 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
                 ID_Role:2,
                 password: $scope.formData.password,
                 CellPhoneNo: $scope.formData.CellPhoneNo,
-                Email: $scope.formData.Email
-
+                Email: $scope.formData.Email,
+                ApprovedState:0
             };
             alert("Send a request to the server: " + JSON.stringify(VarNewRec));
 
@@ -222,13 +222,14 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
                 datatype: 'json',
                 success: function (data) {
-                    alert('با موفقیت ذخیره شد');
-
+                    //alert('با موفقیت ذخیره شد');
+                    //ذخیره سالن
+                    FuncSaveSalon(data);
                 }
             });
 
 
-        }
+        
 
     }
 

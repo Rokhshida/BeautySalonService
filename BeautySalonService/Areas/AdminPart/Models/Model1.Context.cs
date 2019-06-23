@@ -34,12 +34,13 @@ namespace BeautySalonService.Areas.AdminPart.Models
         public virtual DbSet<Picture> Picture { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Salon> Salon { get; set; }
+        public virtual DbSet<SalonPhone> SalonPhone { get; set; }
         public virtual DbSet<SalonService> SalonService { get; set; }
         public virtual DbSet<SecurityQuestion> SecurityQuestion { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<SiteSetting> SiteSetting { get; set; }
         public virtual DbSet<UseType> UseType { get; set; }
-        public virtual DbSet<SalonPhone> SalonPhone { get; set; }
+        public virtual DbSet<ImportSalon> ImportSalon { get; set; }
     
         public virtual ObjectResult<Usp_CheckLogin_Result> Usp_CheckLogin(string username, string password)
         {

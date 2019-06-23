@@ -8,6 +8,8 @@
           <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
           <ScalarProperty Name="ID_Person" ColumnName="ID_Person" />
           <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -17,6 +19,8 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ID_Province" ColumnName="ID_Province" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -48,6 +52,9 @@
           <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
           <ScalarProperty Name="CellPhoneNo" ColumnName="CellPhoneNo" />
           <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -65,6 +72,8 @@
         <MappingFragment StoreEntitySet="Role">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -82,6 +91,19 @@
           <ScalarProperty Name="ID_Manager" ColumnName="ID_Manager" />
           <ScalarProperty Name="IntroductionPic" ColumnName="IntroductionPic" />
           <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalonPhone">
+      <EntityTypeMapping TypeName="BeautySalonModel.SalonPhone">
+        <MappingFragment StoreEntitySet="SalonPhone">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID_Salon" ColumnName="ID_Salon" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -92,6 +114,8 @@
           <ScalarProperty Name="ID_Salon" ColumnName="ID_Salon" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
           <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -99,7 +123,9 @@
       <EntityTypeMapping TypeName="BeautySalonModel.SecurityQuestion">
         <MappingFragment StoreEntitySet="SecurityQuestion">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="SecurityQuestion1" ColumnName="SecurityQuestion" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -110,6 +136,8 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
           <ScalarProperty Name="ID_Article" ColumnName="ID_Article" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -124,6 +152,8 @@
           <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -132,6 +162,16 @@
         <MappingFragment StoreEntitySet="UseType">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UseComments" ColumnName="UseComments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImportSalon">
+      <EntityTypeMapping TypeName="BeautySalonModel.ImportSalon">
+        <MappingFragment StoreEntitySet="ImportSalon">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -145,9 +185,11 @@
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="ID_SecurityQuestion" ColumnName="ID_SecurityQuestion" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
           <ScalarProperty Name="SecurityAnswer" ColumnName="SecurityAnswer" />
           <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
           <ScalarProperty Name="CellPhoneNo" ColumnName="CellPhoneNo" />
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -164,6 +206,10 @@
           <ScalarProperty Name="ID_Manager" ColumnName="ID_Manager" />
           <ScalarProperty Name="IntroductionPic" ColumnName="IntroductionPic" />
           <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
+          <ScalarProperty Name="Manager" ColumnName="Manager" />
           <ScalarProperty Name="CityName" ColumnName="CityName" />
           <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
         </ComplexTypeMapping>
@@ -175,7 +221,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
-          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="ID_Article" ColumnName="ID_Article" />
           <ScalarProperty Name="comment" ColumnName="comment" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -215,7 +261,7 @@
           <ScalarProperty Name="SecurityAnswer" ColumnName="SecurityAnswer" />
           <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
           <ScalarProperty Name="CellPhoneNo" ColumnName="CellPhoneNo" />
-          <ScalarProperty Name="SecurityQuestion" ColumnName="SecurityQuestion" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
           <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
           <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
@@ -235,6 +281,7 @@
     <FunctionImportMapping FunctionImportName="Usp_GetServicesOfSalon" FunctionName="BeautySalonModel.Store.Usp_GetServicesOfSalon">
       <ResultMapping>
         <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetServicesOfSalon_Result">
+          <ScalarProperty Name="ID_Service" ColumnName="ID_Service" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
           <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
@@ -253,9 +300,22 @@
           <ScalarProperty Name="ID_Pic" ColumnName="ID_Pic" />
           <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
           <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+          <ScalarProperty Name="UseComments" ColumnName="UseComments" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Usp_InsertPic" FunctionName="BeautySalonModel.Store.Usp_InsertPic" />
+    <FunctionImportMapping FunctionImportName="USp_GetArticlesOfPerson" FunctionName="BeautySalonModel.Store.USp_GetArticlesOfPerson">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BeautySalonModel.USp_GetArticlesOfPerson_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
+          <ScalarProperty Name="NameFamily" ColumnName="NameFamily" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

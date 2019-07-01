@@ -29,10 +29,7 @@ namespace BeautySalonService.Controllers
             return View();
         }
 
-        public ActionResult AllSalon()
-        {
-            return View();
-        }
+       
         public ActionResult Contact()
         {
 

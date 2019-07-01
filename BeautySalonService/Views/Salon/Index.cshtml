@@ -11,6 +11,39 @@
 
 <!-- //services -->
 <!-- services-main -->
+
+
+
+<section class="w3ls-bnrbtm pt-sm-5 pt-3" id="w3layouts_bnrbtm">
+    <div class="container pt-md-5">
+        <div class="row pt-lg-5">
+            <div class="col-lg-5  bb-left">
+                <h3 class="agile-title">
+
+
+                    <span>{{SalonTitle}}</span>
+                    <br>
+                    <span class="title-pos">{{ID_Salon}}:  کد سالن</span>
+                    <p>{{CityName}}</p>
+                    <p>{{Address}}</p>
+                    <p>{{Phone}}</p>
+                    <p>{{Manager}}</p>
+
+
+                </h3>
+            </div>
+            <div class="col-lg-7 mt-lg-0 mt-3 px-lg-5">
+                <p ng-bind-html="Comment | unsafe" class="text-right "></p>
+
+            </div>
+
+        </div>
+        <div class="text-right">
+            <img ng-src="@Url.Content("~/FileArchives/Salon/{{PicturePath}}")" alt="~/FileArchives/Salon/{{PicturePath}}" class="img-fluid mx-auto" />
+        </div>
+    </div>
+</section>
+
 <section class="about-w3ls py-md-5 py-3" id="about">
     <div class="container">
                 <div class="col-lg-6 mt-lg-0 mt-5">

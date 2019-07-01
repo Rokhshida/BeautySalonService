@@ -20,6 +20,14 @@ namespace BeautySalonService.Controllers
             return View();
         }
 
+        public ActionResult IndexAllSalon()
+        {
+
+
+            return View();
+        }
+
+
       
     }
 }

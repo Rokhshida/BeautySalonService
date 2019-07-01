@@ -639,7 +639,7 @@
     <Content Include="Assets\popper.js\packages\tooltip\src\index.js" />
     <Content Include="Assets\popper.js\popperjs.png" />
     <Content Include="Scripts\JSScripts\JSHome\JSAbout.js" />
-    <Content Include="Scripts\JSScripts\JSHome\JSAllSalon.js" />
+    <Content Include="Scripts\JSScripts\JSSalon\JSAllSalon.js" />
     <Content Include="Scripts\JSScripts\JSHome\JSContact.js" />
     <Content Include="Scripts\JSScripts\JSHome\JSIndex.js" />
     <Content Include="Scripts\JSScripts\JSHome\JSLayout.js" />
@@ -1724,7 +1724,7 @@
     <Content Include="Views\Salon\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutSalon.cshtml" />
     <Content Include="Views\Salon\IndexSalonForm.cshtml" />
-    <Content Include="Views\Home\AllSalon.cshtml" />
+    <Content Include="Views\Salon\IndexAllSalon.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

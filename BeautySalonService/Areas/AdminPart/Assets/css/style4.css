@@ -90,7 +90,7 @@ span {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #4c6ef5;
+    background: #d56e9b;
     color: #fff;
     transition: all 0.3s;
 }
@@ -165,7 +165,7 @@ span {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #4463dc;
+    background: #d56e9b;
 }
 
 #sidebar .sidebar-header span {
@@ -200,7 +200,7 @@ span {
 #sidebar ul li.active>a,
 #sidebar a[aria-expanded="true"] {
     color: #fff;
-    background: #4463dc;
+    background: hotpink;
 }
 
 ul.list-unstyled li a:focus a i.fa-caret-down {
@@ -226,7 +226,7 @@ a[aria-expanded="true"]::before {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #4463dc;
+    background: #d56e9b;
 }
 
 /*

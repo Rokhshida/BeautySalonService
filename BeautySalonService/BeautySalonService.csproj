@@ -458,6 +458,8 @@
     <Content Include="Areas\AdminPart\Assets\js\SimpleChart.js" />
     <Content Include="Areas\AdminPart\Assets\js\simplyCountdown.js" />
     <Content Include="Areas\AdminPart\Assets\js\skycons.js" />
+    <Content Include="Areas\AdminPart\Assets\PersianDatePicker\persianDatepicker-default.css" />
+    <Content Include="Areas\AdminPart\Assets\PersianDatePicker\persianDatepicker.js" />
     <Content Include="Areas\AdminPart\Assets\webfonts\fa-brands-400.svg" />
     <Content Include="Areas\AdminPart\Assets\webfonts\fa-regular-400.svg" />
     <Content Include="Areas\AdminPart\Assets\webfonts\fa-solid-900.svg" />
@@ -637,6 +639,7 @@
     <Content Include="Assets\popper.js\packages\tooltip\src\index.js" />
     <Content Include="Assets\popper.js\popperjs.png" />
     <Content Include="Scripts\JSScripts\JSHome\JSAbout.js" />
+    <Content Include="Scripts\JSScripts\JSHome\JSAllSalon.js" />
     <Content Include="Scripts\JSScripts\JSHome\JSContact.js" />
     <Content Include="Scripts\JSScripts\JSHome\JSIndex.js" />
     <Content Include="Scripts\JSScripts\JSHome\JSLayout.js" />
@@ -1721,6 +1724,7 @@
     <Content Include="Views\Salon\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutSalon.cshtml" />
     <Content Include="Views\Salon\IndexSalonForm.cshtml" />
+    <Content Include="Views\Home\AllSalon.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

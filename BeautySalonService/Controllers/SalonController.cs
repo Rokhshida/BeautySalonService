@@ -20,5 +20,6 @@ namespace BeautySalonService.Controllers
             return View();
         }
 
+      
     }
 }

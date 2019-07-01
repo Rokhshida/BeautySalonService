@@ -77,23 +77,26 @@
                 <span ng-show="myform.Email.$error.Email">فرمت صحیح آدرس پست الکترونیکی خود را وارد نمایید</span>
             </span>
         </div>
-
         <div class="input-group">
-            <label class=" col-md-4 control-label" text-align="right" for="Address">
-                آدرس
-            </label>
-            <input type="text" ng-name="Address" class="form-control" placeholder="آدرس خود را وارد نمایید " ng-model="formData.Address">
+            <input id="input1" type="text" placeholder="تاریخ" class="form-control" />
+            <span id="span1"></span>
+          </div>
+            <div class="input-group">
+                <label class=" col-md-4 control-label" text-align="right" for="Address">
+                    آدرس
+                </label>
+                <input type="text" ng-name="Address" class="form-control" placeholder="آدرس خود را وارد نمایید " ng-model="formData.Address">
 
 
-        </div>
+            </div>
 
 
-        <div class="form-check text-center">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">توافق قوانین و شرایط</label>
-        </div>
-        <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary error-w3l-btn mt-sm-5 mt-3 px-4">با فشردن این دکمه اطلاعات شما ارسال و  عضو ما می شوید</button>
-    </fieldset>
+            <div class="form-check text-center">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">توافق قوانین و شرایط</label>
+            </div>
+            <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary error-w3l-btn mt-sm-5 mt-3 px-4">با فشردن این دکمه اطلاعات شما ارسال و  عضو ما می شوید</button>
+</fieldset>
 </form>
 
     @section DeclareJS{

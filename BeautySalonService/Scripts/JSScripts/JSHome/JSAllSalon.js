@@ -9,40 +9,47 @@ app.filter('unsafe', function ($sce) {
 
 });
 app.controller('MyCtrl', function ($scope, $compile, $http) {
-   
-    $scope.activeHome = "active";
-    $scope.bannerclass = "";
-    $scope.breadcrumb = "اصلی";
-    $scope.Title = "خانه";
+    $scope.bannerclass = "inner-banner";
+    $scope.breadcrumb = "همه سالن های زیبایی"
+    $scope.PageNumService = 1;
+    $scope.PageSizeService = 4;
+    $scope.PageNumSalonsOfService = 1;
+    $scope.PageSizeSalonsOfService = 4;
+    $scope.Title = "سالن های زیبایی";
+
+    $scope.activeDrp = "active";
 
     /*********************/
-    
-    FuncGetCommon(2);
+    FuncGetCommon(7);
 
     function FuncGetCommon(paramUseType) {
 
-        
+
         var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + paramUseType);
         getData.then(function (VarMessage) {
             $scope.Title = VarMessage.data.Title;
             $scope.SubTitle = VarMessage.data.SubTitle;
             $scope.Comment = VarMessage.data.Comment;
-            $scope.PicturePath =  VarMessage.data.PicturePath;
-           
+            $scope.PicturePath = VarMessage.data.PicturePath;
         }, function () {
 
         });
     }
+ 
+
+  
+
+   
 
     /***********************************/
     /*قسمت مربوط به layout*/
 
     $scope.PageNum = 1;
     $scope.PageSize = 4;
-   
+
 
     function FuncShowCopyright() {
-       
+
         var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 5);
         getData.then(function (VarMessage) {
             $scope.CopyrightComment = VarMessage.data.Comment;
@@ -56,7 +63,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
 
     function FuncShowSalon() {
-        
+
         var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 7);
         getData.then(function (VarMessage) {
             $scope.SalonTitle = VarMessage.data.Title;
@@ -70,7 +77,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     $scope.FuncShowAllSalon = function (PageNum, PageSize, Status) {
 
-       
+
 
         if (Status == "Next") PageNum += 1;
         if (Status == "Prev") PageNum -= 1;
@@ -100,11 +107,10 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
 
     function FuncShowBanner() {
-       
+
         var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 1);
         getData.then(function (VarMessage) {
             $scope.ListAllSiteSettingBanner = VarMessage.data;
-            //alert(JSON.stringify($scope.ListAllSiteSettingBanner));
         }, function () {
 
         });
@@ -115,13 +121,14 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     FuncShowCopyright();
     FuncShowSalon();
     $scope.FuncShowAllSalon($scope.PageNum, $scope.PageSize, '');
-   
-
-
     $scope.FuncShowSalonPage = function (Item) {
-       
+
         sessionStorage.ResultFrom = JSON.stringify(Item);
         window.open("/Salon/Index", '_blank');
     }
     /*********************/
+
+
+
+
 });

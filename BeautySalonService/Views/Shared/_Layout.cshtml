@@ -66,22 +66,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <a class="nav-link" href="/Home/Contact">تماس با ما</a>
                             </li>
                            
-                            <li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+                            @*<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link" href="/Home/Services"> خدمات </a>
-                            </li>
-                            @*<li class="nav-item dropdown {{activeDrp}} mr-lg-3 mt-lg-0 mt-3">
+                            </li>*@
+                            <li class="nav-item dropdown {{activeDrp}} mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">
                                     منو
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/Home/Services">خدمات</a>
-                                    <a class="dropdown-item" href="/Home/Salons">سالن ها</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/Articles"> مقالات</a>
+                                    <a class="dropdown-item" href="/Home/AllSalon">سالن ها</a>
+                                   
+                                    <a class="dropdown-item" href="/Articles"> دانستنی ها</a>
 
                                 </div>
-                            </li>*@
+                            </li>
                             <li class="nav-item dropdown {{activeMembership}} mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">
@@ -89,9 +89,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/Salon/IndexSalonForm">من مدیر یک سالن زیبایی هستم</a>
-                                    <a class="dropdown-item" href="/Person">عضو عمومی</a>
+                                    <a class="dropdown-item" href="/Person">کاربر عمومی</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/Login"> ورود</a>
+                                    <a class="dropdown-item" href="/Login"> ورود به سایت</a>
                                    
                                 </div>
                             </li>
@@ -375,7 +375,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="~/Areas/AdminPart/Assets/DropZone/dropzone.js"></script>
     <link href="~/Areas/AdminPart/Assets/DropZone/ng-dropzone.min.css" rel="stylesheet" />
     <script src="~/Areas/AdminPart/Assets/DropZone/ng-dropzone.min.js"></script>
-
+    <link href="~/Areas/AdminPart/Assets/PersianDatePicker/persianDatepicker-default.css" rel="stylesheet" />
+    <script src="~/Areas/AdminPart/Assets/PersianDatePicker/persianDatepicker.js"></script>
     @RenderSection("DeclareJS", true);
 </body>
 

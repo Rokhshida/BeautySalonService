@@ -24,13 +24,16 @@
                     <span>{{SalonTitle}}</span>
                     <br>
                     <span class="title-pos">{{ID_Salon}}:  کد سالن</span>
-                    <p>{{CityName}}</p>
-                    <p>{{Address}}</p>
-                    <p>{{Phone}}</p>
-                    <p>{{Manager}}</p>
-
-
+                   
+                   
+                
+                   
+                   
                 </h3>
+                <p>{{Manager}}</p>
+                <p>{{CityName}}</p>
+                <p>{{Address}}</p>
+                <p ng-repeat="Item in ListAllSalonPhone">{{Item.PhoneNo}}</p>
             </div>
             <div class="col-lg-7 mt-lg-0 mt-3 px-lg-5">
                 <p ng-bind-html="Comment | unsafe" class="text-right "></p>

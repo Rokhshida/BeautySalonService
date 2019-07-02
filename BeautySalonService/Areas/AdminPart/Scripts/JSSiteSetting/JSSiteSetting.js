@@ -26,7 +26,7 @@ app.filter('unsafe', function ($sce) {
 app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     ID = 0;
-
+    alert($('#ID_Role').val());
     //DropZone:
     $scope.showBtns = false;
     $scope.lastFile = null;

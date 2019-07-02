@@ -98,7 +98,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 Result[0].ID_Manager = ObjSalon.ID_Manager;
                 Result[0].Location = ObjSalon.Location;
                 Result[0].Name = ObjSalon.Name;
-                Result[0].Phone = ObjSalon.Phone;
+                //Result[0].Phone = ObjSalon.Phone;
                 Result[0].Sex = ObjSalon.Sex;
                 Result[0].ModifiedDate = CommonFunction.GetDateNow();
                 DB.SaveChanges();
@@ -174,6 +174,20 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
 
             var jsonResult = Json(Result, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+
+
+        }
+
+        //for get phone of salon
+        public JsonResult GetPhoneOfSalon( int ID_Salon)
+        {
+
+            var Result = DB.SalonPhone.Where(item => item.ID_Salon == ID_Salon).ToList();
+           
+
+            var jsonResult = Json(Result, JsonRequestBehavior.AllowGet);
+           
             return jsonResult;
 
 

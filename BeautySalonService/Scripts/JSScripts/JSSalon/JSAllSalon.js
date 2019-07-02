@@ -107,6 +107,13 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         window.open("/Salon/Index", '_blank');
     }
 
+
+
+    $scope.FuncShowSalonPage = function (Item) {
+
+        sessionStorage.ResultFrom = JSON.stringify(Item);
+        window.open("/Salon/Index", '_blank');
+    }
     /***********************************/
     /*قسمت مربوط به layout*/
  

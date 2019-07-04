@@ -24,6 +24,12 @@ app.filter('unsafe', function ($sce) {
 
 app.controller('MyCtrl', function ($scope, $compile, $http) {
 
+
+
+    ID_Author = -1;
+
+    if ($('#ID_Role').val() != '1') ID_Author = $('#ID_Person').val().toString();
+
     ID = 0;
 
     //DropZone:
@@ -95,15 +101,33 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         if (Status == "Next") PageNum += 1;
         if (Status == "Prev") PageNum -= 1;
       
-        var response = $http({
-            method: "post",
-            url: "/AdminPart/CMSArticle/GetArticleWithPage",
-            params: {
-                PageNum: PageNum,
-                PageSize: PageSize,
 
-            }
-        });
+
+        if (ID_Author == '-1') {
+            var response = $http({
+                method: "post",
+                url: "/AdminPart/CMSArticle/GetArticleWithPage",
+                params: {
+                    PageNum: PageNum,
+                    PageSize: PageSize,
+
+                }
+            });
+
+        } else {
+
+
+            var response = $http({
+                method: "post",
+                url: "/AdminPart/CMSArticle/GetArticleOfPersonWithPage",
+                params: {
+                    PageNum: PageNum,
+                    PageSize: PageSize,
+                    ID_Person: ID_Author
+                }
+            });
+
+        }
       
         response.then(function (VarResult) {
             $scope.ListAllArticle = VarResult.data;

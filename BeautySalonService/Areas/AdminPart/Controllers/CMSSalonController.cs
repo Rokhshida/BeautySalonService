@@ -21,18 +21,30 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             return View();
         }
 
-        public JsonResult GetSalonWithPage(int CurrentPage, int PageSize)
+        public JsonResult GetSalonWithPage(int CurrentPage, int PageSize,int optionalID_Manager=0)
         {
-            int skip = PageSize * (CurrentPage - 1);
-            var Result = DB.Usp_GetAllSalon().ToList()
-           .OrderByDescending(item => item.ID)
-           .Skip(skip)
-           .Take(PageSize);
 
 
-            var jsonResult = Json(Result, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
+            if (optionalID_Manager == 0)
+            {
+                int skip = PageSize * (CurrentPage - 1);
+                var Result = DB.Usp_GetAllSalon().ToList()
+               .OrderByDescending(item => item.ID)
+               .Skip(skip)
+               .Take(PageSize);
+
+                var jsonResult = Json(Result, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+            else {
+                var Result = DB.Usp_GetAllSalon().Where(item => item.ID_Manager == optionalID_Manager).ToList();
+
+              
+               return  Json(Result, JsonRequestBehavior.AllowGet);
+              }
+
+           
 
 
         }

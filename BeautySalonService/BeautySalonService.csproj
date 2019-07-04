@@ -823,6 +823,7 @@
     <Content Include="Areas\AdminPart\Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\AdminPart\Views\CMSHome\ErrorAccess.cshtml" />
     <None Include="Properties\PublishProfiles\aa.pubxml" />
     <None Include="Properties\PublishProfiles\dd.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

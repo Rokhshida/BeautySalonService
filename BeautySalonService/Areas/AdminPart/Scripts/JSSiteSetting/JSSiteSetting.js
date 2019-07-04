@@ -26,7 +26,9 @@ app.filter('unsafe', function ($sce) {
 app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     ID = 0;
-    alert($('#ID_Role').val());
+   
+    if ($('#ID_Role').val() != '1') window.open("/AdminPart/CMSHome/ErrorAccess", '_self');
+    
     //DropZone:
     $scope.showBtns = false;
     $scope.lastFile = null;

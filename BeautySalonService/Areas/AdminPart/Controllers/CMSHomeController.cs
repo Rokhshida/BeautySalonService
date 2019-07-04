@@ -13,5 +13,10 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         {
             return View();
         }
+        public ActionResult ErrorAccess()
+        {
+            return View();
+        }
+
     }
 }

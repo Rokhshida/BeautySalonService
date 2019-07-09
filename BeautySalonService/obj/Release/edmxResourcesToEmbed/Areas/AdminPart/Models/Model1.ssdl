@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="BeautySalonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Article">
     <Key>
       <PropertyRef Name="ID" />
@@ -20,6 +20,17 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
     <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BeautySalon.dbo.ImportSalon' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ImportSalon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="address" Type="nvarchar" MaxLength="255" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="255" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -51,7 +62,7 @@
     <Property Name="ID_Pic" Type="int" />
     <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
     <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
-    <Property Name="ApprovedState" Type="bit" />
+    <Property Name="ApprovedState" Type="tinyint" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
@@ -87,6 +98,16 @@
     <Property Name="ID_pic" Type="int" />
     <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
     <Property Name="ModifiedDate" Type="nchar" MaxLength="10" />
+    <Property Name="ApprovedState" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="SalonPhone">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="11" />
+    <Property Name="Type" Type="bit" />
+    <Property Name="ID_Salon" Type="int" />
   </EntityType>
   <EntityType Name="SalonService">
     <Key>
@@ -179,10 +200,19 @@
     <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Salon" EntityType="Self.Salon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalonPhone" EntityType="Self.SalonPhone" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SalonService" EntityType="Self.SalonService" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UseType" EntityType="Self.UseType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImportSalon" EntityType="Self.ImportSalon" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ImportSalon].[name] AS [name], 
+    [ImportSalon].[address] AS [address], 
+    [ImportSalon].[Tel] AS [Tel], 
+    [ImportSalon].[ID] AS [ID]
+    FROM [dbo].[ImportSalon] AS [ImportSalon]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
 </Schema>

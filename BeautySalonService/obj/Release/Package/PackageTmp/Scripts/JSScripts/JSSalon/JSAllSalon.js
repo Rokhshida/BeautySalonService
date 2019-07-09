@@ -9,82 +9,51 @@ app.filter('unsafe', function ($sce) {
 
 });
 app.controller('MyCtrl', function ($scope, $compile, $http) {
-
+    $scope.PageNum = 1;
+    $scope.PageSize = 7;
+   
     $scope.bannerclass = "inner-banner";
-    $scope.breadcrumb = "تماس با ما"
+    $scope.breadcrumb = "همه سالن های زیبایی"
     
-    $scope.formData = {};
+    $scope.Title = "رخشیدا";
 
+    $scope.activeDrp = "active";
 
-
-
-
-    FuncGetCommon(4);
-
+    /*********************/
+    FuncGetCommon(11);
+    
     function FuncGetCommon(paramUseType) {
 
 
         var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + paramUseType);
         getData.then(function (VarMessage) {
-            $scope.Title = VarMessage.data.Title;
+            $scope.MainTitle = VarMessage.data.Title;
             $scope.SubTitle = VarMessage.data.SubTitle;
             $scope.Comment = VarMessage.data.Comment;
             $scope.PicturePath = VarMessage.data.PicturePath;
-
         }, function () {
 
         });
     }
-
-    $scope.submitForm = function () {
-
-        
-        alert("Send a request to the server: " + JSON.stringify($scope.formData));
  
-      
 
-         $.ajax({
+    FuncGetCommonGallery(10);
 
-             type: "post",
-             url: "/AdminPart/CMSMessage/SendFromContactUs",
-             data: {
-                 NameFamily:  $scope.formData.NameFamily,
-                 email:$scope.formData.email,
-                 phone:$scope.formData.phone,
-                 message:$scope.formData.message
-             },
-
-             datatype: 'json',
-             success: function (data) {
-                 alert('با موفقیت ارسال شد');
-
-             }
-         });
+    function FuncGetCommonGallery(paramUseType) {
 
 
-    };
-
-
-    /***********************************/
-    /*قسمت مربوط به layout*/
-
-    $scope.PageNum = 1;
-    $scope.PageSize = 4;
-
-
-    function FuncShowCopyright() {
-
-        var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 5);
+        var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + paramUseType);
         getData.then(function (VarMessage) {
-            $scope.CopyrightComment = VarMessage.data.Comment;
-
-            $scope.CopyrightTitle = VarMessage.data.Title;
-
+            $scope.TitleGallery = VarMessage.data.Title;
+            $scope.SubTitleGallery = VarMessage.data.SubTitle;
+            $scope.CommentGallery = VarMessage.data.Comment;
+           
         }, function () {
 
         });
     }
 
+   
 
     function FuncShowSalon() {
 
@@ -129,20 +98,6 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     }
 
 
-
-    function FuncShowBanner() {
-
-        var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 1);
-        getData.then(function (VarMessage) {
-            $scope.ListAllSiteSettingBanner = VarMessage.data;
-        }, function () {
-
-        });
-    }
-
-
-    FuncShowBanner();
-    FuncShowCopyright();
     FuncShowSalon();
     $scope.FuncShowAllSalon($scope.PageNum, $scope.PageSize, '');
 
@@ -151,6 +106,30 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         sessionStorage.ResultFrom = JSON.stringify(Item);
         window.open("/Salon/Index", '_blank');
     }
-    /*********************/
 
+
+
+    $scope.FuncShowSalonPage = function (Item) {
+
+        sessionStorage.ResultFrom = JSON.stringify(Item);
+        window.open("/Salon/Index", '_blank');
+    }
+    /***********************************/
+    /*قسمت مربوط به layout*/
+ 
+
+    function FuncShowCopyright() {
+
+        var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 5);
+        getData.then(function (VarMessage) {
+            $scope.CopyrightComment = VarMessage.data.Comment;
+
+            $scope.CopyrightTitle = VarMessage.data.Title;
+
+        }, function () {
+
+        });
+    }
+    FuncShowCopyright();
+    /*********************/
 });

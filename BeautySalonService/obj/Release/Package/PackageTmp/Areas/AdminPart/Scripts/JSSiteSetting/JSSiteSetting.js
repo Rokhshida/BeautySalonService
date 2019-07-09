@@ -26,7 +26,9 @@ app.filter('unsafe', function ($sce) {
 app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     ID = 0;
-
+   
+    if ($('#ID_Role').val() != '1') window.open("/AdminPart/CMSHome/ErrorAccess", '_self');
+    
     //DropZone:
     $scope.showBtns = false;
     $scope.lastFile = null;
@@ -48,6 +50,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
         init: function () {
             this.on("sending", function (file, xhr, formData) {
+                $scope.FuncDelPic(ID);
                 formData.append("ID", ID);
             });
             this.on("complete", function (file) {
@@ -250,7 +253,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     }
 
     $scope.FuncUpdate = function (Item) {
-
+       
         $scope.formData = Item;
         $scope.formData.ID_UseType = Item.ID_UseType.toString();
         CKEDITOR.instances.editor1.setData(Item.Comment);
@@ -298,7 +301,24 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     }
 
+    $scope.FuncDelPic = function (ID) {
 
+       
+
+
+            var getData = $http.get("/AdminPart/CMSSiteSetting/DeleteSiteSettingPic?ID=" + ID);
+
+            getData.then(function (VarMessage) {
+              
+                $scope.formData.PicturePath = "";
+
+            }, function () {
+
+            });
+      
+
+
+    }
 
 
 

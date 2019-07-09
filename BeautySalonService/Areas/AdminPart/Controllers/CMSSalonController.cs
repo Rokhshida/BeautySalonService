@@ -7,6 +7,8 @@ using BeautySalonService.Areas.AdminPart.Models;
 using System.IO;
 namespace BeautySalonService.Areas.AdminPart.Controllers
 {
+
+
     public class CMSSalonController : Controller
     {
         BeautySalonEntities DB = new BeautySalonEntities();
@@ -290,6 +292,37 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             }
 
 
+        }
+
+        private class sex
+        {
+
+          private  int ID;
+           private string Name;
+
+
+public    sex(int PID,string PName)
+    {
+        // TODO: Complete member initialization
+this.ID = PID;
+this.Name = PName;
+    }
+
+        }
+
+        public JsonResult GetSex() {
+
+            try {
+
+                var Result = new List<sex>();
+                Result.Add(new sex(0,"بانوان"));
+                 Result.Add(new sex(1,"آقایان"));
+
+            return   Json(Result, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception Ex) {
+                throw Ex; 
+            }
         }
 
     }

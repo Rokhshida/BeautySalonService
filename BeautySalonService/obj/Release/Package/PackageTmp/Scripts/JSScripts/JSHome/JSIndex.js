@@ -104,6 +104,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 1);
         getData.then(function (VarMessage) {
             $scope.ListAllSiteSettingBanner = VarMessage.data;
+            //alert(JSON.stringify($scope.ListAllSiteSettingBanner));
         }, function () {
 
         });

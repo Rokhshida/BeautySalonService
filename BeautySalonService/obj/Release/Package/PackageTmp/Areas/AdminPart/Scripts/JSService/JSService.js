@@ -17,7 +17,7 @@ app.config(function (dropzoneOpsProvider) {
 app.controller('MyCtrl', function ($scope, $compile, $http) {
 
 
-
+    if ($('#ID_Role').val() != '1') window.open("/AdminPart/CMSHome/ErrorAccess", '_self');
 
     ID = 0;
 

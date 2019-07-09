@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "IndexAllSalon";
+    Layout = "~/Views/Shared/_LayoutSalon.cshtml";
+}
+
+
+<section class="w3ls-bnrbtm pt-sm-5 pt-3" id="w3layouts_bnrbtm">
+    <div class="container pt-md-5">
+        <div class="row pt-lg-5">
+            <div class="col-lg-5  bb-left">
+                <h3 class="agile-title">
+
+
+                    <span>{{MainTitle}}</span>
+                    <br>
+                    <span class="title-pos">{{SubTitle}}</span>
+                  
+
+                </h3>
+            </div>
+            <div class="col-lg-7 mt-lg-0 mt-3 px-lg-5">
+                <p ng-bind-html="Comment | unsafe" class="text-right "></p>
+
+            </div>
+
+        </div>
+        <div class="text-right">
+            <img ng-src="@Url.Content("~/FileArchives/Salon/{{PicturePath}}")" alt="~/FileArchives/Salon/{{PicturePath}}" class="img-fluid mx-auto" />
+        </div>
+    </div>
+</section>
+
+
+<div class="agileits-services py-sm-5 pt-5" id="gallery">
+    <div class="container pt-lg-5">
+        <section class="agile_gallery">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 gallery-left-grid">
+                        <h3 class="agile-title pb-sm-5 pb-4">
+                            <span>{{TitleGallery}}</span>
+                            
+                            <br> 
+                            <span class="title-pos" 0>{{SubTitleGallery}}</span>
+                            
+  
+
+                                <input type="button" class="btn btn-light" value="<<" ng-click="FuncShowAllSalon(PageNum,PageSize,'Prev')" />
+                                <input type="button" class="btn btn-light" value=">>" ng-click="FuncShowAllSalon(PageNum,PageSize,'Next')" />
+</h3>
+                        <div class="agileits_w3layouts_gallery_grid1 w3layouts_gallery_grid1 hover14">
+                            <div class="w3_agile_gallery_effect">
+                                <a href="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[0].PicturePath}}")" class="sb" title="{{ListAllSalon[0].Name}}">
+                                    <figure>
+                                        <img src="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[0].PicturePath}}")" alt="{{ListAllSalon[0].PicturePath}}" class="img-fluid" width="300" height="300"/>
+                                       
+                                    </figure>
+                                </a>
+                                <input type="button" class="btn-outline-info" value="بیشتر بدانید" ng-click="FuncShowSalonPage(ListAllSalon[0])" />
+                            </div>
+                        </div>
+                        <div class="agileits_w3layouts_gallery_grid1 hover14">
+                            <div class="w3_agile_gallery_effect">
+                                <a href="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[1].PicturePath}}")" class="sb" title="{{ListAllSalon[1].Name}}">
+                                    <figure>
+                                        <img src="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[1].PicturePath}}")" alt="{{ListAllSalon[1].PicturePath}}" class="img-fluid" />
+                                    </figure>
+                                </a>
+                                <input type="button" class="btn-outline-info" value="بیشتر بدانید" ng-click="FuncShowSalonPage(ListAllSalon[1])" />
+                            </div>
+                        </div>
+                        <div class="agileits_w3layouts_gallery_grid1 hover14">
+                            <div class="w3_agile_gallery_effect">
+                                <a href="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[2].PicturePath}}")" class="sb" title="{{ListAllSalon[2].Name}}">
+                                    <figure>
+                                        <img src="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[2].PicturePath}}")" alt="{{ListAllSalon[2].PicturePath}}" class="img-fluid" />
+                                    </figure>
+                                </a>
+                                <input type="button" class="btn-outline-info" value="بیشتر بدانید" ng-click="FuncShowSalonPage(ListAllSalon[2])" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="agileits_w3layouts_gallery_grid1 hover14">
+                            <div class="w3_agile_gallery_effect">
+                                <a href="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[3].PicturePath}}")" class="sb" title="{{ListAllSalon[3].Name}}">
+                                    <figure>
+                                        <img src="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[3].PicturePath}}")" alt="{{ListAllSalon[3].PicturePath}}" class="img-fluid" />
+                                    </figure>
+                                </a>
+                                <input type="button" class="btn-outline-info" value="بیشتر بدانید" ng-click="FuncShowSalonPage(ListAllSalon[3])" />
+                            </div>
+                        </div>
+                        <div class="agileits_w3layouts_gallery_grid1 hover14">
+                            <div class="w3_agile_gallery_effect">
+                                <a href="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[4].PicturePath}}")" class="sb" title="{{ListAllSalon[4].Name}}">
+                                    <figure>
+                                        <img src="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[4].PicturePath}}")" alt="{{ListAllSalon[4].PicturePath}}" class="img-fluid" />
+                                    </figure>
+                                </a>
+                                <input type="button" class="btn-outline-info" value="بیشتر بدانید" ng-click="FuncShowSalonPage(ListAllSalon[4])" />
+                            </div>
+                        </div>
+                        <div class="agileits_w3layouts_gallery_grid1 hover14">
+                            <div class="w3_agile_gallery_effect">
+                                <a href="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[5].PicturePath}}")" class="sb" title="{{ListAllSalon[5].Name}}">
+                                    <figure>
+                                        <img src="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[5].PicturePath}}")" alt="{{ListAllSalon[5].PicturePath}}" class="img-fluid" />
+                                    </figure>
+                                </a>
+                                <input type="button" class="btn-outline-info" value="بیشتر بدانید" ng-click="FuncShowSalonPage(ListAllSalon[5])" />
+                            </div>
+                        </div>
+                        <div class="agileits_w3layouts_gallery_grid1 hover14">
+                            <div class="w3_agile_gallery_effect">
+                                <a href="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[6].PicturePath}}")" class="sb" title="{{ListAllSalon[6].Name}}">
+                                    <figure>
+                                        <img src="@Url.Content("~/FileArchives/Salon/{{ListAllSalon[6].PicturePath}}")" alt="{{ListAllSalon[6].Name}}" class=" img-fluid" />
+                                    </figure>
+                                </a>
+                                <input type="button" class="btn-outline-info" value="بیشتر بدانید" ng-click="FuncShowSalonPage(ListAllSalon[6])" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+   
+@section DeclareJS{
+
+
+    <script src="~/Scripts/JSScripts/JSSalon/JSAllSalon.js"></script>}
+
+
+
+
+
+
+
+

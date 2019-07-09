@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="BeautySalonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="BeautySalonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Article">
     <Key>
       <PropertyRef Name="ID" />
@@ -51,7 +51,7 @@
     <Property Name="ID_Pic" Type="Int32" />
     <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="ApprovedState" Type="Boolean" />
+    <Property Name="ApprovedState" Type="Byte" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
@@ -87,6 +87,16 @@
     <Property Name="ID_pic" Type="Int32" />
     <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ApprovedState" Type="Byte" />
+  </EntityType>
+  <EntityType Name="SalonPhone">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhoneNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Boolean" />
+    <Property Name="ID_Salon" Type="Int32" />
   </EntityType>
   <EntityType Name="SalonService">
     <Key>
@@ -142,6 +152,15 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UseComments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="ImportSalon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
   <EntityContainer Name="BeautySalonEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Article" EntityType="Self.Article" />
     <EntitySet Name="City" EntityType="Self.City" />
@@ -150,11 +169,13 @@
     <EntitySet Name="Picture" EntityType="Self.Picture" />
     <EntitySet Name="Role" EntityType="Self.Role" />
     <EntitySet Name="Salon" EntityType="Self.Salon" />
+    <EntitySet Name="SalonPhone" EntityType="Self.SalonPhone" />
     <EntitySet Name="SalonService" EntityType="Self.SalonService" />
     <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" />
     <EntitySet Name="Service" EntityType="Self.Service" />
     <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" />
     <EntitySet Name="UseType" EntityType="Self.UseType" />
+    <EntitySet Name="ImportSalon" EntityType="Self.ImportSalon" />
     <FunctionImport Name="Usp_CheckLogin" ReturnType="Collection(BeautySalonModel.Usp_CheckLogin_Result)">
       <Parameter Name="username" Mode="In" Type="String" />
       <Parameter Name="password" Mode="In" Type="String" />
@@ -212,6 +233,7 @@
     <Property Type="Int32" Name="ID_pic" Nullable="true" />
     <Property Type="String" Name="CreatedDate" Nullable="true" MaxLength="10" />
     <Property Type="String" Name="ModifiedDate" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="ApprovedState" Nullable="true" />
     <Property Type="String" Name="Manager" Nullable="true" MaxLength="101" />
     <Property Type="String" Name="CityName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />

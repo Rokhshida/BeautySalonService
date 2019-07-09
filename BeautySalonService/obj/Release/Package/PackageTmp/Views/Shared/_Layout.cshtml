@@ -11,8 +11,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <title>Beauty Salon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <meta name="keywords" content="Natural Spa Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="سالن های زیبایی, آرایشگاه, مو, گریم,
+آرایش, کوتاهی, اپیلاسیون, صورت, چهره, جذابیت" />
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -25,6 +25,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
     <link href="~/Assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="~/Assets/css/style.css" rel='stylesheet' type='text/css' />
+
+
+    <script src="~/Areas/AdminPart/Assets/ckeditor/ckeditor.js"></script>
     <!-- gallery -->
     <link rel="stylesheet" href="~/Assets/css/smoothbox.css" type='text/css' media="all" />
     <!-- banner slider -->
@@ -62,32 +65,33 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <li class="nav-item mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link" href="/Home/Contact">تماس با ما</a>
                             </li>
-                            <li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+                           
+                            @*<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link" href="/Home/Services"> خدمات </a>
-                            </li>
-                            @*<li class="nav-item dropdown {{activeDrp}} mr-lg-3 mt-lg-0 mt-3">
+                            </li>*@
+                            <li class="nav-item dropdown {{activeDrp}} mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">
                                     منو
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/Home/Services">خدمات</a>
-                                    <a class="dropdown-item" href="/Home/Salons">سالن ها</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/Articles"> مقالات</a>
+                                    <a class="dropdown-item" href="/Salon/IndexAllSalon">سالن ها</a>
+                                   
+                                    <a class="dropdown-item" href="/Articles"> دانستنی ها</a>
 
                                 </div>
-                            </li>*@
+                            </li>
                             <li class="nav-item dropdown {{activeMembership}} mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">
-                                    عضویت
+                                 عضو رخشیدا شوید
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Person/IndexSalonManager">مدیر سالن های زیبایی</a>
-                                    <a class="dropdown-item" href="/Person">کاربر عادی</a>
+                                    <a class="dropdown-item" href="/Salon/IndexSalonForm">من مدیر یک سالن زیبایی هستم</a>
+                                    <a class="dropdown-item" href="/Person">کاربر عمومی</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/Login"> ورود</a>
+                                    <a class="dropdown-item" href="/Login"> ورود به سایت</a>
                                    
                                 </div>
                             </li>
@@ -195,14 +199,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                         <h4 class="text-lg-center text-white font-weight-bolder">
                                             {{Item.Name}}
                                         </h4>
-                                        <h4 class="text-lg-center text-white">{{Item.Phone}}</h4>
+                                        @*<h4 class="text-lg-center text-white">{{Item.Phone}}</h4>*@
                                         
                                     </div>
                                 </div>
                                 <div class="overlay">
                                     <div style="background-color: #d56e9b">
                                         <h4 class="text-lg-center text-dark font-weight: bold">{{Item.Name}}</h4>
-                                        <p class="text-lg-center text-dark font-weight: bold"> <input type="button" class="btn btn-dark"  value="اطلاعات بیشتر" ng-click="FuncShowSalonPage(Item)" /></p>
+                                        <p class="text-lg-center text-dark font-weight: bold"> <input type="button" class="btn-outline-info"  value="بیشتر بدانید" ng-click="FuncShowSalonPage(Item)" /></p>
 <p class="text-lg-center text-dark font-weight: bold">{{Item.Address}}</p>
                                        </div>
                                     </div>
@@ -367,8 +371,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <script src="~/Scripts/MyJsTemplate/bootstrap.js"></script>
 
     <script src="~/Scripts/Angular/angular.js"></script>
-
-
+    <link href="~/Areas/AdminPart/Assets/DropZone/dropzone.css" rel="stylesheet" />
+    <script src="~/Areas/AdminPart/Assets/DropZone/dropzone.js"></script>
+    <link href="~/Areas/AdminPart/Assets/DropZone/ng-dropzone.min.css" rel="stylesheet" />
+    <script src="~/Areas/AdminPart/Assets/DropZone/ng-dropzone.min.js"></script>
+    <link href="~/Areas/AdminPart/Assets/PersianDatePicker/persianDatepicker-default.css" rel="stylesheet" />
+    <script src="~/Areas/AdminPart/Assets/PersianDatePicker/persianDatepicker.js"></script>
     @RenderSection("DeclareJS", true);
 </body>
 

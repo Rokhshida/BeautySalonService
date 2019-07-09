@@ -4,8 +4,34 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
    
     $scope.formData;
    
+    $scope.formData;
+    $scope.bannerclass = "inner-banner";
+    $scope.breadcrumb = "فرم عضویت"
 
-    $scope.activeMembership = "active";
+    $scope.Title = "رخشیدا";
+
+    $scope.activeDrp = "active";
+
+    /*********************/
+    FuncGetCommon(9);
+
+    function FuncGetCommon(paramUseType) {
+
+
+        var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + paramUseType);
+        getData.then(function (VarMessage) {
+            $scope.Title = VarMessage.data.Title;
+            $scope.SubTitle = VarMessage.data.SubTitle;
+            $scope.Comment = VarMessage.data.Comment;
+            $scope.PicturePath = VarMessage.data.PicturePath;
+        }, function () {
+
+        });
+    }
+    /*********************/
+
+
+  
 
     //$scope.formData = {
     //    userName: '',
@@ -14,7 +40,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     //};
     $scope.submitForm = function () {
       
-        $scope.formData.ID_Role = $('#ID_Role').val();
+       // $scope.formData.ID_Role = $('#ID_Role').val();
        // alert("Send a request to the server: " + JSON.stringify($scope.formData));
         if ($scope.password == $scope.confirmpassword) { $scope.FuncSave(); }
         else { alert("تایید رمز عبور با رمز عبور یکی نیست"); }
@@ -27,7 +53,9 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
         if (confirm("آیا می خواهید ذخیره کنید؟")) {
            
-            var VarNewRec = $scope.formData
+            $scope.formData.ID_Role = 3;
+            $scope.formData.ApprovedState = 0;
+            var VarNewRec = $scope.formData;
 
 
             $.ajax({
@@ -49,5 +77,97 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         }
 
     }
+
+
+
+    /***********************************/
+    /*قسمت مربوط به layout*/
+
+    $scope.PageNum = 1;
+    $scope.PageSize = 4;
+
+
+    function FuncShowCopyright() {
+
+        var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 5);
+        getData.then(function (VarMessage) {
+            $scope.CopyrightComment = VarMessage.data.Comment;
+
+            $scope.CopyrightTitle = VarMessage.data.Title;
+
+        }, function () {
+
+        });
+    }
+
+
+    function FuncShowSalon() {
+
+        var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 7);
+        getData.then(function (VarMessage) {
+            $scope.SalonTitle = VarMessage.data.Title;
+            $scope.SalonSubTitle = VarMessage.data.SubTitle;
+            $scope.SalonComment = VarMessage.data.Comment;
+        }, function () {
+
+        });
+    }
+
+
+    $scope.FuncShowAllSalon = function (PageNum, PageSize, Status) {
+
+
+
+        if (Status == "Next") PageNum += 1;
+        if (Status == "Prev") PageNum -= 1;
+
+        var response = $http({
+            method: "post",
+            url: "/AdminPart/CMSSalon/GetSalonWithPage",
+            params: {
+                CurrentPage: PageNum,
+                PageSize: PageSize,
+
+            }
+        });
+
+
+        response.then(function (VarResult) {
+            $scope.ListAllSalon = VarResult.data;
+
+            if (Status == "Next") $scope.PageNum += 1;
+            if (Status == "Prev") $scope.PageNum -= 1;
+
+        }, function () {
+            alert('error')
+        });
+    }
+
+
+
+    function FuncShowBanner() {
+
+        var getData = $http.get("/AdminPart/CMSSiteSetting/GetSiteSetting?ID_UseType=" + 1);
+        getData.then(function (VarMessage) {
+            $scope.ListAllSiteSettingBanner = VarMessage.data;
+        }, function () {
+
+        });
+    }
+
+
+    FuncShowBanner();
+    FuncShowCopyright();
+    FuncShowSalon();
+    $scope.FuncShowAllSalon($scope.PageNum, $scope.PageSize, '');
+    $scope.FuncShowSalonPage = function (Item) {
+
+        sessionStorage.ResultFrom = JSON.stringify(Item);
+        window.open("/Salon/Index", '_blank');
+    }
+    /*********************/
+
+
+
 
 });

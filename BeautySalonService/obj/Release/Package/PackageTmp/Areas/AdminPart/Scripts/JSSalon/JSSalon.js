@@ -24,7 +24,9 @@ app.filter('unsafe', function ($sce) {
 
 app.controller('MyCtrl', function ($scope, $compile, $http) {
 
-
+    ID_Manager = -1;
+   
+    if ($('#ID_Role').val() != '1') ID_Manager = $('#ID_Person').val().toString();
 
 
     ID = 0;
@@ -120,8 +122,13 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     function GetSex() {
 
-        var getData = {}
+        var getData =
+             {
+
+             }
         getData.then(function (VarMessage) {
+
+
             $scope.ListAllSex = VarMessage.data;
         }, function () {
 
@@ -146,15 +153,36 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         if (Status == "Next") PageNum += 1;
         if (Status == "Prev") PageNum -= 1;
 
-        var response = $http({
-            method: "post",
-            url: "/AdminPart/CMSSalon/GetSalonWithPage",
-            params: {
-                CurrentPage: PageNum,
-                PageSize: PageSize
+        if (ID_Manager == '-1') {
 
-            }
-        });
+          
+            var response = $http({
+                method: "post",
+                url: "/AdminPart/CMSSalon/GetSalonWithPage",
+                params: {
+                    CurrentPage: PageNum,
+                    PageSize: PageSize
+
+                }
+            });
+
+        } else {
+
+           
+            var response = $http({
+                method: "post",
+                url: "/AdminPart/CMSSalon/GetSalonWithPage",
+                params: {
+                    CurrentPage: PageNum,
+                    PageSize: PageSize,
+                    optionalID_Manager:ID_Manager
+
+                }
+            });
+
+
+        }
+
 
         response.then(function (VarResult) {
             $scope.ListAllSalon= VarResult.data;
@@ -436,6 +464,24 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
     }
 
+    $scope.FuncDelPic = function (ID) {
+
+        if (confirm("آیا از حذف تصویر اطمینان دارید؟")) {
+
+
+            var getData = $http.get("/AdminPart/CMSSalon/DeleteSalonPic?ID=" + ID);
+
+            getData.then(function (VarMessage) {
+                alert("تصویر حذف گردید.");
+               
+            }, function () {
+
+            });
+        }
+
+
+    }
+    
 
     /************/
     /****assign services*****/

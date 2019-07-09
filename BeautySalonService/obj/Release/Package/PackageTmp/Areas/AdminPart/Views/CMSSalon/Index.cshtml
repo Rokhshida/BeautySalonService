@@ -248,21 +248,26 @@
                             </p>
 
                         </div>
-                    </div>     
-                                 
+                    </div>    
                     <div class="form-group row">
-                        <label for="dropzone2" class="col-sm-2 col-form-label">تصویر</label>
-                        <div class="col-sm-10">
-                            <p>
-                                <div id="dropzone2" class="dropzone" options="dz_PersImageOptions" methods="dz_PersImageMethods" callbacks="dzCallbacks" ng-dropzone></div>
-                            </p>
+                        <div class="notif-img-agileinfo">
+                            <img style="width:45px !important;height:45px !important;object-fit: cover" ng-src="@Url.Content("~/FileArchives/Salon/{{Item.PicturePath}}")" alt="...">
+                            <input type="button" ng-click="FuncDelPic(ID)" class="btn btn-primary" value="حذف تصویر"/>
                         </div>
-                    </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="dropzone2" class="col-sm-2 col-form-label">تصویر</label>
+                            <div class="col-sm-10">
+                                <p>
+                                    <div id="dropzone2" class="dropzone" options="dz_PersImageOptions" methods="dz_PersImageMethods" callbacks="dzCallbacks" ng-dropzone></div>
+                                </p>
+                            </div>
+                        </div>
 
-                    <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary">ذخیره</button>
+                        <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary">ذخیره</button>
 
 
-                </form>
+</form>
             </div>
         </div>
     </div>

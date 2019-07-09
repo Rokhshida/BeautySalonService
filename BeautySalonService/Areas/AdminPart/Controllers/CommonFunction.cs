@@ -178,6 +178,8 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
 
     }
 
+
+
 }
 
 

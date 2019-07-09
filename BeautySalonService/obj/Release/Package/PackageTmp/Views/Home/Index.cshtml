@@ -20,8 +20,8 @@
                     <h4 data-animation="animated flipInX">{{Item.Title}}</h4>
                     <h3 data-animation="animated flipInX" ng-bind-html="Item.Comment | unsafe"></h3>
 
-                    
-                    <a href="{{Item.Link}}" class="btn">بیشتر بخوانید</a>
+                    <a href="@Url.Content("~/{{Item.link}}")" class="btn">بیشتر بخوانید</a>
+                   
                 </div>
             </div>
 

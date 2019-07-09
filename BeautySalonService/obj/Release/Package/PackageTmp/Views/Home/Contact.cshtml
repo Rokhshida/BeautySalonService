@@ -3,7 +3,80 @@
     ViewBag.Title = "Contact";
 }
         <!-- inner banner -->
+<div class="row contact-form pt-5">
+    <!-- contact details -->
+    <div class="col-lg-6 contact-bottom d-flex flex-column contact-right-w3ls pt-lg-5">
+        <h5>با ما در تماس باشید</h5>
+        <div class="fv3-contact">
+            <div class="row">
+                <div class="col-2">
+                    <span class="fas fa-envelope-open"></span>
+                </div>
+                <div class="col-10">
+                    <h6>آدرس پست الکترونیکی</h6>
+                    <p>
+                        <a href="info@rokhshida.ir" class="text-dark">info@rokhshida.ir</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class="col-lg-6 wthree-form-left my-lg-0 mt-5 pt-lg-5">
+        <h5>برای ما نامه بفرستید</h5>
+        <!-- contact form grid -->
+        <div class="contact-top1">
 
+
+            
+            <form name="myForm" novalidate ng-submit="submitForm();" class="contact-wthree">
+                <div class="form-group d-flex">
+                    <label>
+                        نام و نام خانوادگی
+                    </label>
+                    <input class="form-control" type="text" ng-name="NameFamily" ng-model="formData.NameFamily" placeholder="نام و نام خانوادگی" required />
+                    <span style="color:red" ng-show="myForm.NameFamily.$dirty  && myForm.NameFamily.$invalid">
+                        <span ng-show="myform.NameFamily.$error.required">نام خانوادگی خود را وارد نمایید</span>
+
+                    </span>
+                </div>
+                <div class="form-group d-flex">
+                    <label>
+                        آدرس پست الکترونیکی
+                    </label>
+                    <input class="form-control" type="email" placeholder="example@email.com" ng-model="formData.email" ng-name="email" required>
+                    <span style="color:red" name="email" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                        <span ng-show="myform.email.$error.required">آدرس پست الکترونیکی خود را وارد نمایید</span>
+                        <span ng-show="myform.email.$error.email">فرمت صحیح آدرس پست الکترونیکی خود را وارد نمایید</span>
+                    </span>
+                </div>
+                <div class="form-group d-flex">
+                    <label>
+                        تلفن
+                    </label>
+                    <input class="form-control" type="text" placeholder="xxxxxxxxxxx" ng-model="formData.Phone" ng-name="Phone" required>
+                    <span style="color:red" ng-show="myForm.Phone.$dirty  && myForm.Phone.$invalid">
+                        <span ng-show="myform.Phone.$error.required">تلفن خود را وارد نمایید</span>
+
+                    </span>
+                </div>
+                <div class="form-group d-flex">
+                    <label>
+                        پیغام
+                    </label>
+                    <textarea class="form-control" rows="5" id="contactcomment" placeholder="پیغام شما" required ng-model="formData.message"></textarea>
+                </div>
+                <div class="d-flex  justify-content-end">
+                    <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-agile btn-block w-50">ذخیره</button>
+
+                </div>
+            </form>
+        </div>
+        <!--  //contact form grid ends here -->
+    </div>
+
+</div>
 
 <!-- inner banner -->
 <!-- breadcrumbs -->

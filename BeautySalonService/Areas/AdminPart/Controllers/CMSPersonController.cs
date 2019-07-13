@@ -26,7 +26,11 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 EmailModel ObjEmail = new EmailModel();
                 ObjEmail.To = ObjPerson.Email;
                 ObjEmail.Subject = "Rokhshida Membership";
-                ObjEmail.Body = "we are happy that you join us.";
+                string Body = System.IO.File.ReadAllText(Server.MapPath("~/Areas/AdminPart/Assets/TemplateEmail_membership.html"));
+                Body = Body.Replace("#PersonNameFamily#", ObjPerson.Name +" " +ObjPerson.Family );
+                Body = Body.Replace("#ApproveLnk#", Server.MapPath("~/Person/ApproveMemebership").ToString()+"?id=?" + ObjPerson.ID.ToString());
+               
+                ObjEmail.Body = Body;
                 ObjEmail.Email = CommonFunction.Email_From;
                 ObjEmail.Password = CommonFunction.Email_From_Password;
 

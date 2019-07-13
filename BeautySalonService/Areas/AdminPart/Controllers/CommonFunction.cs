@@ -131,7 +131,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
 
                 }
 
-                mm.IsBodyHtml = false;
+                mm.IsBodyHtml = true;
 
                 using (SmtpClient smtp = new SmtpClient())
                 {

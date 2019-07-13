@@ -24,6 +24,11 @@ namespace BeautySalonService.Controllers
             return View();
         }
 
+        public ActionResult ApproveMembership() 
+        {
+            return View();
+        
+        }
 
     }
 }

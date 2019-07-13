@@ -30,9 +30,6 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     }
     /*********************/
 
-
-  
-
     //$scope.formData = {
     //    userName: '',
     //    email: '',
@@ -77,8 +74,12 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         }
 
     }
+   
+    $scope.ApproveMembership = function () {
 
-
+        alert( $('#IDPerson').val());
+   
+    };
 
     /***********************************/
     /*قسمت مربوط به layout*/

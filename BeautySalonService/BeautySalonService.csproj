@@ -460,6 +460,7 @@
     <Content Include="Areas\AdminPart\Assets\js\skycons.js" />
     <Content Include="Areas\AdminPart\Assets\PersianDatePicker\persianDatepicker-default.css" />
     <Content Include="Areas\AdminPart\Assets\PersianDatePicker\persianDatepicker.js" />
+    <Content Include="Areas\AdminPart\Assets\TemplateEmail_membership.html" />
     <Content Include="Areas\AdminPart\Assets\webfonts\fa-brands-400.svg" />
     <Content Include="Areas\AdminPart\Assets\webfonts\fa-regular-400.svg" />
     <Content Include="Areas\AdminPart\Assets\webfonts\fa-solid-900.svg" />
@@ -1726,6 +1727,7 @@
     <Content Include="Views\Shared\_LayoutSalon.cshtml" />
     <Content Include="Views\Salon\IndexSalonForm.cshtml" />
     <Content Include="Views\Salon\IndexAllSalon.cshtml" />
+    <Content Include="Views\Person\ApproveMembership.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

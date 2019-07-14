@@ -37,7 +37,12 @@ namespace BeautySalonService.Controllers
             
         }
 
+        public ActionResult googlemap()
+        {
 
+            return View();
+
+        }
      public void VisitSave() 
      {   var browser = Request.Browser; 
          var REFERER = Request.ServerVariables["HTTP_REFERER"]; 

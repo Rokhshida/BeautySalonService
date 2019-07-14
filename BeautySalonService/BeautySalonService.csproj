@@ -1728,6 +1728,7 @@
     <Content Include="Views\Salon\IndexSalonForm.cshtml" />
     <Content Include="Views\Salon\IndexAllSalon.cshtml" />
     <Content Include="Views\Person\ApproveMembership.cshtml" />
+    <Content Include="Views\Home\googlemap.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

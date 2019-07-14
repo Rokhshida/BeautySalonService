@@ -173,7 +173,21 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             }
             catch (Exception Ex) { throw Ex; }
         }
-        
+        public static string GetPersianDate(DateTime Date)
+        {
+
+            try
+            {
+                PersianCalendar Cal = new PersianCalendar();
+                string StrMonth;
+                string StrDay;
+                if (Cal.GetDayOfMonth(Date).ToString().Length == 1) StrDay = "0" + Cal.GetDayOfMonth(Date).ToString(); else StrDay = Cal.GetDayOfMonth(Date).ToString();
+                if (Cal.GetMonth(Date).ToString().Length == 1) StrMonth = "0" + Cal.GetMonth(Date).ToString(); else StrMonth = Cal.GetMonth(Date).ToString();
+                return Cal.GetYear(Date).ToString() + "/" + StrMonth + "/" + StrDay;
+
+            }
+            catch (Exception Ex) { throw Ex; }
+        }
     
 
     }

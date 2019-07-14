@@ -57,6 +57,32 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         }
 
 
+
+        public JsonResult ApprovePerson(int ID) {
+            try
+            {
+
+
+                Person ObjPerson = DB.Person.Where(item => item.ID == ID).SingleOrDefault();
+                ObjPerson.ApprovedState = 1;
+                UpdatePerson(ObjPerson);
+
+                if (ObjPerson.ID_Role == 2)
+                {
+                    //اگر نیازی نیست که خود سالن هم به حالت تایید باشد نیازی نیست کاری در اینجا انجام شود
+                    //در غیر اینصورت باید  تایید سالن در اینجا فراخوانی شود
+                
+                
+                }
+                //اگر برای تایید نامه ای نیاز است در اینجا فرستاده شود.
+               
+                return  Json(ObjPerson.ID, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception EX) { throw EX; }
+        
+        
+        }
+
         public JsonResult SavePerson(Person ObjPerson)
         {
             try

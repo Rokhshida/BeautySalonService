@@ -7,7 +7,6 @@
 
 
 
-
     <form name="myForm" class="well form-inline" novalidate ng-submit="submitForm()" dir="rtl">
     <!--<input type="hidden" id="ID_Role" value="@Session["Sess_IDRole"]" />-->
 
@@ -78,11 +77,12 @@
             </span>
         </div>
         <div class="input-group">
-            <input id="input1" type="text" placeholder="تاریخ" class="form-control" />
+            <label class=" col-md-4 control-label" for="DateBirth">تاریخ تولد </label>
+            <input id="input1" name="DateBirth" type="text" placeholder="تاریخ" class="form-control" />
             <span id="span1"></span>
           </div>
             <div class="input-group">
-                <label class=" col-md-4 control-label" text-align="right" for="Address">
+                <label class=" col-md-4 control-label"  for="Address">
                     آدرس
                 </label>
                 <input type="text" ng-name="Address" class="form-control" placeholder="آدرس خود را وارد نمایید " ng-model="formData.Address">
@@ -98,11 +98,8 @@
             <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary error-w3l-btn mt-sm-5 mt-3 px-4">با فشردن این دکمه اطلاعات شما ارسال و  عضو ما می شوید</button>
 </fieldset>
 </form>
-<script type="text/javascript">
-    $(function () {
-        $("#input1, #span1").persianDatepicker();
-    });
-</script>
+
+
 
 
     @section DeclareJS{

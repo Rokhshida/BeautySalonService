@@ -31,6 +31,25 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             catch (Exception EX) { throw EX; }
 
         }
+
+        public JsonResult GetNewArticleWithPage(int PageNum, int PageSize,int Day)
+        {
+            int skip = PageSize * (PageNum - 1);
+            
+            string NewDate=CommonFunction.GetPersianDate(DateTime.Now.AddDays(-Day));
+
+            var Result = DB.Article.Where(item => string.Compare(item.CreatedDate,NewDate)>=0 ).ToList()
+           .OrderByDescending(item => item.ID)
+           .Skip(skip)
+           .Take(PageSize);
+
+
+            var jsonResult = Json(Result, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+
+
+        }
         public JsonResult GetArticleWithPage(int PageNum, int PageSize)
         {
             int skip = PageSize * (PageNum - 1);

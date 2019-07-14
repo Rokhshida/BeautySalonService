@@ -39,7 +39,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="//fonts.googleapis.com/css?family=Philosopher:400,400i,700,700i" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Markazi+Text:400,500,600,700" rel="stylesheet">*@
 
-
+  
     
 
 </head>
@@ -68,6 +68,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             
                             <li class="nav-item mr-lg-3 mt-lg-0 mt-3">
                                 <a class="nav-link" href="/Home/Contact">تماس با ما</a>
+                               
                             </li>
                            
                             @*<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
@@ -83,6 +84,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <a class="dropdown-item" href="/Salon/IndexAllSalon">سالن ها</a>
                                    
                                     <a class="dropdown-item" href="/Articles"> دانستنی ها</a>
+                                    <a class="nav-link" href="/Home/googlemap">نقشه</a>
 
                                 </div>
                             </li>
@@ -240,13 +242,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <span class="rounded-left">instagram</span>
                                 </a>
                             </div>
-                            @*<div>
+                           <div>
                                 <a href="#" class="fixed-twitter mb-2 rounded" target="_blank">
                                     <i class="fab fa-twitter"></i>
                                     <span class="rounded-left">facebook</span>
                                 </a>
-                            </div>*@
-                            @*<div>
+                            </div>
+                                                        <div>
                                 <a href="#" class="fixed-gplus mb-2 rounded" target="_blank">
                                     <i class="fab fa-google-plus-g"></i>
                                     <span class="rounded-left">telegram</span>
@@ -257,34 +259,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <i class="fab fa-linkedin-in"></i>
                                     <span class="rounded-left">LinkedIn</span>
                                 </a>
-                            </div>*@
+                            </div>
                         </div>
                     </div>
                     <!-- //footer grid1 -->
                     <!-- footer grid3 -->
                     <div class="col-lg-4  col-sm-6 footv3-left my-sm-0 my-4">
-                        <h3 class="mb-4">لینکها</h3>
+                        <h3 class="mb-4">دانستنی های جدید</h3>
                         <ul class="list-agileits">
-                            <li>
+                            <li ng-repeat="Item in ListAllNewArticle">
                                 <a href="/">
-                                    خانه
+                                    {{Item.Title}}
                                 </a>
                             </li>
-                            <li class="my-3">
-                                <a href="Home/About">
-                                    درباره ما
-                                </a>
-                            </li>
-                            <li class="mb-3">
-                                <a href="Home/Services">
-                                    خدمات
-                                </a>
-                            </li>
-                            <li>
-                                <a href="Home/Contact">
-                                    تماس با ما
-                                </a>
-                            </li>
+                           
                         </ul>
                     </div>
                     <!-- //footer grid3 -->
@@ -382,6 +370,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="~/Areas/AdminPart/Assets/DropZone/ng-dropzone.min.js"></script>
     <link href="~/Areas/AdminPart/Assets/PersianDatePicker/persianDatepicker-default.css" rel="stylesheet" />
     <script src="~/Areas/AdminPart/Assets/PersianDatePicker/persianDatepicker.js"></script>
+    <script type="text/javascript">
+        $(function () {
+           
+            $("#input1, #span1").persianDatepicker();
+        });
+    </script>
     @RenderSection("DeclareJS", true);
 </body>
 

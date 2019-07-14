@@ -77,7 +77,23 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
    
     $scope.ApproveMembership = function () {
 
-        alert( $('#IDPerson').val());
+        alert($('#IDPerson').val());
+
+        $.ajax({
+
+            type: "post",
+            url: "/AdminPart/CMSPerson/ApprovePerson",
+            data: {
+                ID: $('#IDPerson').val()
+            },
+
+            datatype: 'json',
+            success: function (data) {
+                alert('با موفقیت ذخیره شد');
+
+            }
+        });
+
    
     };
 

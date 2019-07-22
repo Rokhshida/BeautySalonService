@@ -106,7 +106,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     /*get articles*/
 
     $scope.FuncGetArticlesOfManager = function (PageNumArticles, PageSizeArticles, StatusArticles, ID_Person) {
-
+       
         if (ID_Person!=null){
        // alert(JSON.stringify(PageNumArticles));
        // alert(JSON.stringify(PageSizeArticles));
@@ -128,7 +128,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         response.then(function (VarResult) {
 
             $scope.ListAllArticleOfSalonManager = VarResult.data;
-            // alert("Send a request to the server: " + JSON.stringify($scope.ListAllSalonsOfService));
+            //alert("Send a request to the server: " + JSON.stringify($scope.ListAllArticleOfSalonManager.length));
 
 
 

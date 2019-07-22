@@ -141,9 +141,37 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     }
 
 
+    function FuncShowNewArticle() {
+
+
+        DayCount = 5;
+
+
+        var response = $http({
+            method: "post",
+            url: "/AdminPart/CMSArticle/GetNewArticleWithPage",
+            params: {
+                PageNum: 1,
+                PageSize: 4,
+                Day: DayCount
+            }
+        });
+
+
+        response.then(function (VarResult) {
+            $scope.ListAllNewArticle = VarResult.data;
+            //alert(JSON.stringify($scope.ListAllNewArticle.length));
+
+
+        }, function () {
+            alert('error_FuncShowNewArticle')
+        });
+    }
+
     FuncShowBanner();
     FuncShowCopyright();
     FuncShowSalon();
+    FuncShowNewArticle();
     $scope.FuncShowAllSalon($scope.PageNum, $scope.PageSize, '');
 
     $scope.FuncShowSalonPage = function (Item) {

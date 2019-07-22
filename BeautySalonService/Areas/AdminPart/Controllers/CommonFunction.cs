@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
@@ -45,11 +46,16 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
 
 
      }
+
+  
      //public static string Email_From = "heidarnezhada1@gmail.com";
      //public static string Email_From_Password = "125412541254@va@va@va";
      public static string Email_From = "beautySalon.Rokhshida@gmail.com";
      public static string Email_From_Password = "pari$a@v@1398";
-    
+
+
+
+
 //for encrypt
         public static string EncodePasswordToBase64(string password)
      {

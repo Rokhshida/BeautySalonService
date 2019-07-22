@@ -47,51 +47,51 @@
     </div>
 </section>
 
-<section class="about-w3ls py-md-5 py-3" id="about">
+<section class="about-w3ls py-md-5 py-3" id="about" ng-show="ListAllServicesOfSalon.length!=0">
     <div class="container">
-                <div class="col-lg-6 mt-lg-0 mt-5">
-                <div class="main-services" ng-repeat="Item in ListAllServicesOfSalon">
-                    <div class="row">
-                        <div class="col-2">
-                            <span class="fas fa-angle-right"></span>
-                        </div>
-                        <div class="col-10">
-
-                           
-                            <h6>کد سرویس:{{Item.ID_Service}}</h6>
-                            <h5>{{Item.Name}}</h5>
-                            <!-- <p><img ng-src="@Url.Content("~/FileArchives/SalonService/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid" /></p>-->
-                            <p>
+        <div class="col-lg-6 mt-lg-0 mt-5">
+            <div class="main-services" ng-repeat="Item in ListAllServicesOfSalon">
+                <div class="row">
+                    <div class="col-2">
+                        <span class="fas fa-angle-right"></span>
+                    </div>
+                    <div class="col-10">
 
 
-                            <p ng-bind-html="Item.Comment | unsafe" class="text-right "></p>
-                            @* {{Item.Comment}}*@
-                            </p>
-                        </div>
+                        <h6>کد سرویس:{{Item.ID_Service}}</h6>
+                        <h5>{{Item.Name}}</h5>
+                        <!-- <p><img ng-src="@Url.Content("~/FileArchives/SalonService/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid" /></p>-->
+                        <p>
+
+
+                        <p ng-bind-html="Item.Comment | unsafe" class="text-right "></p>
+                        @* {{Item.Comment}}*@
+                        </p>
                     </div>
                 </div>
-
             </div>
+
+        </div>
 
 
         <input type="button" class="btn btn-light" value="<<" ng-click="FuncGetServicesOfSalon(PageNumServicesOfSalon, PageSizeServicesOfSalon, 'Prev',ID_Salon)" />
         <input type="button" class="btn btn-light" value=">>" ng-click="FuncGetServicesOfSalon(PageNumServicesOfSalon, PageSizeServicesOfSalon, 'Next', ID_Salon)" />
-        </div>
-   
+    </div>
+
 </section>
 <!-- //services-main-->
 <!-- articles -->
-<h5 class="pt-4 pb-3">مقالات</h5>
-<div class="d-flex flex-column bg-flex">
+<h5 class="pt-4 pb-3" ng-show="ListAllArticleOfSalonManager.length!=0 && salondata.id_manager!=null">مقالات</h5>
+<div class="d-flex flex-column bg-flex" ng-show="ListAllArticleOfSalonManager.length!=0 && salondata.id_manager!=null">
     <div class="p-2 bg-flex mb-1 bg-flex-item" ng-repeat="Item in ListAllArticleOfSalonManager">
 
-        <p>شناسه مقاله  {{Item.ID}}</p> 
+        <p>شناسه مقاله  {{Item.ID}}</p>
         <p>{{Item.title}}</p>
-        <br/>
+        <br />
         <p ng-bind-html="Item.SiteContent | unsafe" class="text-right "></p>
-       
+
     </div>
-  
+
     <input type="button" class="btn btn-light" value="<<" ng-click="FuncGetArticlesOfManager(PageNumArticles, PageSizeArticles, 'Prev',Salondata.ID_Manager)" />
     <input type="button" class="btn btn-light" value=">>" ng-click="FuncGetArticlesOfManager(PageNumArticles, PageSizeArticles, 'Next',Salondata.ID_Manager )" />
 </div>

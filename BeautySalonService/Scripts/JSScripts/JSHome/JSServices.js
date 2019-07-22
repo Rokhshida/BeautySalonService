@@ -37,44 +37,6 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     }
     /*********************/
 
-    $scope.FuncShowAllService = function (PageNumService, PageSizeService, StatusService) {
-
-
-
-        if (StatusService == "Next") PageNumService += 1;
-        if (StatusService == "Prev") PageNumService -= 1;
-
-        var response = $http({
-            method: "post",
-            url: "/AdminPart/CMSService/GetServiceWithPage",
-            params: {
-                CurrentPage: PageNumService,
-                PageSize: PageSizeService
-
-            }
-        });
-
-
-        response.then(function (VarResult) {
-
-            $scope.ListAllService = VarResult.data;
-            //  alert("Send a request to the server: " + JSON.stringify($scope.ListAllService));
-
-
-
-            if (StatusService == "Next") $scope.PageNumService += 1;
-            if (StatusService == "Prev") $scope.PageNumService -= 1;
-
-        }, function () {
-            alert('error')
-        });
-    }
-
-    /*********************/
-
-    $scope.FuncShowAllService($scope.PageNumService, $scope.PageSizeService, '');
-   
-        
 
     $scope.FuncGetSalonsOfService = function (PageNumSalonsOfService, PageSizeSalonsOfService, StatusSalonsOfService, ID_Service) {
 
@@ -109,9 +71,8 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
             alert('error')
         });
     }
-
-    /*********************/
     $scope.FuncShowDetailOfService = function (ID_Service, ServiceName, ID_Article, ServicePicturePath) {
+
         $scope.ID_Service = ID_Service;
         $scope.ServiceName = ServiceName;
         $scope.ServicePicturePath = ServicePicturePath;
@@ -133,6 +94,59 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
         });
     }
 
+
+    $scope.FuncShowAllService = function (PageNumService, PageSizeService, StatusService) {
+
+
+
+        if (StatusService == "Next") PageNumService += 1;
+        if (StatusService == "Prev") PageNumService -= 1;
+
+        var response = $http({
+            method: "post",
+            url: "/AdminPart/CMSService/GetServiceWithPage",
+            params: {
+                CurrentPage: PageNumService,
+                PageSize: PageSizeService
+
+            }
+        });
+
+
+        response.then(function (VarResult) {
+
+            $scope.ListAllService = VarResult.data;
+            //  alert("Send a request to the server: " + JSON.stringify($scope.ListAllService));
+            alert($scope.ListAllService[0].ID);
+            alert($scope.ListAllService[0].Name);
+            alert($scope.ListAllService[0].ID_Article);
+            alert($scope.ListAllService[0].PicturePath);
+
+            $scope.FuncShowDetailOfService($scope.ListAllService[0].ID, $scope.ListAllService[0].Name, $scope.ListAllService[0].ID_Article, $scope.ListAllService[0].PicturePath);
+
+
+
+            if (StatusService == "Next") $scope.PageNumService += 1;
+            if (StatusService == "Prev") $scope.PageNumService -= 1;
+
+        }, function () {
+            alert('error')
+        });
+    }
+
+
+
+   
+    /*********************/
+   
+    /*********************/
+
+    $scope.FuncShowAllService($scope.PageNumService, $scope.PageSizeService, '');
+    //$scope.FuncShowDetailOfService($scope.ListAllService[0].ID, $scope.ListAllService[0].Name, $scope.ListAllService[0].ID_Article, $scope.ListAllService[0].PicturePath);
+   
+        
+
+   
 
     /***********************************/
     /*قسمت مربوط به layout*/
@@ -198,9 +212,9 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
     }
 
     function FuncShowNewArticle()  {
+       
 
-
-        DayCount = 3;
+        DayCount = 5;
       
 
         var response = $http({
@@ -216,7 +230,7 @@ app.controller('MyCtrl', function ($scope, $compile, $http) {
 
         response.then(function (VarResult) {
             $scope.ListAllNewArticle = VarResult.data;
-
+            //alert(JSON.stringify($scope.ListAllNewArticle.length));
            
 
         }, function () {

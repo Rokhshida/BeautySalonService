@@ -58,7 +58,7 @@
 
                                     {{ServiceName}}
                                    
-                                    <span class="title-pos">{{ID_Service}} کد سرویس</span>
+                                    <span class="title-pos"> {{ID_Service}}:  کد سرویس </span>
                                 </h3>
                                 <p ng-bind-html="SiteContentArticleOfService | unsafe" class="text-right mt-5"></p>
                             </div>
@@ -76,12 +76,12 @@
                                         <h6>{{Item.ID_Salon}}</h6>
                                         <h5>{{Item.Name}}</h5>
                                        <!-- <p><img ng-src="@Url.Content("~/FileArchives/Service/{{Item.PicturePath}}")" alt="{{Item.PicturePath}}" class="img-fluid" /></p>-->
-                                        <p>
+                                     
 
 
                                         <p ng-bind-html="Item.Comment | unsafe"  class="text-right "></p>
                                         @* {{Item.Comment}}*@
-                                        </p>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -89,8 +89,8 @@
                         </div>
 
 
-                        <input type="button" class="btn btn-light" value="<<" ng-click="FuncGetSalonsOfService(PageNumSalonsOfService, PageSizeSalonsOfService, 'Prev', ID_Service))" />
-                        <input type="button" class="btn btn-light" value=">>" ng-click="FuncGetSalonsOfService(PageNumSalonsOfService, PageSizeSalonsOfService, 'Next', ID_Service))" />
+                        <input type="button" class="btn btn-light" value="<<" ng-click="FuncGetSalonsOfService(PageNumSalonsOfService, PageSizeSalonsOfService, 'Prev', ID_Service)" ng-show="ListAllSalonsOfService.length!=0" />
+                        <input type="button" class="btn btn-light" value=">>" ng-click="FuncGetSalonsOfService(PageNumSalonsOfService, PageSizeSalonsOfService, 'Next', ID_Service)" ng-show="ListAllSalonsOfService.length!=0" />
                     </div>
                 </div>
             </section>

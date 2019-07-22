@@ -101,9 +101,12 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                      SendMembershipEmail(ObjPerson);
                      return Json(ObjPerson.ID, JsonRequestBehavior.AllowGet);
                  }
-                 else { throw new Exception("این نام گاربری تکراری است"); }
+                 else { throw new Exception(ClsException.DuplicateUser); }
             }
-            catch (Exception EX) { throw EX; }
+            catch (Exception EX) { 
+                Session["Sess_ErrorMsg"] = EX.Message;
+                throw EX;
+            }
 
         }
         public JsonResult UpdatePerson(Person ObjPerson)

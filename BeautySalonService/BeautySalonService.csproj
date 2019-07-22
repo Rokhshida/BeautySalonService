@@ -1599,6 +1599,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\AdminPart\AdminPartAreaRegistration.cs" />
+    <Compile Include="Areas\AdminPart\Controllers\ClsException.cs" />
     <Compile Include="Areas\AdminPart\Controllers\CMSArticleController.cs" />
     <Compile Include="Areas\AdminPart\Controllers\CMSCityController.cs" />
     <Compile Include="Areas\AdminPart\Controllers\CMSHomeController.cs" />

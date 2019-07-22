@@ -35,6 +35,16 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
 
     }
 
+
+     public enum En_ApproveState
+     {
+        Wait=0,
+        Approved=1,
+         NonApproved=2
+
+
+
+     }
      //public static string Email_From = "heidarnezhada1@gmail.com";
      //public static string Email_From_Password = "125412541254@va@va@va";
      public static string Email_From = "beautySalon.Rokhshida@gmail.com";
@@ -188,9 +198,15 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             }
             catch (Exception Ex) { throw Ex; }
         }
-    
+
+
+
+      
+
 
     }
+
+    
 
 
 

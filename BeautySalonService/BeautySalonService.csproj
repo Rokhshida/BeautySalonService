@@ -817,6 +817,7 @@
     <Content Include="Assets\popper.js\README.md" />
     <Content Include="Assets\popper.js\yarn.lock" />
     <Content Include="Areas\AdminPart\Views\CMSPerson\Index.cshtml" />
+    <Content Include="Areas\AdminPart\Views\CMSHome\ErrorAccess.cshtml" />
     <EntityDeploy Include="Areas\AdminPart\Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -824,7 +825,6 @@
     <Content Include="Areas\AdminPart\Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\AdminPart\Views\CMSHome\ErrorAccess.cshtml" />
     <None Include="Properties\PublishProfiles\aa.pubxml" />
     <None Include="Properties\PublishProfiles\dd.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1610,6 +1610,7 @@
     <Compile Include="Areas\AdminPart\Controllers\CMSServiceController.cs" />
     <Compile Include="Areas\AdminPart\Controllers\CMSSiteSettingController.cs" />
     <Compile Include="Areas\AdminPart\Controllers\CMSUseTypeController.cs" />
+    <Compile Include="Areas\AdminPart\Controllers\CMSVisitorController.cs" />
     <Compile Include="Areas\AdminPart\Controllers\CommonFunction.cs" />
     <Compile Include="Areas\AdminPart\Controllers\EmailController.cs" />
     <Compile Include="Areas\AdminPart\Models\Article.cs">
@@ -1619,9 +1620,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\AdminPart\Models\EmailModel.cs" />
-    <Compile Include="Areas\AdminPart\Models\ImportSalon.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Areas\AdminPart\Models\Message.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1679,7 +1677,7 @@
     <Compile Include="Areas\AdminPart\Models\Usp_GetAllServices_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\AdminPart\Models\USp_GetArticlesOfPerson_Result.cs">
+    <Compile Include="Areas\AdminPart\Models\Usp_GetArticlesOfPerson_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\AdminPart\Models\Usp_GetArticles_Result.cs">
@@ -1698,6 +1696,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\AdminPart\Models\Usp_GetSiteSettingWithPicture_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\AdminPart\Models\Visitor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ArticleController.cs" />
@@ -1743,6 +1744,7 @@
     <Folder Include="Areas\AdminPart\Views\CMSRole\" />
     <Folder Include="Areas\AdminPart\Views\CMSSecurityQuestion\" />
     <Folder Include="Areas\AdminPart\Views\CMSUseType\" />
+    <Folder Include="Areas\AdminPart\Views\CMSVisitor\" />
     <Folder Include="FileArchives\Article\" />
     <Folder Include="FileArchives\PersonImage\" />
     <Folder Include="FileArchives\SalonService\" />

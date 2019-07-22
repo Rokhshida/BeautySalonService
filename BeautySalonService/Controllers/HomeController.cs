@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using BeautySalonService.Areas.AdminPart.Controllers;
 namespace BeautySalonService.Controllers
 {
     public class HomeController : Controller
@@ -22,6 +22,8 @@ namespace BeautySalonService.Controllers
 
         public ActionResult Services()
         {
+
+            VisitSave("Home", "Services");
             return View();
         }
         public ActionResult Gallery()
@@ -43,14 +45,12 @@ namespace BeautySalonService.Controllers
             return View();
 
         }
-     public void VisitSave() 
+     public void VisitSave(string Controller,string page) 
      {   var browser = Request.Browser; 
-         var REFERER = Request.ServerVariables["HTTP_REFERER"]; 
-         // var REFERER = Request.UrlReferrer;
-         //DB.Tbl_Visit.Add(new Tbl_Visit()
-         //{ Vis_Date = MiladiToShamsi(DateTime.Now) + "_" + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second,
-         //    Vis_IP = GetUser_IP(), Vis_Browser = browser.Browser, Vis_Platform= browser.Platform, Vis_Referer = REFERER }); 
-         //DB.SaveChanges();
+         var REFERER = Request.ServerVariables["HTTP_REFERER"];
+         CMSVisitorController ObjControl=new CMSVisitorController();
+         ObjControl.SaveVisitor(GetUser_IP(), browser.Browser, browser.Platform, REFERER, Controller, page);
+      
      } 
         protected string GetUser_IP()
         { 

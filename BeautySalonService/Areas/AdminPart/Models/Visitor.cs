@@ -12,11 +12,16 @@ namespace BeautySalonService.Areas.AdminPart.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ImportSalon
+    public partial class Visitor
     {
-        public string name { get; set; }
-        public string address { get; set; }
-        public string Tel { get; set; }
         public int ID { get; set; }
+        public string Vis_Date { get; set; }
+        public string Vis_IP { get; set; }
+        public string Vis_Browser { get; set; }
+        public string Vis_Platform { get; set; }
+        public string Vis_Referer { get; set; }
+        public Nullable<int> IDRelated { get; set; }
+        public string Controller { get; set; }
+        public string PageName { get; set; }
     }
 }

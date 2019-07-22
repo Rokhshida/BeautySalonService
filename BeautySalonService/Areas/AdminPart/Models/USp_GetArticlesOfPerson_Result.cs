@@ -11,7 +11,7 @@ namespace BeautySalonService.Areas.AdminPart.Models
 {
     using System;
     
-    public partial class USp_GetArticlesOfPerson_Result
+    public partial class Usp_GetArticlesOfPerson_Result
     {
         public int ID { get; set; }
         public string Title { get; set; }

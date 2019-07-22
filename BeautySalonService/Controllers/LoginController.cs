@@ -26,22 +26,35 @@ namespace BeautySalonService.Controllers
 
             if (Result.Count != 0)
             {
-                Session["Sess_Name"] = Result[0].Name;
-                Session["Sess_Family"] = Result[0].Family;
-                Session["Sess_IDPerson"] = Result[0].ID;
-                Session["Sess_Email"] = Result[0].Email;
-                Session["Sess_PicPath"] = Result[0].PicturePath;
-                Session["Sess_ID_Role"] = Result[0].ID_Role;
-                if (Session["Sess_PicPath"] == null ) { Session["Sess_PicPath"] = "DefaultPerson.jpg"; }
-                if (Result[0].ID_Role != 3)
-                { return Redirect("/AdminPart/CMSHome"); }
-                else
+            if (Result[0].ApprovedState == (int)CommonFunction.En_ApproveState.Approved)
+            {
+
                 {
 
-                    return Redirect("/");
-                }
+                    Session["Sess_Name"] = Result[0].Name;
+                    Session["Sess_Family"] = Result[0].Family;
+                    Session["Sess_IDPerson"] = Result[0].ID;
+                    Session["Sess_Email"] = Result[0].Email;
+                    Session["Sess_PicPath"] = Result[0].PicturePath;
+                    Session["Sess_ID_Role"] = Result[0].ID_Role;
+                    if (Session["Sess_PicPath"] == null) { Session["Sess_PicPath"] = "DefaultPerson.jpg"; }
+                    if (Result[0].ID_Role != 3)
+                    { return Redirect("/AdminPart/CMSHome"); }
+                    else
+                    {
 
+                        return Redirect("/");
+                    }
+
+                }
+            }else
+            {
+                Session["Sess_Msg"] = "نام گاربری شما در حال حاضر تایید نشده است ";
+                return Redirect("/Login");
+            
             }
+        
+             }
 
             else
             {

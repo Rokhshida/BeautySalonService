@@ -71,7 +71,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         public JsonResult GetArticleOfPersonWithPage(int PageNum, int PageSize,int ID_Person)
         {
             int skip = PageSize * (PageNum - 1);
-            var Result = DB.USp_GetArticlesOfPerson(ID_Person).ToList()
+            var Result = DB.Usp_GetArticlesOfPerson(ID_Person).ToList()
            .OrderByDescending(item => item.ID)
            .Skip(skip)
            .Take(PageSize);

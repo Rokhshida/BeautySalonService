@@ -30,7 +30,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
             if (optionalID_Manager == 0)
             {
                 int skip = PageSize * (CurrentPage - 1);
-                var Result = DB.Usp_GetAllSalon().ToList()
+                var Result = DB.Usp_GetAllSalon(0).ToList()
                .OrderByDescending(item => item.ID)
                .Skip(skip)
                .Take(PageSize);
@@ -40,7 +40,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 return jsonResult;
             }
             else {
-                var Result = DB.Usp_GetAllSalon().Where(item => item.ID_Manager == optionalID_Manager).ToList();
+                var Result = DB.Usp_GetAllSalon(0).Where(item => item.ID_Manager == optionalID_Manager).ToList();
 
               
                return  Json(Result, JsonRequestBehavior.AllowGet);

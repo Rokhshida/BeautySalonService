@@ -40,7 +40,7 @@ namespace BeautySalonService.Areas.AdminPart.Models
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<SiteSetting> SiteSetting { get; set; }
         public virtual DbSet<UseType> UseType { get; set; }
-        public virtual DbSet<ImportSalon> ImportSalon { get; set; }
+        public virtual DbSet<Visitor> Visitor { get; set; }
     
         public virtual ObjectResult<Usp_CheckLogin_Result> Usp_CheckLogin(string username, string password)
         {
@@ -55,9 +55,26 @@ namespace BeautySalonService.Areas.AdminPart.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usp_CheckLogin_Result>("Usp_CheckLogin", usernameParameter, passwordParameter);
         }
     
-        public virtual ObjectResult<Usp_GetAllSalon_Result> Usp_GetAllSalon()
+        public virtual int Usp_ChekPersonDuplicate(string email, string username, ObjectParameter cnt)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usp_GetAllSalon_Result>("Usp_GetAllSalon");
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_ChekPersonDuplicate", emailParameter, usernameParameter, cnt);
+        }
+    
+        public virtual ObjectResult<Usp_GetAllSalon_Result> Usp_GetAllSalon(Nullable<int> isApproved)
+        {
+            var isApprovedParameter = isApproved.HasValue ?
+                new ObjectParameter("IsApproved", isApproved) :
+                new ObjectParameter("IsApproved", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usp_GetAllSalon_Result>("Usp_GetAllSalon", isApprovedParameter);
         }
     
         public virtual ObjectResult<Usp_GetAllServices_Result> Usp_GetAllServices()
@@ -68,6 +85,15 @@ namespace BeautySalonService.Areas.AdminPart.Models
         public virtual ObjectResult<Usp_GetArticles_Result> Usp_GetArticles()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usp_GetArticles_Result>("Usp_GetArticles");
+        }
+    
+        public virtual ObjectResult<Usp_GetArticlesOfPerson_Result> Usp_GetArticlesOfPerson(Nullable<int> iD_Person)
+        {
+            var iD_PersonParameter = iD_Person.HasValue ?
+                new ObjectParameter("ID_Person", iD_Person) :
+                new ObjectParameter("ID_Person", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usp_GetArticlesOfPerson_Result>("Usp_GetArticlesOfPerson", iD_PersonParameter);
         }
     
         public virtual ObjectResult<Usp_GetNewMessagesForPerson_Result> Usp_GetNewMessagesForPerson(Nullable<int> iD_Person_To)
@@ -130,15 +156,6 @@ namespace BeautySalonService.Areas.AdminPart.Models
                 new ObjectParameter("ID_Main2", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_InsertPic", picPathParameter, tableNameParameter, iD_MainParameter, iD_Main2Parameter);
-        }
-    
-        public virtual ObjectResult<USp_GetArticlesOfPerson_Result> USp_GetArticlesOfPerson(Nullable<int> iD_Person)
-        {
-            var iD_PersonParameter = iD_Person.HasValue ?
-                new ObjectParameter("ID_Person", iD_Person) :
-                new ObjectParameter("ID_Person", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USp_GetArticlesOfPerson_Result>("USp_GetArticlesOfPerson", iD_PersonParameter);
         }
     }
 }

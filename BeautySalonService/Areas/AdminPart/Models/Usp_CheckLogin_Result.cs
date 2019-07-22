@@ -25,5 +25,6 @@ namespace BeautySalonService.Areas.AdminPart.Models
         public Nullable<int> ID_Role { get; set; }
         public string CellPhoneNo { get; set; }
         public string PicturePath { get; set; }
+        public Nullable<byte> ApprovedState { get; set; }
     }
 }

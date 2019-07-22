@@ -93,7 +93,6 @@
           <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -165,13 +164,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ImportSalon">
-      <EntityTypeMapping TypeName="BeautySalonModel.ImportSalon">
-        <MappingFragment StoreEntitySet="ImportSalon">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="Tel" ColumnName="Tel" />
+    <EntitySetMapping Name="Visitor">
+      <EntityTypeMapping TypeName="BeautySalonModel.Visitor">
+        <MappingFragment StoreEntitySet="Visitor">
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Vis_Date" ColumnName="Vis_Date" />
+          <ScalarProperty Name="Vis_IP" ColumnName="Vis_IP" />
+          <ScalarProperty Name="Vis_Browser" ColumnName="Vis_Browser" />
+          <ScalarProperty Name="Vis_Platform" ColumnName="Vis_Platform" />
+          <ScalarProperty Name="Vis_Referer" ColumnName="Vis_Referer" />
+          <ScalarProperty Name="IDRelated" ColumnName="IDRelated" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -190,9 +194,11 @@
           <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
           <ScalarProperty Name="CellPhoneNo" ColumnName="CellPhoneNo" />
           <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+          <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Usp_ChekPersonDuplicate" FunctionName="BeautySalonModel.Store.Usp_ChekPersonDuplicate" />
     <FunctionImportMapping FunctionImportName="Usp_GetAllSalon" FunctionName="BeautySalonModel.Store.Usp_GetAllSalon">
       <ResultMapping>
         <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetAllSalon_Result">
@@ -208,7 +214,6 @@
           <ScalarProperty Name="ID_pic" ColumnName="ID_pic" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="ApprovedState" ColumnName="ApprovedState" />
           <ScalarProperty Name="Manager" ColumnName="Manager" />
           <ScalarProperty Name="CityName" ColumnName="CityName" />
           <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
@@ -229,6 +234,18 @@
     <FunctionImportMapping FunctionImportName="Usp_GetArticles" FunctionName="BeautySalonModel.Store.Usp_GetArticles">
       <ResultMapping>
         <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetArticles_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
+          <ScalarProperty Name="NameFamily" ColumnName="NameFamily" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Usp_GetArticlesOfPerson" FunctionName="BeautySalonModel.Store.Usp_GetArticlesOfPerson">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BeautySalonModel.Usp_GetArticlesOfPerson_Result">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
@@ -305,17 +322,5 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Usp_InsertPic" FunctionName="BeautySalonModel.Store.Usp_InsertPic" />
-    <FunctionImportMapping FunctionImportName="USp_GetArticlesOfPerson" FunctionName="BeautySalonModel.Store.USp_GetArticlesOfPerson">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="BeautySalonModel.USp_GetArticlesOfPerson_Result">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="SiteContent" ColumnName="SiteContent" />
-          <ScalarProperty Name="NameFamily" ColumnName="NameFamily" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -87,7 +87,6 @@
     <Property Name="ID_pic" Type="Int32" />
     <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="ModifiedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="ApprovedState" Type="Byte" />
   </EntityType>
   <EntityType Name="SalonPhone">
     <Key>
@@ -152,14 +151,19 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UseComments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="ImportSalon">
+  <EntityType Name="Visitor">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Tel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Vis_Date" Type="String" MaxLength="18" FixedLength="true" Unicode="true" />
+    <Property Name="Vis_IP" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Vis_Browser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Vis_Platform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Vis_Referer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDRelated" Type="Int32" />
+    <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityContainer Name="BeautySalonEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Article" EntityType="Self.Article" />
@@ -175,14 +179,24 @@
     <EntitySet Name="Service" EntityType="Self.Service" />
     <EntitySet Name="SiteSetting" EntityType="Self.SiteSetting" />
     <EntitySet Name="UseType" EntityType="Self.UseType" />
-    <EntitySet Name="ImportSalon" EntityType="Self.ImportSalon" />
+    <EntitySet Name="Visitor" EntityType="Self.Visitor" />
     <FunctionImport Name="Usp_CheckLogin" ReturnType="Collection(BeautySalonModel.Usp_CheckLogin_Result)">
       <Parameter Name="username" Mode="In" Type="String" />
       <Parameter Name="password" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="Usp_GetAllSalon" ReturnType="Collection(BeautySalonModel.Usp_GetAllSalon_Result)" />
+    <FunctionImport Name="Usp_ChekPersonDuplicate">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="cnt" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_GetAllSalon" ReturnType="Collection(BeautySalonModel.Usp_GetAllSalon_Result)">
+      <Parameter Name="IsApproved" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="Usp_GetAllServices" ReturnType="Collection(BeautySalonModel.Usp_GetAllServices_Result)" />
     <FunctionImport Name="Usp_GetArticles" ReturnType="Collection(BeautySalonModel.Usp_GetArticles_Result)" />
+    <FunctionImport Name="Usp_GetArticlesOfPerson" ReturnType="Collection(BeautySalonModel.Usp_GetArticlesOfPerson_Result)">
+      <Parameter Name="ID_Person" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="Usp_GetNewMessagesForPerson" ReturnType="Collection(BeautySalonModel.Usp_GetNewMessagesForPerson_Result)">
       <Parameter Name="ID_Person_To" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -202,9 +216,6 @@
       <Parameter Name="ID_Main" Mode="In" Type="Int32" />
       <Parameter Name="ID_Main2" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="USp_GetArticlesOfPerson" ReturnType="Collection(BeautySalonModel.USp_GetArticlesOfPerson_Result)">
-      <Parameter Name="ID_Person" Mode="In" Type="Int32" />
-    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="Usp_CheckLogin_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
@@ -219,6 +230,7 @@
     <Property Type="Int32" Name="ID_Role" Nullable="true" />
     <Property Type="String" Name="CellPhoneNo" Nullable="true" MaxLength="11" />
     <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
+    <Property Type="Byte" Name="ApprovedState" Nullable="true" />
   </ComplexType>
   <ComplexType Name="Usp_GetAllSalon_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
@@ -233,7 +245,6 @@
     <Property Type="Int32" Name="ID_pic" Nullable="true" />
     <Property Type="String" Name="CreatedDate" Nullable="true" MaxLength="10" />
     <Property Type="String" Name="ModifiedDate" Nullable="true" MaxLength="10" />
-    <Property Type="Byte" Name="ApprovedState" Nullable="true" />
     <Property Type="String" Name="Manager" Nullable="true" MaxLength="101" />
     <Property Type="String" Name="CityName" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
@@ -246,6 +257,14 @@
     <Property Type="String" Name="comment" Nullable="true" />
   </ComplexType>
   <ComplexType Name="Usp_GetArticles_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SiteContent" Nullable="true" />
+    <Property Type="String" Name="NameFamily" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="Usp_GetArticlesOfPerson_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="SiteContent" Nullable="true" />
@@ -298,13 +317,5 @@
     <Property Type="String" Name="PicturePath" Nullable="true" MaxLength="200" />
     <Property Type="String" Name="SubTitle" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="UseComments" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="USp_GetArticlesOfPerson_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="SiteContent" Nullable="true" />
-    <Property Type="String" Name="NameFamily" Nullable="true" MaxLength="101" />
-    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="PicturePath" Nullable="false" MaxLength="200" />
   </ComplexType>
 </Schema>

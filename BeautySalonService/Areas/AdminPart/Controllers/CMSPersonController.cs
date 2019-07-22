@@ -29,7 +29,7 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
                 string Body = System.IO.File.ReadAllText(Server.MapPath("~/Areas/AdminPart/Assets/TemplateEmail_membership.html"));
                 Body = Body.Replace("#PersonNameFamily#", ObjPerson.Name +" " +ObjPerson.Family );
               
-                Body = Body.Replace("#ApproveLnk#", "~/Person/ApproveMemebership".ToString()+"?id=" + ObjPerson.ID.ToString());
+                Body = Body.Replace("#ApproveLnk#", "http://rokhshida.ir/Person/ApproveMembership"+"?id=" + ObjPerson.ID.ToString());
                
                 ObjEmail.Body = Body;
                 ObjEmail.Email = CommonFunction.Email_From;
@@ -88,14 +88,20 @@ namespace BeautySalonService.Areas.AdminPart.Controllers
         {
             try
             {
-
-                ObjPerson.password = CommonFunction.EncodePasswordToBase64(ObjPerson.password);
-                ObjPerson.CreatedDate = CommonFunction.GetDateNow();
-                ObjPerson.ModifiedDate = CommonFunction.GetDateNow();
-                DB.Person.Add(ObjPerson);
-                DB.SaveChanges();
-                SendMembershipEmail(ObjPerson);
-                return Json(ObjPerson.ID, JsonRequestBehavior.AllowGet);
+                System.Data.Entity.Core.Objects.ObjectParameter myOutputParamInt = new System.Data.Entity.Core.Objects.ObjectParameter("cnt", typeof(Int32)); 
+                 DB.Usp_ChekPersonDuplicate(ObjPerson.Email, ObjPerson.username, myOutputParamInt);
+                 int myIntcnt = Convert.ToInt32(myOutputParamInt.Value);
+                 if (myIntcnt == 0)
+                 {
+                     ObjPerson.password = CommonFunction.EncodePasswordToBase64(ObjPerson.password);
+                     ObjPerson.CreatedDate = CommonFunction.GetDateNow();
+                     ObjPerson.ModifiedDate = CommonFunction.GetDateNow();
+                     DB.Person.Add(ObjPerson);
+                     DB.SaveChanges();
+                     SendMembershipEmail(ObjPerson);
+                     return Json(ObjPerson.ID, JsonRequestBehavior.AllowGet);
+                 }
+                 else { throw new Exception("این نام گاربری تکراری است"); }
             }
             catch (Exception EX) { throw EX; }
 
